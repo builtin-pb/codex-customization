@@ -1,6 +1,6 @@
 # Codex Tool Mapping
 
-Skills use Claude Code tool names. When you encounter these in a skill, use your platform equivalent:
+Some imported skills still use legacy host tool names. When you encounter them in a skill, use these Codex equivalents:
 
 | Skill references | Codex equivalent |
 |-----------------|------------------|
@@ -26,7 +26,7 @@ This enables `spawn_agent`, `wait`, and `close_agent` for skills like `subagent-
 
 ## Named agent dispatch
 
-Claude Code skills reference named agent types like `superpowers:code-reviewer`.
+Some imported skills reference named agent types like `code-reviewer` or a legacy prefixed `code-reviewer` form.
 Codex does not have a named agent registry — `spawn_agent` creates generic agents
 from built-in roles (`default`, `explorer`, `worker`).
 
@@ -40,7 +40,7 @@ When a skill says to dispatch a named agent type:
 
 | Skill instruction | Codex equivalent |
 |-------------------|------------------|
-| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
+| `Task tool (code-reviewer)` or its legacy prefixed form | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
 | `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
 
 ### Message framing

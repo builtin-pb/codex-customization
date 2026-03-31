@@ -138,7 +138,7 @@ Use [templates/progress-presentation.html](../templates/progress-presentation.ht
 
 Replace placeholder content with your actual research data. Add, remove, or rearrange sections as the research demands. The template is a scaffold, not a constraint.
 
-### Claude Code
+### Codex
 
 Generate the HTML, then show it to the human:
 

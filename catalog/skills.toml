@@ -11,7 +11,7 @@ status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/0-autoresearch-skill"
 source_path = "/Users/builtin.pb/.orchestra/skills/0-autoresearch-skill"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to use Codex-first host wording in the active workflow and support references."
 
 [[skill]]
 id = "litgpt"
@@ -891,7 +891,7 @@ status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/ml-paper-writing"
 source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/ml-paper-writing"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to use Codex-first agent wording in the active workflow."
 
 [[skill]]
 id = "brainstorming-research-ideas"
@@ -921,7 +921,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/brainstorming"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/brainstorming"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to favor front-loaded clarification while removing unnecessary post-spec user review gates."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to favor front-loaded clarification, remove unnecessary post-spec user review gates, and use Codex-first support wording."
 
 [[skill]]
 id = "executing-plans"
@@ -931,7 +931,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/executing-plans"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/executing-plans"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Superpowers and Claude host references with Codex-first wording."
 
 [[skill]]
 id = "finishing-a-development-branch"
@@ -951,7 +951,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/receiving-code-review"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/receiving-code-review"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude-specific review wording with Codex-first wording."
 
 [[skill]]
 id = "requesting-code-review"
@@ -961,7 +961,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/requesting-code-review"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/requesting-code-review"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Superpowers agent-dispatch wording with Codex-first reviewer dispatch guidance."
 
 [[skill]]
 id = "subagent-driven-development"
@@ -971,7 +971,7 @@ status = "adapted"
 source_kind = "superpowers"
 source_ref = "superpowers/subagent-driven-development"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/subagent-driven-development"
-notes = "Adapted from the local Superpowers checkout to emphasize aggressive parallel implement/review lanes, multiple implementers and reviewers, and reviewer scaling when finished work queues build."
+notes = "Adapted from the local Superpowers checkout to emphasize aggressive parallel implement/review lanes, multiple implementers and reviewers, reviewer scaling when finished work queues build, and Codex-first cross-references and prompt wording."
 
 [[skill]]
 id = "systematic-debugging"
@@ -981,7 +981,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/systematic-debugging"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/systematic-debugging"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Superpowers skill references with local Codex-first names."
 
 [[skill]]
 id = "test-driven-development"
@@ -1001,7 +1001,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-git-worktrees"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/using-git-worktrees"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording and tool mappings."
 
 [[skill]]
 id = "using-superpowers"
@@ -1011,7 +1011,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-superpowers"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/using-superpowers"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording and tool mappings."
 
 [[skill]]
 id = "verification-before-completion"
@@ -1031,7 +1031,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/writing-plans"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/writing-plans"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Superpowers skill references with local Codex-first names."
 
 [[skill]]
 id = "writing-skills"
@@ -1041,7 +1041,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/writing-skills"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/writing-skills"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first skill-authoring wording."
 
 [[skill]]
 id = "agent-coordination"

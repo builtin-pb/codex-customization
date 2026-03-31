@@ -8,7 +8,7 @@ The wall-clock loop is the first thing you do when starting autoresearch. Withou
 
 This is completely separate from the research inner/outer loops. The wall-clock loop is a fixed-interval prompt injection. The research loops run at experiment speed (minutes to hours per cycle). They will not sync and don't need to.
 
-## Claude Code: /loop
+## Codex: /loop
 
 **Run this as your very first action:**
 
@@ -73,7 +73,7 @@ Keep these updated after every action so the next cron tick can pick up seamless
 
 ### Progress Reports
 
-OpenClaw can't `open` HTML files locally like Claude Code can. When you have something to report:
+OpenClaw can't `open` HTML files locally the way Codex can. When you have something to report:
 
 1. Generate a PDF progress summary (use Python with reportlab, matplotlib, or similar)
 2. Include: research question, key results, optimization trajectory plot, current understanding, next steps

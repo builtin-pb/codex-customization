@@ -124,7 +124,6 @@ When you encounter a domain-specific task during research, search the skills lib
 | Agent pipelines | LangChain | `14-agents/langchain/` |
 | Knowledge retrieval agents | LlamaIndex | `14-agents/llamaindex/` |
 | Lightweight agents | Smolagents | `14-agents/smolagents/` |
-| Claude-based agents | Claude Agent SDK | `14-agents/claude-agent-sdk/` |
 | Vector store (local) | Chroma | `15-rag/chroma/` |
 | Vector similarity search | FAISS | `15-rag/faiss/` |
 | Text embeddings | Sentence Transformers | `15-rag/sentence-transformers/` |

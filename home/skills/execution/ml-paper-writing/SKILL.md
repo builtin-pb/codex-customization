@@ -14,9 +14,9 @@ Expert-level guidance for writing publication-ready papers targeting **NeurIPS, 
 
 ## Core Philosophy: Collaborative Writing
 
-**Paper writing is collaborative, but Claude should be proactive in delivering drafts.**
+**Paper writing is collaborative, but the agent should be proactive in delivering drafts.**
 
-The typical workflow starts with a research repository containing code, results, and experimental artifacts. Claude's role is to:
+The typical workflow starts with a research repository containing code, results, and experimental artifacts. The agent's role is to:
 
 1. **Understand the project** by exploring the repo, results, and existing documentation
 2. **Deliver a complete first draft** when confident about the contribution
@@ -59,9 +59,9 @@ If you cannot programmatically verify a citation, you MUST:
 
 For the best paper search experience, install **Exa MCP** which provides real-time academic search:
 
-**Claude Code:**
+**Codex:**
 ```bash
-claude mcp add exa -- npx -y mcp-remote "https://mcp.exa.ai/mcp"
+codex mcp add exa --url "https://mcp.exa.ai/mcp"
 ```
 
 **Cursor / VS Code** (add to MCP settings):
@@ -989,4 +989,3 @@ See [templates/README.md](templates/README.md) for detailed setup instructions.
 **ML/AI Venues:** [NeurIPS](https://neurips.cc/Conferences/2025/PaperInformation/StyleFiles) | [ICML](https://icml.cc/Conferences/2025/AuthorInstructions) | [ICLR](https://iclr.cc/Conferences/2026/AuthorGuide) | [ACL](https://github.com/acl-org/acl-style-files)
 
 **Systems Venues:** [OSDI 2026](https://www.usenix.org/conference/osdi26/call-for-papers) | [NSDI 2027](https://www.usenix.org/conference/nsdi27/call-for-papers) | [ASPLOS 2027](https://www.asplos-conference.org/asplos2026/call-for-papers-asplos27/) | [SOSP 2026](https://sigops.org/s/conferences/sosp/2026/cfp.html)
-

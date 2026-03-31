@@ -84,7 +84,7 @@ digraph process {
         "Implementer fixes quality issues" [shape=box];
     }
 
-    "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
+    "Use finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract tasks, note dependencies, create session tracker" -> "Split work into independent slices";
     "Split work into independent slices" -> "Keep implement lane full";
@@ -108,7 +108,7 @@ digraph process {
     "Integrate accepted work and update plan file" -> "All slices integrated?";
     "All slices integrated?" -> "Keep implement lane full" [label="no"];
     "All slices integrated?" -> "Dispatch final code reviewer subagent for entire implementation" [label="yes"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use superpowers:finishing-a-development-branch";
+    "Dispatch final code reviewer subagent for entire implementation" -> "Use finishing-a-development-branch";
 }
 ```
 
@@ -250,7 +250,7 @@ Implementer B: Task 2: Recovery modes
 
 Implementer A: "Before I begin - should the hook be installed at user or system level?"
 
-You: "User level (~/.config/superpowers/hooks/)"
+You: "User level (~/.config/codex/hooks/)"
 
 Implementer A: "Got it. Implementing now..."
 Implementer B: [No questions, proceeds]
@@ -330,7 +330,7 @@ Combined reviewer: ✅ Individual slices are fine, but integration needs one sha
 [Dispatch required final integrated reviewer]
 Final reviewer: All requirements met across the full implementation, ready to merge
 
-[Use superpowers:finishing-a-development-branch]
+[Use finishing-a-development-branch]
 Done.
 ```
 
@@ -404,11 +404,11 @@ Done.
 ## Integration
 
 **Helpful companion skills in this repo:**
-- **superpowers:writing-plans** - Creates the plan this skill executes
-- **superpowers:finishing-a-development-branch** - Complete development after all tasks
+- **writing-plans** - Creates the plan this skill executes
+- **finishing-a-development-branch** - Complete development after all tasks
 
 **Implementer subagents should use:**
-- **superpowers:test-driven-development** - Subagents follow TDD for each task
+- **test-driven-development** - Subagents follow TDD for each task
 
 **Reviewer subagents should use:**
 - The local prompt templates in this skill for slice-level spec review and code-quality review.
@@ -416,4 +416,4 @@ Done.
 - A broader generic review workflow is optional when you intentionally want wider end-of-implementation coverage beyond the required final integrated review.
 
 **Alternative workflow:**
-- **superpowers:executing-plans** - Use for parallel session instead of same-session execution
+- **executing-plans** - Use for parallel session instead of same-session execution

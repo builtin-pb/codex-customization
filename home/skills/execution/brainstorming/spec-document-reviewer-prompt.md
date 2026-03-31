@@ -7,7 +7,7 @@ Use this template when dispatching a spec document reviewer subagent.
 **Dispatch after:** Spec document is written to docs/agent/specs/
 
 ```
-Task tool (general-purpose):
+Spawn a reviewer agent with a message like:
   description: "Review spec document"
   prompt: |
     You are a spec document reviewer. Verify this spec is complete and ready for planning.

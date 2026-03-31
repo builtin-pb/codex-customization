@@ -265,7 +265,7 @@ The "Lessons and Constraints" section is especially important — it captures sp
 
 **Before doing anything else**, set up the wall-clock loop. This is what keeps the research running continuously. Without it, the agent stops after one cycle.
 
-### Claude Code
+### Codex
 
 **First action — run this immediately:**
 
@@ -328,7 +328,7 @@ When you have something meaningful to share, create a research presentation — 
 - Current understanding (the findings narrative)
 - What's planned next
 
-For Claude Code: generate HTML and `open` it. If HTML fails to open or render, convert to PDF as fallback (use `weasyprint`, `playwright pdf`, or `wkhtmltopdf`). For OpenClaw: generate PDF directly.
+For Codex: generate HTML and `open` it. If HTML fails to open or render, convert to PDF as fallback (use `weasyprint`, `playwright pdf`, or `wkhtmltopdf`). For OpenClaw: generate PDF directly.
 
 See [references/progress-reporting.md](references/progress-reporting.md) for template scaffolding and the optimization plot approach. Use the template as a starting point — be creative with what you show.
 
