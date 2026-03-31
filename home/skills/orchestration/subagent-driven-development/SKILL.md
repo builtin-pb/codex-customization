@@ -260,7 +260,7 @@ Implementer A: DONE
   - Implemented install-hook command
   - Added tests, 5/5 passing
   - Self-review: Found I missed --force flag, added it
-Implementer B: STILL_WORKING
+Implementer B: [still implementing Task 2]
   - Recovery modes implemented
   - Finishing tests and self-review
 
