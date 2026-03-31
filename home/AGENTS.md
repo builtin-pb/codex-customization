@@ -12,7 +12,8 @@ Edit this file when you want to change standing preferences that should apply to
    - If the leader's goal is unclear to the agent, do not execute yet.
    - Brainstorm and interact until the goal is clear enough to act on.
    - When the leader is the user, assume the goal includes necessary follow-through such as tests, reviews, and cross-verification unless the user says otherwise.
-   - When the leader is the user, keep follow-up questions to a minimum. Ask only when a meaningful ambiguity remains.
+   - When the leader is the user, prefer spending extra turns before execution to make the goal, constraints, and success criteria clear.
+   - Keep clarification efficient, but do not force avoidable post-work review or verification loops onto the user when the agent can perform that review or verification itself.
 
 2. Once the goal is clear enough to act, think explicitly about decomposition.
    - Look for sensible independent subtasks.

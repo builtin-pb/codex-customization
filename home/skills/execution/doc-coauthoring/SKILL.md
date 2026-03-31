@@ -21,7 +21,7 @@ Offer the user a structured workflow for co-authoring the document. Explain the 
 2. **Refinement & Structure**: Iteratively build each section through brainstorming and editing
 3. **Reader Testing**: Test the doc with a fresh agent session (no context) to catch blind spots before others read it
 
-Explain that this approach helps ensure the doc works well when others read it, including when they hand it to another agent session for help or question-answering. Ask if they want to try this workflow or prefer to work freeform.
+Explain that this approach helps ensure the doc works well when others read it, including when they hand it to another agent session for help or question-answering. Emphasize that the agent should do its own structure and clarity checks instead of pushing unnecessary review loops back onto the user. Ask if they want to try this workflow or prefer to work freeform.
 
 If user declines, work freeform. If user accepts, proceed to Stage 1.
 
@@ -89,7 +89,7 @@ Inform them clarifying questions will be asked once they've done their initial d
 
 When user signals they've done their initial dump (or after substantial context provided), ask clarifying questions to ensure understanding:
 
-Generate 5-10 numbered questions based on gaps in the context.
+Generate a focused batch of numbered questions based on the remaining gaps in the context. Ask enough to unblock high-quality drafting without forcing a fixed count.
 
 Inform them they can use shorthand to answer (e.g., "1: yes, 2: see #channel, 3: no because backwards compat"), link to more docs, point to channels to read, or just keep info-dumping. Whatever's most efficient for them.
 
@@ -108,7 +108,7 @@ If user wants to add more, let them. When ready, proceed to Stage 2.
 **Instructions to user:**
 Explain that the document will be built section by section. For each section:
 1. Clarifying questions will be asked about what to include
-2. 5-20 options will be brainstormed
+2. A focused set of candidate points will be brainstormed
 3. User will indicate what to keep/remove/combine
 4. The section will be drafted
 5. It will be refined through surgical edits
@@ -153,19 +153,19 @@ Confirm the filename has been created and indicate it's time to fill in each sec
 
 ### Step 1: Clarifying Questions
 
-Announce work will begin on the [SECTION NAME] section. Ask 5-10 clarifying questions about what should be included:
+Announce work will begin on the [SECTION NAME] section. Ask the clarifying questions needed to draft it well:
 
-Generate 5-10 specific questions based on context and section purpose.
+Generate a focused set of specific questions based on context and section purpose.
 
 Inform them they can answer in shorthand or just indicate what's important to cover.
 
 ### Step 2: Brainstorming
 
-For the [SECTION NAME] section, brainstorm [5-20] things that might be included, depending on the section's complexity. Look for:
+For the [SECTION NAME] section, brainstorm the points that might be included, scaled to the section's complexity. Look for:
 - Context shared that might have been forgotten
 - Angles or considerations not yet mentioned
 
-Generate 5-20 numbered options based on section complexity. At the end, offer to brainstorm more if they want additional options.
+Generate a numbered set of options based on section complexity. Cover the strongest candidates first, then offer to brainstorm more if they want additional options.
 
 ### Step 3: Curation
 
