@@ -17,7 +17,7 @@ This repository does not currently manage:
 - caches, logs, sessions, databases, auth files, or other runtime state
 - Codex system defaults under `~/.codex/skills/.system`, which are intentionally left unmanaged
 
-The active non-system skills are vendored under `home/skills/<classification>/<skill-id>/` as repo-owned content and are linked into the existing `~/.codex/skills/` container without replacing unmanaged entries there. The tracked external origins currently include `orchestra`, `superpowers`, `wshobson-agents-extracted`, and `daymade-claude-code-skills`. The root-level `home/agents/` tree is repo-managed and currently includes `code-reviewer.md` from `superpowers`.
+The active non-system skills are vendored under `home/skills/<classification>/<skill-id>/` as repo-owned content and are linked into the existing `~/.codex/skills/` container without replacing unmanaged entries there. The tracked external origins currently include `orchestra`, `superpowers`, `wshobson-agents-extracted`, `daymade-claude-code-skills`, and `getsentry-skills`. The root-level `home/agents/` tree is repo-managed and currently includes `code-reviewer.md` from `superpowers`.
 
 ## Skill Classification
 

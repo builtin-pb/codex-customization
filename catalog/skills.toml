@@ -1182,3 +1182,13 @@ source_kind = "daymade-claude-code-skills"
 source_ref = "daymade/claude-code-skills@392d34c161043ab7029b3db8204521cd71b983d3:github-ops"
 source_path = "https://github.com/daymade/claude-code-skills/tree/392d34c161043ab7029b3db8204521cd71b983d3/github-ops"
 notes = "Vendored from daymade/claude-code-skills and adapted to remove repo-specific JIRA title assumptions while preserving the upstream reference set."
+
+[[skill]]
+id = "doc-coauthoring"
+type = "skill"
+repo_path = "home/skills/execution/doc-coauthoring"
+status = "adapted"
+source_kind = "getsentry-skills"
+source_ref = "getsentry/skills@07ec616b5aaede831440185aa3f73a4b8bacd138:plugins/sentry-skills/skills/doc-coauthoring"
+source_path = "https://github.com/getsentry/skills/tree/07ec616b5aaede831440185aa3f73a4b8bacd138/plugins/sentry-skills/skills/doc-coauthoring"
+notes = "Vendored from getsentry/skills at a pinned upstream commit, with the Anthropic lineage preserved in the skill attribution section, and adapted to replace Claude-specific tool and product references with Codex-compatible wording."
