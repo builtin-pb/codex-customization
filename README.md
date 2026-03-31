@@ -7,6 +7,7 @@ Portable, repo-owned Codex home for managed skills and agents.
 This repository currently defines the managed Codex layout for:
 - `home/skills/`
 - `home/agents/`
+- `home/AGENTS.md`
 - provenance and maintenance records under `catalog/`
 - setup and bootstrap checks under `bootstrap/` and `tests/bootstrap/`
 
@@ -52,6 +53,7 @@ The setup flow is intended to:
 - back up conflicting managed paths
 - discover managed skill leaf directories under `home/skills/<classification>/` and symlink them into `~/.codex/skills/` while preserving `~/.codex/skills/.system`
 - symlink the repo-owned `home/agents/` tree into `~/.codex/agents/`
+- symlink the repo-owned `home/AGENTS.md` file into `~/.codex/AGENTS.md`
 - prune stale managed skill symlinks that no longer exist under `home/skills/`
 - preserve unmanaged Codex state outside the repo-owned layout
 

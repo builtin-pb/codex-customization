@@ -12,7 +12,7 @@ Before changing tracked skills, agents, setup behavior, or provenance, read:
 ## Source Of Truth
 
 1. The repo-owned `home/` tree defines what is live on a machine.
-2. If a skill or agent should exist in `~/.codex`, it must be present here under `home/`.
+2. If a managed skill, root-level agent, or global `AGENTS.md` file should exist in `~/.codex`, it must be present here under `home/`.
 3. Managed skills now live under `home/skills/<classification>/<skill-id>/`.
 4. The supported skill classifications are `technology`, `execution`, `orchestration`, and `alignment`.
 5. Deployment into `~/.codex/skills/` stays flat by skill id; the repo classification folders are organizational metadata, not live nested install paths.
@@ -67,6 +67,7 @@ Current imported skill clusters:
 - Preserve the symlink-based deployment model into `~/.codex`.
 - Back up conflicts before replacing live managed paths.
 - Leave unmanaged Codex paths untouched.
+- `~/.codex/AGENTS.md` is repo-managed through `home/AGENTS.md`.
 - Prune stale managed skill symlinks that point back into the repo but no longer exist under `home/skills/`.
 
 ## Import Maintenance

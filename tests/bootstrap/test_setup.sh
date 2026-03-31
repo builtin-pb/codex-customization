@@ -10,6 +10,7 @@ mkdir -p "$test_repo/bootstrap" "$test_repo/home/skills/execution/managed-skill"
 cp "$repo_root/bootstrap/setup.sh" "$test_repo/bootstrap/setup.sh"
 printf 'managed skill\n' > "$test_repo/home/skills/execution/managed-skill/SKILL.md"
 printf 'managed agent\n' > "$test_repo/home/agents/agent.txt"
+printf 'managed global agents\n' > "$test_repo/home/AGENTS.md"
 
 codex_home="$tmpdir/.codex"
 backup_root="$tmpdir/backups"
@@ -19,6 +20,7 @@ printf 'system default\n' > "$codex_home/skills/.system/default.txt"
 printf 'stale managed skill\n' > "$codex_home/skills/managed-skill/README.txt"
 printf 'custom skill\n' > "$codex_home/skills/custom-unmanaged/README.txt"
 printf 'stale agent\n' > "$codex_home/agents/README.txt"
+printf 'existing global agents\n' > "$codex_home/AGENTS.md"
 printf 'leave me alone\n' > "$codex_home/rules/runtime.txt"
 ln -s "$test_repo/home/skills/removed-skill" "$codex_home/skills/removed-skill"
 
@@ -42,6 +44,11 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ "$(readlink "$codex_home/agents")" = "$test_repo/home/agents" ]
 [ -f "$backup_root/agents/README.txt" ]
 [ "$(cat "$backup_root/agents/README.txt")" = "stale agent" ]
+[ -L "$codex_home/AGENTS.md" ]
+[ "$(readlink "$codex_home/AGENTS.md")" = "$test_repo/home/AGENTS.md" ]
+[ "$(cat "$codex_home/AGENTS.md")" = "managed global agents" ]
+[ -f "$backup_root/AGENTS.md" ]
+[ "$(cat "$backup_root/AGENTS.md")" = "existing global agents" ]
 [ "$(cat "$codex_home/rules/runtime.txt")" = "leave me alone" ]
 [ ! -L "$codex_home/skills/removed-skill" ]
 [ ! -e "$codex_home/skills/removed-skill" ]
@@ -60,6 +67,11 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ -L "$codex_home/agents" ]
 [ -d "$codex_home/agents" ]
 [ "$(readlink "$codex_home/agents")" = "$test_repo/home/agents" ]
+[ -L "$codex_home/AGENTS.md" ]
+[ "$(readlink "$codex_home/AGENTS.md")" = "$test_repo/home/AGENTS.md" ]
+[ "$(cat "$codex_home/AGENTS.md")" = "managed global agents" ]
+[ -f "$backup_root/AGENTS.md" ]
+[ ! -e "$backup_root/AGENTS.md.1" ]
 [ "$(cat "$codex_home/rules/runtime.txt")" = "leave me alone" ]
 [ ! -L "$codex_home/skills/removed-skill" ]
 [ ! -e "$codex_home/skills/removed-skill" ]

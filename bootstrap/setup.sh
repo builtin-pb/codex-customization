@@ -8,6 +8,7 @@ backup_root="${CODEX_BACKUP_ROOT:-$HOME/.codex-backups/$(date +%Y%m%d-%H%M%S)}"
 managed_root="$repo_root/home"
 managed_skills_root="$managed_root/skills"
 managed_agents_root="$managed_root/agents"
+managed_global_agents_file="$managed_root/AGENTS.md"
 managed_skill_index_file="$(mktemp)"
 
 linked_paths=()
@@ -78,6 +79,29 @@ link_agents_root() {
 
   if [ ! -d "$src" ]; then
     printf 'missing managed source directory: %s\n' "$src" >&2
+    exit 1
+  fi
+
+  if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+    linked_paths+=("$rel already linked")
+    return 0
+  fi
+
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    backup_conflict "$rel"
+  fi
+
+  ln -s "$src" "$dest"
+  linked_paths+=("$rel -> $src")
+}
+
+link_global_agents_file() {
+  local rel="AGENTS.md"
+  local src="$managed_global_agents_file"
+  local dest="$codex_home/$rel"
+
+  if [ ! -f "$src" ]; then
+    printf 'missing managed source file: %s\n' "$src" >&2
     exit 1
   fi
 
@@ -186,7 +210,7 @@ record_unmanaged_root_paths() {
     local name
     name="$(basename "$entry")"
     case "$name" in
-      skills|agents)
+      skills|agents|AGENTS.md)
         continue
         ;;
     esac
@@ -282,6 +306,7 @@ while IFS=$'\t' read -r name src; do
   link_managed_skill "$src" "$name"
 done < "$managed_skill_index_file"
 
+link_global_agents_file
 link_agents_root
 record_unmanaged_root_paths
 record_unmanaged_skill_paths
