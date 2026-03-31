@@ -1,0 +1,5 @@
+# Source of truth for tracked root-level agents in this repository.
+# Nested agents that ship inside skills are tracked with the parent skill.
+schema_version = 1
+
+# No root-level agents are tracked yet.

@@ -1,0 +1,75 @@
+{
+  "path_refs": {
+    "active_root": "~/.codex/skills",
+    "agents_root": "~/.agents/skills",
+    "system_root": "~/.codex/skills/.system",
+    "disabled_root": "~/.codex/skills-disabled",
+    "grouped_root": "~/.codex/skills-by-origin",
+    "superpowers_repo": "~/.codex/superpowers",
+    "superpowers_root": "~/.codex/superpowers/skills",
+    "superpowers_symlink": "~/.agents/skills/superpowers"
+  },
+  "origins": [
+    {
+      "key": "codex-system",
+      "display_name": "Codex System",
+      "source_type": "directory",
+      "root_ref": "system_root",
+      "group_view": "root",
+      "update_method": "Updated with Codex itself, not by pulling a local GitHub clone."
+    },
+    {
+      "key": "superpowers",
+      "display_name": "Superpowers",
+      "source_type": "git-skills-root",
+      "root_ref": "superpowers_root",
+      "repo_root_ref": "superpowers_repo",
+      "symlink_ref": "superpowers_symlink",
+      "group_view": "root",
+      "repo_url_fallback": "https://github.com/obra/superpowers.git",
+      "update_method": "Review local modifications, then run git -C ~/.codex/superpowers pull."
+    },
+    {
+      "key": "wshobson-agents-extracted",
+      "display_name": "wshobson/agents Extracted",
+      "source_type": "active-root-remainder",
+      "root_ref": "agents_root",
+      "group_view": "per-skill",
+      "exclude_names": [
+        "superpowers"
+      ],
+      "repo_url": "https://github.com/wshobson/agents",
+      "update_method": "Refresh source material in /tmp/wshobson-agents, update the local extracted skills in ~/.agents/skills, then rerun the registry refresh."
+    },
+    {
+      "key": "local-custom",
+      "display_name": "Local Custom",
+      "source_type": "named-active-skills",
+      "root_ref": "active_root",
+      "group_view": "per-skill",
+      "update_method": "Local authoring only."
+    },
+    {
+      "key": "orchestra",
+      "display_name": "Orchestra",
+      "source_type": "active-root-remainder",
+      "root_ref": "active_root",
+      "group_view": "per-skill",
+      "exclude_names": [
+        ".system"
+      ],
+      "exclude_origin_keys": [
+        "local-custom"
+      ],
+      "repo_url": "https://github.com/Orchestra-Research/AI-research-SKILLs",
+      "update_method": "Refresh the canonical install in ~/.orchestra/skills from Orchestra, then relink ~/.codex/skills to it and reapply recorded local patches such as autoresearch."
+    },
+    {
+      "key": "inactive",
+      "display_name": "Inactive",
+      "source_type": "directory",
+      "root_ref": "disabled_root",
+      "group_view": "per-skill"
+    }
+  ]
+}

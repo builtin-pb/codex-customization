@@ -21,7 +21,8 @@
 - Create: `home/agents/.gitkeep`
 - Create: `tests/bootstrap/.gitkeep`
 
-- [ ] **Step 1: Create the ignore file**
+- [x] **Step 1: Create the ignore file**
+Observed: Created `.gitignore` with `.DS_Store`, `.codex-import-work/`, and `tmp/`.
 
 ```gitignore
 .DS_Store
@@ -29,7 +30,8 @@
 tmp/
 ```
 
-- [ ] **Step 2: Create the initial skills manifest skeleton**
+- [x] **Step 2: Create the initial skills manifest skeleton**
+Observed: Added `catalog/skills.toml` as the tracked manifest root, then repopulated it during the real import with 92 `[[skill]]` entries.
 
 ```toml
 # Source of truth for tracked skills in this repository.
@@ -39,7 +41,8 @@ schema_version = 1
 # Populated by bootstrap/import_current_home.sh during the initial import.
 ```
 
-- [ ] **Step 3: Create the initial agents manifest skeleton**
+- [x] **Step 3: Create the initial agents manifest skeleton**
+Observed: Added `catalog/agents.toml` and preserved it during later imports so future root-level agent metadata is not clobbered.
 
 ```toml
 # Source of truth for tracked root-level agents in this repository.
@@ -49,7 +52,8 @@ schema_version = 1
 # No root-level agents are tracked yet.
 ```
 
-- [ ] **Step 4: Create the repository maintenance guide**
+- [x] **Step 4: Create the repository maintenance guide**
+Observed: Wrote `AGENTS.md` with source-of-truth, provenance, and setup rules, including the final guard that `~/.codex/skills/.system` stays unmanaged and whole-tree upstream imports are not allowed unless explicitly requested.
 
 ```markdown
 # AGENTS.md
@@ -106,7 +110,8 @@ Whenever you add, remove, import, rename, or modify a tracked skill or agent:
 - Leave unmanaged Codex paths untouched.
 ```
 
-- [ ] **Step 5: Create the user-facing README**
+- [x] **Step 5: Create the user-facing README**
+Observed: Wrote `README.md` to document scope, setup, provenance, and the final live-layout rule: managed skills are linked into the existing `~/.codex/skills/` container while `.system` is preserved.
 
 ```markdown
 # codex-customization
@@ -148,14 +153,16 @@ The script will:
 - Agents nested inside a skill are tracked as part of that skill.
 ```
 
-- [ ] **Step 6: Create the placeholder directories**
+- [x] **Step 6: Create the placeholder directories**
+Observed: Created `home/agents/`, `home/skills/`, and `tests/bootstrap/`; later removed `tests/bootstrap/.gitkeep` once real tests existed.
 
 ```bash
 mkdir -p catalog home/skills home/agents tests/bootstrap
 touch home/agents/.gitkeep tests/bootstrap/.gitkeep
 ```
 
-- [ ] **Step 7: Commit the skeleton**
+- [x] **Step 7: Commit the skeleton**
+Observed: The skeleton work was consolidated into the repo baseline rather than committed as an isolated task-only change.
 
 ```bash
 git add .gitignore AGENTS.md README.md catalog/skills.toml catalog/agents.toml home/agents/.gitkeep tests/bootstrap/.gitkeep
@@ -168,7 +175,8 @@ git commit -m "chore: scaffold portable codex home repo"
 - Create: `tests/bootstrap/test_setup.sh`
 - Create: `bootstrap/setup.sh`
 
-- [ ] **Step 1: Write the failing setup test**
+- [x] **Step 1: Write the failing setup test**
+Observed: A focused shell test was written first and then evolved to cover the real behavior, including `.system` preservation, per-skill backups, root-agent linking, and overlap rejection.
 
 ```bash
 #!/usr/bin/env bash
@@ -191,12 +199,14 @@ bash "$repo_root/bootstrap/setup.sh" >/tmp/codex-setup-test.log 2>&1 && {
 }
 ```
 
-- [ ] **Step 2: Run the test to verify the red state**
+- [x] **Step 2: Run the test to verify the red state**
+Observed: The worker verified the red state before implementation and then replaced the temporary failure harness with the real behavior test.
 
 Run: `bash tests/bootstrap/test_setup.sh`  
 Expected: FAIL because `bootstrap/setup.sh` does not exist yet
 
-- [ ] **Step 3: Replace the red test with the real behavior test**
+- [x] **Step 3: Replace the red test with the real behavior test**
+Observed: The final test now verifies `~/.codex/skills` stays a real directory, `.system` survives unchanged, conflicting managed skills are backed up and replaced by symlinks, unmanaged skill entries are preserved, and overlap configuration is rejected.
 
 ```bash
 #!/usr/bin/env bash
@@ -224,7 +234,8 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ -f "$backup_root/agents/README.txt" ]
 ```
 
-- [ ] **Step 4: Implement the minimal setup script**
+- [x] **Step 4: Implement the minimal setup script**
+Observed: The initial whole-directory `skills` symlink model was corrected during verification; `bootstrap/setup.sh` now links managed skills individually into `~/.codex/skills/`, preserves `.system`, keeps `~/.codex/agents` repo-managed, and blocks destructive `CODEX_HOME` overlap with `home/`.
 
 ```bash
 #!/usr/bin/env bash
@@ -268,12 +279,14 @@ for rel in "${managed_paths[@]}"; do
 done
 ```
 
-- [ ] **Step 5: Run the setup test to verify green**
+- [x] **Step 5: Run the setup test to verify green**
+Observed: `bash tests/bootstrap/test_setup.sh` passes locally after the final safety and `.system` preservation fixes.
 
 Run: `bash tests/bootstrap/test_setup.sh`  
 Expected: PASS with no output
 
-- [ ] **Step 6: Commit the setup implementation**
+- [x] **Step 6: Commit the setup implementation**
+Observed: The setup slice was folded into the final baseline commit rather than landed as a standalone commit.
 
 ```bash
 git add bootstrap/setup.sh tests/bootstrap/test_setup.sh
@@ -289,7 +302,8 @@ git commit -m "feat: add codex home symlink setup"
 - Modify: `catalog/agents.toml`
 - Create: `home/skills/` (generated from the current active `~/.codex/skills` layout)
 
-- [ ] **Step 1: Write the failing import test**
+- [x] **Step 1: Write the failing import test**
+Observed: A focused importer test was written first and then expanded to cover the eventual real constraints: skipping `.system`, dereferencing symlinks, preserving `catalog/agents.toml`, skipping stray folders, escaping TOML, and rejecting unsafe repo roots.
 
 ```bash
 #!/usr/bin/env bash
@@ -320,12 +334,14 @@ bash "$repo_root/bootstrap/import_current_home.sh" >/tmp/codex-import-test.log 2
 }
 ```
 
-- [ ] **Step 2: Run the test to verify the red state**
+- [x] **Step 2: Run the test to verify the red state**
+Observed: The worker verified the importer red state before implementing `bootstrap/import_current_home.sh`.
 
 Run: `bash tests/bootstrap/test_import_current_home.sh`  
 Expected: FAIL because `bootstrap/import_current_home.sh` does not exist yet
 
-- [ ] **Step 3: Replace the red test with the real behavior test**
+- [x] **Step 3: Replace the red test with the real behavior test**
+Observed: The final importer test checks local-vs-imported provenance, `source_ref` generation, TOML escaping for quoted paths, preservation of an existing `catalog/agents.toml`, stray-folder skipping, and unsafe-root rejection.
 
 ```bash
 #!/usr/bin/env bash
@@ -365,7 +381,8 @@ grep -q 'status = "imported"' "$dest_repo/catalog/skills.toml"
 grep -q 'source_path = "'"$tmpdir"'/upstream/external-skill"' "$dest_repo/catalog/skills.toml"
 ```
 
-- [ ] **Step 4: Implement the minimal importer**
+- [x] **Step 4: Implement the minimal importer**
+Observed: `bootstrap/import_current_home.sh` now validates the destination repo root before cleanup, preserves `catalog/agents.toml`, imports only directories containing `SKILL.md`, writes escaped TOML, and records both `source_path` and portable `source_ref`.
 
 ```bash
 #!/usr/bin/env bash
@@ -431,17 +448,20 @@ EOF
 done
 ```
 
-- [ ] **Step 5: Run the import test to verify green**
+- [x] **Step 5: Run the import test to verify green**
+Observed: `bash tests/bootstrap/test_import_current_home.sh` passes locally after the importer safety and manifest fixes.
 
 Run: `bash tests/bootstrap/test_import_current_home.sh`  
 Expected: PASS with no output
 
-- [ ] **Step 6: Run the importer against the current machine**
+- [x] **Step 6: Run the importer against the current machine**
+Observed: Ran `bash bootstrap/import_current_home.sh` against the current machine; `home/skills/` now contains 92 repo-owned non-system skills, `catalog/skills.toml` has 92 matching entries, and `skills-maintenance` is recorded as `status = "local"` / `source_kind = "local-custom"`.
 
 Run: `bash bootstrap/import_current_home.sh`  
 Expected: `home/skills/` is populated with repo-owned copies of active non-system skills, `catalog/skills.toml` contains one entry per imported skill, and `catalog/agents.toml` remains a schema file with a no-root-agents note
 
-- [ ] **Step 7: Commit the imported managed state**
+- [x] **Step 7: Commit the imported managed state**
+Observed: The imported managed state was consolidated into the final baseline commit rather than committed separately.
 
 ```bash
 git add bootstrap/import_current_home.sh tests/bootstrap/test_import_current_home.sh home/skills catalog/skills.toml catalog/agents.toml
@@ -454,7 +474,8 @@ git commit -m "feat: import managed codex skills into repo"
 - Modify: `README.md`
 - Modify: `AGENTS.md`
 
-- [ ] **Step 1: Update the docs with the final operating model**
+- [x] **Step 1: Update the docs with the final operating model**
+Observed: Updated `README.md` and `AGENTS.md` with the final model, including vendored non-system skills, empty-by-design root-level `home/agents/`, nested-agent ownership by parent skill, and the distinction between `bootstrap/import_current_home.sh` and normal machine setup.
 
 ```markdown
 Add these points to both documents:
@@ -465,12 +486,14 @@ Add these points to both documents:
 - `bootstrap/import_current_home.sh` is a one-time or explicit maintenance tool, not the normal machine-setup command
 ```
 
-- [ ] **Step 2: Run the focused test suite**
+- [x] **Step 2: Run the focused test suite**
+Observed: Ran `bash tests/bootstrap/test_setup.sh && bash tests/bootstrap/test_import_current_home.sh`; both exited 0 after the final corrections.
 
 Run: `bash tests/bootstrap/test_setup.sh && bash tests/bootstrap/test_import_current_home.sh`  
 Expected: both scripts exit 0
 
-- [ ] **Step 3: Run end-to-end setup verification against a temporary Codex home**
+- [x] **Step 3: Run end-to-end setup verification against a temporary Codex home**
+Observed: Verified the actual repo against a temporary Codex home; `~/.codex/skills` stayed a real directory, `.system` remained intact, managed skills linked into that container, and `agents` linked to `home/agents`.
 
 Run: `tmpdir="$(mktemp -d)" && CODEX_HOME="$tmpdir/.codex" CODEX_BACKUP_ROOT="$tmpdir/backups" bash bootstrap/setup.sh`  
 Expected:
@@ -478,12 +501,14 @@ Expected:
 - `tmpdir/.codex/agents` is a symlink to `<repo>/home/agents`
 - no other paths are modified
 
-- [ ] **Step 4: Run end-to-end setup verification against the current machine**
+- [x] **Step 4: Run end-to-end setup verification against the current machine**
+Observed: Ran `bash bootstrap/setup.sh` against the live `~/.codex`; 92 managed skills were relinked into the repo, `~/.codex/agents` now points at `home/agents`, `.system` remained present, and replaced managed entries were backed up under `~/.codex-backups/20260331-110814/`.
 
 Run: `bash bootstrap/setup.sh`  
 Expected: `~/.codex/skills` and `~/.codex/agents` point to this repo's `home/skills` and `home/agents`, and any replaced managed paths were moved to a timestamped backup directory
 
-- [ ] **Step 5: Review the working tree and commit the finished baseline**
+- [x] **Step 5: Review the working tree and commit the finished baseline**
+Observed: Reviewed the working tree and finalized the repository baseline in a single commit after updating this execution log.
 
 ```bash
 git status --short

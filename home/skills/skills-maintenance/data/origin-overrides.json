@@ -1,0 +1,32 @@
+{
+  "local_custom_skills": {
+    "skills-maintenance": {
+      "notes": "Local maintenance skill for inventory, provenance, and update workflows."
+    }
+  },
+  "origin_notes": {
+    "superpowers": [
+      "Project-facing default paths were neutralized from superpowers-branded names to agent-branded names.",
+      "Check git status in ~/.codex/superpowers before pulling updates."
+    ],
+    "wshobson-agents-extracted": [
+      "This origin tracks Codex-native local extractions derived from wshobson/agents rather than verbatim upstream copies.",
+      "The agent-coordination collection comes primarily from plugins/agent-teams and preserves team sizing, multi-reviewer review, competing-hypothesis debugging, parallel feature decomposition, and dependency coordination patterns.",
+      "The comprehensive-review collection comes primarily from plugins/comprehensive-review and preserves broad repo-health review passes for code quality, architecture, security, performance, testing, documentation, and final reporting.",
+      "Claude-specific runtime assumptions were intentionally removed during extraction, including teammate runtime, slash-command orchestration, checkpoint state files, and plugin-local agent semantics.",
+      "Source analysis and design documents for this extraction live in /tmp/wshobson-agents/docs/agent/ and should be updated alongside the skills when the extraction changes."
+    ],
+    "orchestra": [
+      "Canonical upstream copies now live in ~/.orchestra/skills, with Orchestra-managed entries in ~/.codex/skills relinked to that tree.",
+      "The upstream welcome flow is mirrored with a Codex-only relink so unrelated agent configs are left untouched."
+    ]
+  },
+  "skill_customizations": {
+    "orchestra": {
+      "autoresearch": {
+        "customized": true,
+        "notes": "Trigger narrowed to explicit-only activation and an Activation Gate was added."
+      }
+    }
+  }
+}

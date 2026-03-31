@@ -1,0 +1,924 @@
+# Source of truth for tracked skills in this repository.
+# Each [[skill]] entry must be updated whenever a skill is added, removed,
+# renamed, imported, or modified.
+schema_version = 1
+
+[[skill]]
+id = "academic-plotting"
+type = "skill"
+repo_path = "home/skills/academic-plotting"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/academic-plotting"
+source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/academic-plotting"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "accelerate"
+type = "skill"
+repo_path = "home/skills/accelerate"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/accelerate"
+source_path = "/Users/builtin.pb/.orchestra/skills/08-distributed-training/accelerate"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "audiocraft"
+type = "skill"
+repo_path = "home/skills/audiocraft"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/audiocraft"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/audiocraft"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "autogpt"
+type = "skill"
+repo_path = "home/skills/autogpt"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/autogpt"
+source_path = "/Users/builtin.pb/.orchestra/skills/14-agents/autogpt"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "autoresearch"
+type = "skill"
+repo_path = "home/skills/autoresearch"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/autoresearch"
+source_path = "/Users/builtin.pb/.orchestra/skills/0-autoresearch-skill"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "awq"
+type = "skill"
+repo_path = "home/skills/awq"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/awq"
+source_path = "/Users/builtin.pb/.orchestra/skills/10-optimization/awq"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "axolotl"
+type = "skill"
+repo_path = "home/skills/axolotl"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/axolotl"
+source_path = "/Users/builtin.pb/.orchestra/skills/03-fine-tuning/axolotl"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "bigcode-evaluation-harness"
+type = "skill"
+repo_path = "home/skills/bigcode-evaluation-harness"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/bigcode-evaluation-harness"
+source_path = "/Users/builtin.pb/.orchestra/skills/11-evaluation/bigcode-evaluation-harness"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "bitsandbytes"
+type = "skill"
+repo_path = "home/skills/bitsandbytes"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/bitsandbytes"
+source_path = "/Users/builtin.pb/.orchestra/skills/10-optimization/bitsandbytes"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "blip-2"
+type = "skill"
+repo_path = "home/skills/blip-2"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/blip-2"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/blip-2"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "brainstorming-research-ideas"
+type = "skill"
+repo_path = "home/skills/brainstorming-research-ideas"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/brainstorming-research-ideas"
+source_path = "/Users/builtin.pb/.orchestra/skills/21-research-ideation/brainstorming-research-ideas"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "chroma"
+type = "skill"
+repo_path = "home/skills/chroma"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/chroma"
+source_path = "/Users/builtin.pb/.orchestra/skills/15-rag/chroma"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "clip"
+type = "skill"
+repo_path = "home/skills/clip"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/clip"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/clip"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "constitutional-ai"
+type = "skill"
+repo_path = "home/skills/constitutional-ai"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/constitutional-ai"
+source_path = "/Users/builtin.pb/.orchestra/skills/07-safety-alignment/constitutional-ai"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "cosmos-policy"
+type = "skill"
+repo_path = "home/skills/cosmos-policy"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/cosmos-policy"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/cosmos-policy"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "creative-thinking-for-research"
+type = "skill"
+repo_path = "home/skills/creative-thinking-for-research"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/creative-thinking-for-research"
+source_path = "/Users/builtin.pb/.orchestra/skills/21-research-ideation/creative-thinking-for-research"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "crewai"
+type = "skill"
+repo_path = "home/skills/crewai"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/crewai"
+source_path = "/Users/builtin.pb/.orchestra/skills/14-agents/crewai"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "deepspeed"
+type = "skill"
+repo_path = "home/skills/deepspeed"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/deepspeed"
+source_path = "/Users/builtin.pb/.orchestra/skills/08-distributed-training/deepspeed"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "dspy"
+type = "skill"
+repo_path = "home/skills/dspy"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/dspy"
+source_path = "/Users/builtin.pb/.orchestra/skills/16-prompt-engineering/dspy"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "faiss"
+type = "skill"
+repo_path = "home/skills/faiss"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/faiss"
+source_path = "/Users/builtin.pb/.orchestra/skills/15-rag/faiss"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "flash-attention"
+type = "skill"
+repo_path = "home/skills/flash-attention"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/flash-attention"
+source_path = "/Users/builtin.pb/.orchestra/skills/10-optimization/flash-attention"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "gguf"
+type = "skill"
+repo_path = "home/skills/gguf"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/gguf"
+source_path = "/Users/builtin.pb/.orchestra/skills/10-optimization/gguf"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "gptq"
+type = "skill"
+repo_path = "home/skills/gptq"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/gptq"
+source_path = "/Users/builtin.pb/.orchestra/skills/10-optimization/gptq"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "grpo-rl-training"
+type = "skill"
+repo_path = "home/skills/grpo-rl-training"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/grpo-rl-training"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/grpo-rl-training"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "guidance"
+type = "skill"
+repo_path = "home/skills/guidance"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/guidance"
+source_path = "/Users/builtin.pb/.orchestra/skills/16-prompt-engineering/guidance"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "hqq"
+type = "skill"
+repo_path = "home/skills/hqq"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/hqq"
+source_path = "/Users/builtin.pb/.orchestra/skills/10-optimization/hqq"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "huggingface-tokenizers"
+type = "skill"
+repo_path = "home/skills/huggingface-tokenizers"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/huggingface-tokenizers"
+source_path = "/Users/builtin.pb/.orchestra/skills/02-tokenization/huggingface-tokenizers"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "instructor"
+type = "skill"
+repo_path = "home/skills/instructor"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/instructor"
+source_path = "/Users/builtin.pb/.orchestra/skills/16-prompt-engineering/instructor"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "knowledge-distillation"
+type = "skill"
+repo_path = "home/skills/knowledge-distillation"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/knowledge-distillation"
+source_path = "/Users/builtin.pb/.orchestra/skills/19-emerging-techniques/knowledge-distillation"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "lambda-labs"
+type = "skill"
+repo_path = "home/skills/lambda-labs"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/lambda-labs"
+source_path = "/Users/builtin.pb/.orchestra/skills/09-infrastructure/lambda-labs"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "langchain"
+type = "skill"
+repo_path = "home/skills/langchain"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/langchain"
+source_path = "/Users/builtin.pb/.orchestra/skills/14-agents/langchain"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "langsmith"
+type = "skill"
+repo_path = "home/skills/langsmith"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/langsmith"
+source_path = "/Users/builtin.pb/.orchestra/skills/17-observability/langsmith"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "litgpt"
+type = "skill"
+repo_path = "home/skills/litgpt"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/litgpt"
+source_path = "/Users/builtin.pb/.orchestra/skills/01-model-architecture/litgpt"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "llama-cpp"
+type = "skill"
+repo_path = "home/skills/llama-cpp"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/llama-cpp"
+source_path = "/Users/builtin.pb/.orchestra/skills/12-inference-serving/llama-cpp"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "llama-factory"
+type = "skill"
+repo_path = "home/skills/llama-factory"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/llama-factory"
+source_path = "/Users/builtin.pb/.orchestra/skills/03-fine-tuning/llama-factory"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "llamaguard"
+type = "skill"
+repo_path = "home/skills/llamaguard"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/llamaguard"
+source_path = "/Users/builtin.pb/.orchestra/skills/07-safety-alignment/llamaguard"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "llamaindex"
+type = "skill"
+repo_path = "home/skills/llamaindex"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/llamaindex"
+source_path = "/Users/builtin.pb/.orchestra/skills/14-agents/llamaindex"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "llava"
+type = "skill"
+repo_path = "home/skills/llava"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/llava"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/llava"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "lm-evaluation-harness"
+type = "skill"
+repo_path = "home/skills/lm-evaluation-harness"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/lm-evaluation-harness"
+source_path = "/Users/builtin.pb/.orchestra/skills/11-evaluation/lm-evaluation-harness"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "long-context"
+type = "skill"
+repo_path = "home/skills/long-context"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/long-context"
+source_path = "/Users/builtin.pb/.orchestra/skills/19-emerging-techniques/long-context"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "mamba"
+type = "skill"
+repo_path = "home/skills/mamba"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/mamba"
+source_path = "/Users/builtin.pb/.orchestra/skills/01-model-architecture/mamba"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "megatron-core"
+type = "skill"
+repo_path = "home/skills/megatron-core"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/megatron-core"
+source_path = "/Users/builtin.pb/.orchestra/skills/08-distributed-training/megatron-core"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "miles"
+type = "skill"
+repo_path = "home/skills/miles"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/miles"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/miles"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "ml-paper-writing"
+type = "skill"
+repo_path = "home/skills/ml-paper-writing"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/ml-paper-writing"
+source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/ml-paper-writing"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "mlflow"
+type = "skill"
+repo_path = "home/skills/mlflow"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/mlflow"
+source_path = "/Users/builtin.pb/.orchestra/skills/13-mlops/mlflow"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "modal"
+type = "skill"
+repo_path = "home/skills/modal"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/modal"
+source_path = "/Users/builtin.pb/.orchestra/skills/09-infrastructure/modal"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "model-merging"
+type = "skill"
+repo_path = "home/skills/model-merging"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/model-merging"
+source_path = "/Users/builtin.pb/.orchestra/skills/19-emerging-techniques/model-merging"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "model-pruning"
+type = "skill"
+repo_path = "home/skills/model-pruning"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/model-pruning"
+source_path = "/Users/builtin.pb/.orchestra/skills/19-emerging-techniques/model-pruning"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "moe-training"
+type = "skill"
+repo_path = "home/skills/moe-training"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/moe-training"
+source_path = "/Users/builtin.pb/.orchestra/skills/19-emerging-techniques/moe-training"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "nanogpt"
+type = "skill"
+repo_path = "home/skills/nanogpt"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/nanogpt"
+source_path = "/Users/builtin.pb/.orchestra/skills/01-model-architecture/nanogpt"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "nemo-curator"
+type = "skill"
+repo_path = "home/skills/nemo-curator"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/nemo-curator"
+source_path = "/Users/builtin.pb/.orchestra/skills/05-data-processing/nemo-curator"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "nemo-evaluator"
+type = "skill"
+repo_path = "home/skills/nemo-evaluator"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/nemo-evaluator"
+source_path = "/Users/builtin.pb/.orchestra/skills/11-evaluation/nemo-evaluator"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "nemo-guardrails"
+type = "skill"
+repo_path = "home/skills/nemo-guardrails"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/nemo-guardrails"
+source_path = "/Users/builtin.pb/.orchestra/skills/07-safety-alignment/nemo-guardrails"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "nnsight"
+type = "skill"
+repo_path = "home/skills/nnsight"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/nnsight"
+source_path = "/Users/builtin.pb/.orchestra/skills/04-mechanistic-interpretability/nnsight"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "openpi"
+type = "skill"
+repo_path = "home/skills/openpi"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/openpi"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/openpi"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "openrlhf"
+type = "skill"
+repo_path = "home/skills/openrlhf"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/openrlhf"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/openrlhf"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "openvla-oft"
+type = "skill"
+repo_path = "home/skills/openvla-oft"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/openvla-oft"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/openvla-oft"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "outlines"
+type = "skill"
+repo_path = "home/skills/outlines"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/outlines"
+source_path = "/Users/builtin.pb/.orchestra/skills/16-prompt-engineering/outlines"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "peft"
+type = "skill"
+repo_path = "home/skills/peft"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/peft"
+source_path = "/Users/builtin.pb/.orchestra/skills/03-fine-tuning/peft"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "phoenix"
+type = "skill"
+repo_path = "home/skills/phoenix"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/phoenix"
+source_path = "/Users/builtin.pb/.orchestra/skills/17-observability/phoenix"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "pinecone"
+type = "skill"
+repo_path = "home/skills/pinecone"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/pinecone"
+source_path = "/Users/builtin.pb/.orchestra/skills/15-rag/pinecone"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "prompt-guard"
+type = "skill"
+repo_path = "home/skills/prompt-guard"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/prompt-guard"
+source_path = "/Users/builtin.pb/.orchestra/skills/07-safety-alignment/prompt-guard"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "pytorch-fsdp2"
+type = "skill"
+repo_path = "home/skills/pytorch-fsdp2"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/pytorch-fsdp2"
+source_path = "/Users/builtin.pb/.orchestra/skills/08-distributed-training/pytorch-fsdp2"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "pytorch-lightning"
+type = "skill"
+repo_path = "home/skills/pytorch-lightning"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/pytorch-lightning"
+source_path = "/Users/builtin.pb/.orchestra/skills/08-distributed-training/pytorch-lightning"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "pyvene"
+type = "skill"
+repo_path = "home/skills/pyvene"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/pyvene"
+source_path = "/Users/builtin.pb/.orchestra/skills/04-mechanistic-interpretability/pyvene"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "qdrant"
+type = "skill"
+repo_path = "home/skills/qdrant"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/qdrant"
+source_path = "/Users/builtin.pb/.orchestra/skills/15-rag/qdrant"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "ray-data"
+type = "skill"
+repo_path = "home/skills/ray-data"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/ray-data"
+source_path = "/Users/builtin.pb/.orchestra/skills/05-data-processing/ray-data"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "ray-train"
+type = "skill"
+repo_path = "home/skills/ray-train"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/ray-train"
+source_path = "/Users/builtin.pb/.orchestra/skills/08-distributed-training/ray-train"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "rwkv"
+type = "skill"
+repo_path = "home/skills/rwkv"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/rwkv"
+source_path = "/Users/builtin.pb/.orchestra/skills/01-model-architecture/rwkv"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "saelens"
+type = "skill"
+repo_path = "home/skills/saelens"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/saelens"
+source_path = "/Users/builtin.pb/.orchestra/skills/04-mechanistic-interpretability/saelens"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "segment-anything"
+type = "skill"
+repo_path = "home/skills/segment-anything"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/segment-anything"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/segment-anything"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "sentence-transformers"
+type = "skill"
+repo_path = "home/skills/sentence-transformers"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/sentence-transformers"
+source_path = "/Users/builtin.pb/.orchestra/skills/15-rag/sentence-transformers"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "sentencepiece"
+type = "skill"
+repo_path = "home/skills/sentencepiece"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/sentencepiece"
+source_path = "/Users/builtin.pb/.orchestra/skills/02-tokenization/sentencepiece"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "sglang"
+type = "skill"
+repo_path = "home/skills/sglang"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/sglang"
+source_path = "/Users/builtin.pb/.orchestra/skills/12-inference-serving/sglang"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "simpo"
+type = "skill"
+repo_path = "home/skills/simpo"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/simpo"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/simpo"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "skills-maintenance"
+type = "skill"
+repo_path = "home/skills/skills-maintenance"
+status = "local"
+source_kind = "local-custom"
+source_ref = "skills-by-origin/local-custom/skills-maintenance"
+source_path = "/Users/builtin.pb/.codex/skills/skills-maintenance"
+notes = "Local skill preserved as a repo-owned copy."
+
+[[skill]]
+id = "skypilot"
+type = "skill"
+repo_path = "home/skills/skypilot"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/skypilot"
+source_path = "/Users/builtin.pb/.orchestra/skills/09-infrastructure/skypilot"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "slime"
+type = "skill"
+repo_path = "home/skills/slime"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/slime"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/slime"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "speculative-decoding"
+type = "skill"
+repo_path = "home/skills/speculative-decoding"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/speculative-decoding"
+source_path = "/Users/builtin.pb/.orchestra/skills/19-emerging-techniques/speculative-decoding"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "stable-diffusion"
+type = "skill"
+repo_path = "home/skills/stable-diffusion"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/stable-diffusion"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/stable-diffusion"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "swanlab"
+type = "skill"
+repo_path = "home/skills/swanlab"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/swanlab"
+source_path = "/Users/builtin.pb/.orchestra/skills/13-mlops/swanlab"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "tensorboard"
+type = "skill"
+repo_path = "home/skills/tensorboard"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/tensorboard"
+source_path = "/Users/builtin.pb/.orchestra/skills/13-mlops/tensorboard"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "tensorrt-llm"
+type = "skill"
+repo_path = "home/skills/tensorrt-llm"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/tensorrt-llm"
+source_path = "/Users/builtin.pb/.orchestra/skills/12-inference-serving/tensorrt-llm"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "torchforge"
+type = "skill"
+repo_path = "home/skills/torchforge"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/torchforge"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/torchforge"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "torchtitan"
+type = "skill"
+repo_path = "home/skills/torchtitan"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/torchtitan"
+source_path = "/Users/builtin.pb/.orchestra/skills/01-model-architecture/torchtitan"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "transformer-lens"
+type = "skill"
+repo_path = "home/skills/transformer-lens"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/transformer-lens"
+source_path = "/Users/builtin.pb/.orchestra/skills/04-mechanistic-interpretability/transformer-lens"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "trl-fine-tuning"
+type = "skill"
+repo_path = "home/skills/trl-fine-tuning"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/trl-fine-tuning"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/trl-fine-tuning"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "unsloth"
+type = "skill"
+repo_path = "home/skills/unsloth"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/unsloth"
+source_path = "/Users/builtin.pb/.orchestra/skills/03-fine-tuning/unsloth"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "verl"
+type = "skill"
+repo_path = "home/skills/verl"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/verl"
+source_path = "/Users/builtin.pb/.orchestra/skills/06-post-training/verl"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "vllm"
+type = "skill"
+repo_path = "home/skills/vllm"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/vllm"
+source_path = "/Users/builtin.pb/.orchestra/skills/12-inference-serving/vllm"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "weights-and-biases"
+type = "skill"
+repo_path = "home/skills/weights-and-biases"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/weights-and-biases"
+source_path = "/Users/builtin.pb/.orchestra/skills/13-mlops/weights-and-biases"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
+
+[[skill]]
+id = "whisper"
+type = "skill"
+repo_path = "home/skills/whisper"
+status = "imported"
+source_kind = "copied-from-home"
+source_ref = "skills-by-origin/orchestra/whisper"
+source_path = "/Users/builtin.pb/.orchestra/skills/18-multimodal/whisper"
+notes = "Imported from the active Codex home and dereferenced into a repo-owned copy."
