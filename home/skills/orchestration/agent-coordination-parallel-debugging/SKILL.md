@@ -1,6 +1,6 @@
 ---
 name: agent-coordination-parallel-debugging
-description: Use when the user has asked for parallel debugging and there are multiple plausible root-cause hypotheses worth testing independently
+description: Use when there are multiple plausible root-cause hypotheses worth testing independently with parallel debugging
 ---
 
 # Agent Coordination Parallel Debugging

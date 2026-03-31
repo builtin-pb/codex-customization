@@ -1,6 +1,6 @@
 ---
 name: agent-coordination-parallel-feature-development
-description: Use when the user has asked for parallel implementation and the feature may be divided into disjoint ownership slices with shared boundaries
+description: Use when a feature may be divided into disjoint ownership slices with shared boundaries for parallel implementation
 ---
 
 # Agent Coordination Parallel Feature Development

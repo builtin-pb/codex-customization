@@ -1051,7 +1051,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
 
 [[skill]]
 id = "agent-coordination-multi-reviewer"
@@ -1061,7 +1061,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-multi-reviewer"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-multi-reviewer"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
 
 [[skill]]
 id = "agent-coordination-parallel-debugging"
@@ -1071,7 +1071,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-parallel-debugging"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-parallel-debugging"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
 
 [[skill]]
 id = "agent-coordination-parallel-feature-development"
@@ -1081,7 +1081,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-parallel-feature-development"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-parallel-feature-development"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
 
 [[skill]]
 id = "agent-coordination-task-coordination"
@@ -1091,7 +1091,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-task-coordination"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-task-coordination"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
 
 [[skill]]
 id = "agent-coordination-team-composition"
@@ -1101,7 +1101,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-team-composition"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-team-composition"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
 
 [[skill]]
 id = "comprehensive-review"

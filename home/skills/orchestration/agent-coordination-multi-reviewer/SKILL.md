@@ -1,6 +1,6 @@
 ---
 name: agent-coordination-multi-reviewer
-description: Use when the user has asked for parallel review and the task needs separate reviewer perspectives such as security, architecture, performance, or testing
+description: Use when a review can benefit from parallel reviewer perspectives such as security, architecture, performance, or testing
 ---
 
 # Agent Coordination Multi Reviewer

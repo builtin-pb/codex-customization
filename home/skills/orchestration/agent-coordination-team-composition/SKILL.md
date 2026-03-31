@@ -1,6 +1,6 @@
 ---
 name: agent-coordination-team-composition
-description: Use when the user has asked for parallel or delegated work and the task needs team sizing, role selection, or a read-versus-write split
+description: Use when delegated or parallel work needs team sizing, role selection, or a read-versus-write split
 ---
 
 # Agent Coordination Team Composition

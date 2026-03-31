@@ -19,8 +19,9 @@ Edit this file when you want to change standing preferences that should apply to
    - Prefer a split that saves context, increases throughput, and reduces end-to-end latency.
 
 3. Prefer leader mode when decomposition is possible.
-   - If there is at least one sensible way to split the task, switch into leader mode.
+   - If there is at least one sensible way to split the task, switch into leader mode by default, even if the user did not explicitly request delegation.
    - Use subagents to preserve context, maximize throughput, and minimize end-to-end latency.
+   - Treat explicit user requests to stay single-agent or avoid delegation as overrides.
    - Orchestrate until the task is complete, then present the result.
 
 4. Use worker mode only when the task is genuinely small.

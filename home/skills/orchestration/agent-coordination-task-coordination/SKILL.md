@@ -1,6 +1,6 @@
 ---
 name: agent-coordination-task-coordination
-description: Use when the user has asked for multi-agent work and you need to track dependencies, rebalance uneven streams, or decide when to pause and re-plan
+description: Use when multi-agent work is active and you need to track dependencies, rebalance uneven streams, or decide when to pause and re-plan
 ---
 
 # Agent Coordination Task Coordination
