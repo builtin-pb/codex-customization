@@ -69,9 +69,3 @@ Current imported skill clusters:
 - Leave unmanaged Codex paths untouched.
 - `~/.codex/AGENTS.md` is repo-managed through `home/AGENTS.md`.
 - Prune stale managed skill symlinks that point back into the repo but no longer exist under `home/skills/`.
-
-## Import Maintenance
-
-- `bootstrap/import_current_home.sh` is an explicit maintenance/import tool, not the normal machine-setup command.
-- It currently imports maintained content from `~/.orchestra/skills`, `~/.codex/superpowers/skills`, `~/.codex/superpowers/agents`, and `~/.agents/skills`.
-- Do not point the importer back at the live managed `~/.codex/skills` container as its primary source for Orchestra content; use the canonical upstream roots instead.

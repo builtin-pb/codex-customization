@@ -57,7 +57,6 @@ The setup flow is intended to:
 - prune stale managed skill symlinks that no longer exist under `home/skills/`
 - preserve unmanaged Codex state outside the repo-owned layout
 
-`bootstrap/import_current_home.sh` is a separate maintenance tool for refreshing the repo from the canonical source trees, not the normal machine-setup command.
 
 ## Provenance
 
