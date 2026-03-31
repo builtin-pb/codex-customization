@@ -17,7 +17,9 @@ This repository does not currently manage:
 - caches, logs, sessions, databases, auth files, or other runtime state
 - Codex system defaults under `~/.codex/skills/.system`, which are intentionally left unmanaged
 
-The active non-system skills are vendored under `home/skills/` as repo-owned content and are linked into the existing `~/.codex/skills/` container without replacing unmanaged entries there. The root-level `home/agents/` tree is currently empty by design and remains the repo-managed target for future root-level agents.
+The active non-system skills are vendored under `home/skills/` as repo-owned content and are linked into the existing `~/.codex/skills/` container without replacing unmanaged entries there. The current imported origins are `orchestra`, `superpowers`, and `wshobson-agents-extracted`. The root-level `home/agents/` tree is repo-managed and currently includes `code-reviewer.md` from `superpowers`.
+
+`skills-maintenance` is intentionally not tracked as a live skill in this repo. Its provenance and update ideas were folded into `AGENTS.md`, `README.md`, and the catalog files instead.
 
 ## Setup
 
@@ -32,7 +34,10 @@ The setup flow is intended to:
 - back up conflicting managed paths
 - symlink managed skill entries into `~/.codex/skills/` while preserving `~/.codex/skills/.system`
 - symlink the repo-owned `home/agents/` tree into `~/.codex/agents/`
+- prune stale managed skill symlinks that no longer exist under `home/skills/`
 - preserve unmanaged Codex state outside the repo-owned layout
+
+`bootstrap/import_current_home.sh` is a separate maintenance tool for refreshing the repo from the canonical source trees, not the normal machine-setup command.
 
 ## Provenance
 

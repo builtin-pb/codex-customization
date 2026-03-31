@@ -3,3 +3,18 @@
 schema_version = 1
 
 # No root-level agents are tracked yet.
+
+
+
+
+# BEGIN IMPORTED ROOT AGENTS
+
+[[agent]]
+id = "code-reviewer"
+repo_path = "home/agents/code-reviewer.md"
+status = "imported"
+source_kind = "superpowers"
+source_ref = "superpowers/code-reviewer"
+source_path = "/Users/builtin.pb/.codex/superpowers/agents/code-reviewer.md"
+notes = "Imported from the local Superpowers checkout into repo-owned storage."
+# END IMPORTED ROOT AGENTS

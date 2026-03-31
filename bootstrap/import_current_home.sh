@@ -4,12 +4,21 @@ set -euo pipefail
 script_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)/$(basename "${BASH_SOURCE[0]}")"
 repo_root="${DEST_REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
 source_codex_home="${SOURCE_CODEX_HOME:-$HOME/.codex}"
+source_agents_home="${SOURCE_AGENTS_HOME:-$HOME/.agents}"
+source_orchestra_root="${SOURCE_ORCHESTRA_ROOT:-$HOME/.orchestra/skills}"
 
 skills_src="$source_codex_home/skills"
+superpowers_skills_src="$source_codex_home/superpowers/skills"
+superpowers_agents_src="$source_codex_home/superpowers/agents"
+wshobson_skills_src="$source_agents_home/skills"
+orchestra_skills_src="$source_orchestra_root"
 skills_dest="$repo_root/home/skills"
+agents_dest="$repo_root/home/agents"
 local_custom_root="$source_codex_home/skills-by-origin/local-custom"
 skills_catalog="$repo_root/catalog/skills.toml"
 agents_catalog="$repo_root/catalog/agents.toml"
+managed_agents_begin="# BEGIN IMPORTED ROOT AGENTS"
+managed_agents_end="# END IMPORTED ROOT AGENTS"
 
 fail() {
   printf '%s\n' "$1" >&2
@@ -83,6 +92,41 @@ notes = "$(toml_escape "$notes")"
 EOF
 }
 
+write_agent_entry() {
+  local id="$1"
+  local repo_path="$2"
+  local status="$3"
+  local source_kind="$4"
+  local source_ref="$5"
+  local source_path="$6"
+  local notes="$7"
+
+  cat >> "$agents_catalog_entries" <<EOF
+
+[[agent]]
+id = "$(toml_escape "$id")"
+repo_path = "$(toml_escape "$repo_path")"
+status = "$(toml_escape "$status")"
+source_kind = "$(toml_escape "$source_kind")"
+source_ref = "$(toml_escape "$source_ref")"
+source_path = "$(toml_escape "$source_path")"
+notes = "$(toml_escape "$notes")"
+EOF
+}
+
+canonical_repo_skill_name() {
+  local source_name="$1"
+
+  case "$source_name" in
+    0-autoresearch-skill)
+      printf 'autoresearch\n'
+      ;;
+    *)
+      printf '%s\n' "$source_name"
+      ;;
+  esac
+}
+
 validate_repo_root() {
   case "$repo_root" in
     ""|"/")
@@ -108,10 +152,13 @@ validate_repo_root() {
 
 validate_repo_root
 [ -d "$skills_src" ] || fail "missing Codex skills source: $skills_src"
+[ -d "$orchestra_skills_src" ] || fail "missing Orchestra skills source: $orchestra_skills_src"
 
 mkdir -p "$repo_root/home"
 find "$skills_dest" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} + 2>/dev/null || true
 mkdir -p "$skills_dest"
+mkdir -p "$agents_dest"
+find "$agents_dest" -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf -- {} + 2>/dev/null || true
 
 cat > "$skills_catalog" <<'EOF'
 # Source of truth for tracked skills in this repository.
@@ -130,50 +177,126 @@ schema_version = 1
 EOF
 fi
 
-while IFS= read -r src; do
-  [ -n "$src" ] || continue
-  [ -d "$src" ] || [ -L "$src" ] || continue
+preserved_agents_catalog="$(mktemp)"
+agents_catalog_entries="$(mktemp)"
+seen_skills="$(mktemp)"
+trap 'rm -f "$preserved_agents_catalog" "$agents_catalog_entries" "$seen_skills"' EXIT
 
-  name="$(basename "$src")"
-  [ "$name" = ".system" ] && continue
+awk -v begin="$managed_agents_begin" -v end="$managed_agents_end" '
+  $0 == begin { skip = 1; next }
+  $0 == end { skip = 0; next }
+  !skip { print }
+' "$agents_catalog" > "$preserved_agents_catalog"
 
-  if [ -L "$src" ]; then
-    resolved_src="$(resolve_path "$src")"
-    skill_root="$resolved_src"
-    source_kind="copied-from-home"
-    source_ref="$(portable_source_ref "$name")"
-    source_path="$resolved_src"
-  else
-    skill_root="$src"
-    source_path="$src"
-    if [ -d "$local_custom_root/$name" ]; then
-      source_kind="local-custom"
-      source_ref="skills-by-origin/local-custom/$name"
-    else
-      source_kind="copied-from-home"
-      source_ref="$(portable_source_ref "$name")"
-    fi
+import_skill() {
+  local name="$1"
+  local skill_root="$2"
+  local status="$3"
+  local source_kind="$4"
+  local source_ref="$5"
+  local source_path="$6"
+  local notes="$7"
+  local dest="$skills_dest/$name"
+
+  [ -f "$skill_root/SKILL.md" ] || return 0
+  if grep -Fxq "$name" "$seen_skills"; then
+    fail "duplicate skill import target: $name"
   fi
 
-  [ -f "$skill_root/SKILL.md" ] || continue
-
-  dest="$skills_dest/$name"
+  printf '%s\n' "$name" >> "$seen_skills"
   rm -rf -- "$dest"
   cp -R "$skill_root" "$dest"
+  write_skill_entry "$name" "$status" "$source_kind" "$source_ref" "$source_path" "$notes"
+}
 
-  if [ "$source_kind" = "local-custom" ]; then
-    status="local"
-    notes="Local skill preserved as a repo-owned copy."
-  else
-    status="imported"
-    notes="Imported from the active Codex home and dereferenced into a repo-owned copy."
-  fi
+while IFS= read -r src; do
+  [ -n "$src" ] || continue
+  [ -d "$src" ] || continue
 
-  write_skill_entry \
+  name="$(basename "$src")"
+  [ "$name" = "skills-maintenance" ] && continue
+  import_skill \
     "$name" \
-    "$status" \
-    "$source_kind" \
-    "$source_ref" \
-    "$source_path" \
-    "$notes"
-done < <(find "$skills_src" -mindepth 1 -maxdepth 1 -print | LC_ALL=C sort)
+    "$src" \
+    "local" \
+    "local-custom" \
+    "local-custom/$name" \
+    "$src" \
+    "Local skill preserved as a repo-owned copy."
+done < <(find "$local_custom_root" -mindepth 1 -maxdepth 1 -type d -print 2>/dev/null | LC_ALL=C sort)
+
+while IFS= read -r src; do
+  [ -n "$src" ] || continue
+  [ -d "$src" ] || continue
+  source_name="$(basename "$src")"
+  name="$(canonical_repo_skill_name "$source_name")"
+  [ -f "$src/SKILL.md" ] || continue
+  import_skill \
+    "$name" \
+    "$src" \
+    "imported" \
+    "orchestra" \
+    "orchestra/$source_name" \
+    "$src" \
+    "Imported from the canonical Orchestra skills checkout into repo-owned storage."
+done < <(find "$orchestra_skills_src" -mindepth 1 -maxdepth 2 -type d -print | LC_ALL=C sort)
+
+if [ -d "$superpowers_skills_src" ]; then
+  while IFS= read -r src; do
+    [ -n "$src" ] || continue
+    [ -d "$src" ] || continue
+    name="$(basename "$src")"
+    import_skill \
+      "$name" \
+      "$src" \
+      "imported" \
+      "superpowers" \
+      "superpowers/$name" \
+      "$src" \
+      "Imported from the local Superpowers checkout into repo-owned storage."
+  done < <(find "$superpowers_skills_src" -mindepth 1 -maxdepth 1 -type d -print | LC_ALL=C sort)
+fi
+
+if [ -d "$wshobson_skills_src" ]; then
+  while IFS= read -r src; do
+    [ -n "$src" ] || continue
+    [ -d "$src" ] || continue
+    name="$(basename "$src")"
+    [ "$name" = "superpowers" ] && continue
+    import_skill \
+      "$name" \
+      "$src" \
+      "imported" \
+      "wshobson-agents-extracted" \
+      "wshobson-agents-extracted/$name" \
+      "$src" \
+      "Imported from the local wshobson/agents extraction into repo-owned storage."
+  done < <(find "$wshobson_skills_src" -mindepth 1 -maxdepth 1 -type d -print | LC_ALL=C sort)
+fi
+
+if [ -d "$superpowers_agents_src" ]; then
+  while IFS= read -r src; do
+    [ -n "$src" ] || continue
+    [ -f "$src" ] || continue
+    base="$(basename "$src")"
+    id="${base%.*}"
+    cp "$src" "$agents_dest/$base"
+    write_agent_entry \
+      "$id" \
+      "home/agents/$base" \
+      "imported" \
+      "superpowers" \
+      "superpowers/$id" \
+      "$src" \
+      "Imported from the local Superpowers checkout into repo-owned storage."
+  done < <(find "$superpowers_agents_src" -mindepth 1 -maxdepth 1 -type f -print | LC_ALL=C sort)
+fi
+
+cat "$preserved_agents_catalog" > "$agents_catalog"
+printf '\n%s\n' "$managed_agents_begin" >> "$agents_catalog"
+if [ -s "$agents_catalog_entries" ]; then
+  cat "$agents_catalog_entries" >> "$agents_catalog"
+else
+  printf '# No imported root agents were found.\n' >> "$agents_catalog"
+fi
+printf '%s\n' "$managed_agents_end" >> "$agents_catalog"

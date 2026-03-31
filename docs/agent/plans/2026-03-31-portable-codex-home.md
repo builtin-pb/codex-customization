@@ -455,7 +455,7 @@ Run: `bash tests/bootstrap/test_import_current_home.sh`
 Expected: PASS with no output
 
 - [x] **Step 6: Run the importer against the current machine**
-Observed: Ran `bash bootstrap/import_current_home.sh` against the current machine; `home/skills/` now contains 92 repo-owned non-system skills, `catalog/skills.toml` has 92 matching entries, and `skills-maintenance` is recorded as `status = "local"` / `source_kind = "local-custom"`.
+Observed: Reworked `bootstrap/import_current_home.sh` to import from the canonical maintained origins instead of the live linked container; the final run produced 117 tracked skills from `orchestra`, `superpowers`, and `wshobson-agents-extracted`, added `home/agents/code-reviewer.md`, preserved the `autoresearch` live alias while recording `orchestra/0-autoresearch-skill` as the source, and intentionally excluded `skills-maintenance`.
 
 Run: `bash bootstrap/import_current_home.sh`  
 Expected: `home/skills/` is populated with repo-owned copies of active non-system skills, `catalog/skills.toml` contains one entry per imported skill, and `catalog/agents.toml` remains a schema file with a no-root-agents note
@@ -502,7 +502,7 @@ Expected:
 - no other paths are modified
 
 - [x] **Step 4: Run end-to-end setup verification against the current machine**
-Observed: Ran `bash bootstrap/setup.sh` against the live `~/.codex`; 92 managed skills were relinked into the repo, `~/.codex/agents` now points at `home/agents`, `.system` remained present, and replaced managed entries were backed up under `~/.codex-backups/20260331-110814/`.
+Observed: Ran `bash bootstrap/setup.sh` against the live `~/.codex` after the follow-up import fix; 117 managed skills are now active from the repo, `~/.codex/agents` exposes `code-reviewer.md`, `.system` remained present, and stale managed links for `skills-maintenance` and `0-autoresearch-skill` were pruned.
 
 Run: `bash bootstrap/setup.sh`  
 Expected: `~/.codex/skills` and `~/.codex/agents` point to this repo's `home/skills` and `home/agents`, and any replaced managed paths were moved to a timestamped backup directory

@@ -20,6 +20,7 @@ printf 'stale managed skill\n' > "$codex_home/skills/managed-skill/README.txt"
 printf 'custom skill\n' > "$codex_home/skills/custom-unmanaged/README.txt"
 printf 'stale agent\n' > "$codex_home/agents/README.txt"
 printf 'leave me alone\n' > "$codex_home/rules/runtime.txt"
+ln -s "$test_repo/home/skills/removed-skill" "$codex_home/skills/removed-skill"
 
 CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
   bash "$test_repo/bootstrap/setup.sh"
@@ -42,6 +43,8 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ -f "$backup_root/agents/README.txt" ]
 [ "$(cat "$backup_root/agents/README.txt")" = "stale agent" ]
 [ "$(cat "$codex_home/rules/runtime.txt")" = "leave me alone" ]
+[ ! -L "$codex_home/skills/removed-skill" ]
+[ ! -e "$codex_home/skills/removed-skill" ]
 
 CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
   bash "$test_repo/bootstrap/setup.sh"
@@ -58,6 +61,8 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ -d "$codex_home/agents" ]
 [ "$(readlink "$codex_home/agents")" = "$test_repo/home/agents" ]
 [ "$(cat "$codex_home/rules/runtime.txt")" = "leave me alone" ]
+[ ! -L "$codex_home/skills/removed-skill" ]
+[ ! -e "$codex_home/skills/removed-skill" ]
 
 overlap_repo="$tmpdir/overlap-repo"
 mkdir -p "$overlap_repo/bootstrap" "$overlap_repo/home/skills/managed-skill" "$overlap_repo/home/agents"

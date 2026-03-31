@@ -13,6 +13,7 @@ linked_paths=()
 backed_up_paths=()
 unmanaged_root_paths=()
 unmanaged_skill_paths=()
+pruned_paths=()
 
 normalize_path() {
   local input="$1"
@@ -127,6 +128,27 @@ link_managed_skill() {
   linked_paths+=("$rel -> $src")
 }
 
+prune_stale_managed_skill_links() {
+  local skills_dest="$codex_home/skills"
+  local entry
+  local target
+  local expected_prefix="$managed_skills_root/"
+
+  while IFS= read -r -d '' entry; do
+    [ -L "$entry" ] || continue
+    target="$(readlink "$entry")"
+    case "$target" in
+      "$expected_prefix"*)
+        name="$(basename "$entry")"
+        if [ ! -e "$managed_skills_root/$name" ] && [ ! -L "$managed_skills_root/$name" ]; then
+          rm "$entry"
+          pruned_paths+=("skills/$name")
+        fi
+        ;;
+    esac
+  done < <(find "$skills_dest" -mindepth 1 -maxdepth 1 -print0)
+}
+
 record_unmanaged_root_paths() {
   while IFS= read -r -d '' entry; do
     local name
@@ -174,6 +196,15 @@ print_summary() {
     printf 'Backed up paths: none\n'
   fi
 
+  if [ "${#pruned_paths[@]}" -gt 0 ]; then
+    printf 'Pruned stale managed paths:\n'
+    for line in "${pruned_paths[@]}"; do
+      printf '  %s\n' "$line"
+    done
+  else
+    printf 'Pruned stale managed paths: none\n'
+  fi
+
   if [ "${#unmanaged_root_paths[@]}" -gt 0 ]; then
     printf 'Unmanaged root paths:\n'
     for line in "${unmanaged_root_paths[@]}"; do
@@ -210,6 +241,7 @@ fi
 
 mkdir -p "$codex_home"
 ensure_skills_container
+prune_stale_managed_skill_links
 
 shopt -s dotglob nullglob
 for entry in "$managed_skills_root"/*; do
