@@ -6,7 +6,7 @@ schema_version = 1
 [[skill]]
 id = "autoresearch"
 type = "skill"
-repo_path = "home/skills/autoresearch"
+repo_path = "home/skills/execution/autoresearch"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/0-autoresearch-skill"
@@ -16,7 +16,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "litgpt"
 type = "skill"
-repo_path = "home/skills/litgpt"
+repo_path = "home/skills/technology/litgpt"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/litgpt"
@@ -26,7 +26,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "mamba"
 type = "skill"
-repo_path = "home/skills/mamba"
+repo_path = "home/skills/technology/mamba"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/mamba"
@@ -36,7 +36,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "nanogpt"
 type = "skill"
-repo_path = "home/skills/nanogpt"
+repo_path = "home/skills/technology/nanogpt"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/nanogpt"
@@ -46,7 +46,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "rwkv"
 type = "skill"
-repo_path = "home/skills/rwkv"
+repo_path = "home/skills/technology/rwkv"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/rwkv"
@@ -56,7 +56,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "torchtitan"
 type = "skill"
-repo_path = "home/skills/torchtitan"
+repo_path = "home/skills/technology/torchtitan"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/torchtitan"
@@ -66,7 +66,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "huggingface-tokenizers"
 type = "skill"
-repo_path = "home/skills/huggingface-tokenizers"
+repo_path = "home/skills/technology/huggingface-tokenizers"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/huggingface-tokenizers"
@@ -76,7 +76,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "sentencepiece"
 type = "skill"
-repo_path = "home/skills/sentencepiece"
+repo_path = "home/skills/technology/sentencepiece"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/sentencepiece"
@@ -86,7 +86,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "axolotl"
 type = "skill"
-repo_path = "home/skills/axolotl"
+repo_path = "home/skills/technology/axolotl"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/axolotl"
@@ -96,7 +96,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "llama-factory"
 type = "skill"
-repo_path = "home/skills/llama-factory"
+repo_path = "home/skills/technology/llama-factory"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/llama-factory"
@@ -106,7 +106,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "peft"
 type = "skill"
-repo_path = "home/skills/peft"
+repo_path = "home/skills/technology/peft"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/peft"
@@ -116,7 +116,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "unsloth"
 type = "skill"
-repo_path = "home/skills/unsloth"
+repo_path = "home/skills/technology/unsloth"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/unsloth"
@@ -126,7 +126,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "nnsight"
 type = "skill"
-repo_path = "home/skills/nnsight"
+repo_path = "home/skills/technology/nnsight"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/nnsight"
@@ -136,7 +136,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "pyvene"
 type = "skill"
-repo_path = "home/skills/pyvene"
+repo_path = "home/skills/technology/pyvene"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/pyvene"
@@ -146,7 +146,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "saelens"
 type = "skill"
-repo_path = "home/skills/saelens"
+repo_path = "home/skills/technology/saelens"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/saelens"
@@ -156,7 +156,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "transformer-lens"
 type = "skill"
-repo_path = "home/skills/transformer-lens"
+repo_path = "home/skills/technology/transformer-lens"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/transformer-lens"
@@ -166,7 +166,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "nemo-curator"
 type = "skill"
-repo_path = "home/skills/nemo-curator"
+repo_path = "home/skills/technology/nemo-curator"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/nemo-curator"
@@ -176,7 +176,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "ray-data"
 type = "skill"
-repo_path = "home/skills/ray-data"
+repo_path = "home/skills/technology/ray-data"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/ray-data"
@@ -186,7 +186,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "grpo-rl-training"
 type = "skill"
-repo_path = "home/skills/grpo-rl-training"
+repo_path = "home/skills/technology/grpo-rl-training"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/grpo-rl-training"
@@ -196,7 +196,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "miles"
 type = "skill"
-repo_path = "home/skills/miles"
+repo_path = "home/skills/technology/miles"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/miles"
@@ -206,7 +206,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "openrlhf"
 type = "skill"
-repo_path = "home/skills/openrlhf"
+repo_path = "home/skills/technology/openrlhf"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/openrlhf"
@@ -216,7 +216,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "simpo"
 type = "skill"
-repo_path = "home/skills/simpo"
+repo_path = "home/skills/technology/simpo"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/simpo"
@@ -226,7 +226,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "slime"
 type = "skill"
-repo_path = "home/skills/slime"
+repo_path = "home/skills/technology/slime"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/slime"
@@ -236,7 +236,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "torchforge"
 type = "skill"
-repo_path = "home/skills/torchforge"
+repo_path = "home/skills/technology/torchforge"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/torchforge"
@@ -246,7 +246,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "trl-fine-tuning"
 type = "skill"
-repo_path = "home/skills/trl-fine-tuning"
+repo_path = "home/skills/technology/trl-fine-tuning"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/trl-fine-tuning"
@@ -256,7 +256,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "verl"
 type = "skill"
-repo_path = "home/skills/verl"
+repo_path = "home/skills/technology/verl"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/verl"
@@ -266,7 +266,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "constitutional-ai"
 type = "skill"
-repo_path = "home/skills/constitutional-ai"
+repo_path = "home/skills/technology/constitutional-ai"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/constitutional-ai"
@@ -276,7 +276,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "llamaguard"
 type = "skill"
-repo_path = "home/skills/llamaguard"
+repo_path = "home/skills/technology/llamaguard"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/llamaguard"
@@ -286,7 +286,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "nemo-guardrails"
 type = "skill"
-repo_path = "home/skills/nemo-guardrails"
+repo_path = "home/skills/technology/nemo-guardrails"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/nemo-guardrails"
@@ -296,7 +296,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "prompt-guard"
 type = "skill"
-repo_path = "home/skills/prompt-guard"
+repo_path = "home/skills/technology/prompt-guard"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/prompt-guard"
@@ -306,7 +306,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "accelerate"
 type = "skill"
-repo_path = "home/skills/accelerate"
+repo_path = "home/skills/technology/accelerate"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/accelerate"
@@ -316,7 +316,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "deepspeed"
 type = "skill"
-repo_path = "home/skills/deepspeed"
+repo_path = "home/skills/technology/deepspeed"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/deepspeed"
@@ -326,7 +326,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "megatron-core"
 type = "skill"
-repo_path = "home/skills/megatron-core"
+repo_path = "home/skills/technology/megatron-core"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/megatron-core"
@@ -336,7 +336,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "pytorch-fsdp2"
 type = "skill"
-repo_path = "home/skills/pytorch-fsdp2"
+repo_path = "home/skills/technology/pytorch-fsdp2"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/pytorch-fsdp2"
@@ -346,7 +346,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "pytorch-lightning"
 type = "skill"
-repo_path = "home/skills/pytorch-lightning"
+repo_path = "home/skills/technology/pytorch-lightning"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/pytorch-lightning"
@@ -356,7 +356,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "ray-train"
 type = "skill"
-repo_path = "home/skills/ray-train"
+repo_path = "home/skills/technology/ray-train"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/ray-train"
@@ -366,7 +366,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "lambda-labs"
 type = "skill"
-repo_path = "home/skills/lambda-labs"
+repo_path = "home/skills/technology/lambda-labs"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/lambda-labs"
@@ -376,7 +376,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "modal"
 type = "skill"
-repo_path = "home/skills/modal"
+repo_path = "home/skills/technology/modal"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/modal"
@@ -386,7 +386,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "skypilot"
 type = "skill"
-repo_path = "home/skills/skypilot"
+repo_path = "home/skills/technology/skypilot"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/skypilot"
@@ -396,7 +396,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "awq"
 type = "skill"
-repo_path = "home/skills/awq"
+repo_path = "home/skills/technology/awq"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/awq"
@@ -406,7 +406,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "bitsandbytes"
 type = "skill"
-repo_path = "home/skills/bitsandbytes"
+repo_path = "home/skills/technology/bitsandbytes"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/bitsandbytes"
@@ -416,7 +416,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "flash-attention"
 type = "skill"
-repo_path = "home/skills/flash-attention"
+repo_path = "home/skills/technology/flash-attention"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/flash-attention"
@@ -426,7 +426,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "gguf"
 type = "skill"
-repo_path = "home/skills/gguf"
+repo_path = "home/skills/technology/gguf"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/gguf"
@@ -436,7 +436,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "gptq"
 type = "skill"
-repo_path = "home/skills/gptq"
+repo_path = "home/skills/technology/gptq"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/gptq"
@@ -446,7 +446,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "hqq"
 type = "skill"
-repo_path = "home/skills/hqq"
+repo_path = "home/skills/technology/hqq"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/hqq"
@@ -456,7 +456,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "bigcode-evaluation-harness"
 type = "skill"
-repo_path = "home/skills/bigcode-evaluation-harness"
+repo_path = "home/skills/technology/bigcode-evaluation-harness"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/bigcode-evaluation-harness"
@@ -466,7 +466,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "lm-evaluation-harness"
 type = "skill"
-repo_path = "home/skills/lm-evaluation-harness"
+repo_path = "home/skills/technology/lm-evaluation-harness"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/lm-evaluation-harness"
@@ -476,7 +476,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "nemo-evaluator"
 type = "skill"
-repo_path = "home/skills/nemo-evaluator"
+repo_path = "home/skills/technology/nemo-evaluator"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/nemo-evaluator"
@@ -486,7 +486,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "llama-cpp"
 type = "skill"
-repo_path = "home/skills/llama-cpp"
+repo_path = "home/skills/technology/llama-cpp"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/llama-cpp"
@@ -496,7 +496,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "sglang"
 type = "skill"
-repo_path = "home/skills/sglang"
+repo_path = "home/skills/technology/sglang"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/sglang"
@@ -506,7 +506,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "tensorrt-llm"
 type = "skill"
-repo_path = "home/skills/tensorrt-llm"
+repo_path = "home/skills/technology/tensorrt-llm"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/tensorrt-llm"
@@ -516,7 +516,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "vllm"
 type = "skill"
-repo_path = "home/skills/vllm"
+repo_path = "home/skills/technology/vllm"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/vllm"
@@ -526,7 +526,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "mlflow"
 type = "skill"
-repo_path = "home/skills/mlflow"
+repo_path = "home/skills/technology/mlflow"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/mlflow"
@@ -536,7 +536,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "swanlab"
 type = "skill"
-repo_path = "home/skills/swanlab"
+repo_path = "home/skills/technology/swanlab"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/swanlab"
@@ -546,7 +546,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "tensorboard"
 type = "skill"
-repo_path = "home/skills/tensorboard"
+repo_path = "home/skills/technology/tensorboard"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/tensorboard"
@@ -556,7 +556,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "weights-and-biases"
 type = "skill"
-repo_path = "home/skills/weights-and-biases"
+repo_path = "home/skills/technology/weights-and-biases"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/weights-and-biases"
@@ -566,7 +566,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "autogpt"
 type = "skill"
-repo_path = "home/skills/autogpt"
+repo_path = "home/skills/technology/autogpt"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/autogpt"
@@ -576,7 +576,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "crewai"
 type = "skill"
-repo_path = "home/skills/crewai"
+repo_path = "home/skills/technology/crewai"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/crewai"
@@ -586,7 +586,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "langchain"
 type = "skill"
-repo_path = "home/skills/langchain"
+repo_path = "home/skills/technology/langchain"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/langchain"
@@ -596,7 +596,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "llamaindex"
 type = "skill"
-repo_path = "home/skills/llamaindex"
+repo_path = "home/skills/technology/llamaindex"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/llamaindex"
@@ -606,7 +606,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "chroma"
 type = "skill"
-repo_path = "home/skills/chroma"
+repo_path = "home/skills/technology/chroma"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/chroma"
@@ -616,7 +616,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "faiss"
 type = "skill"
-repo_path = "home/skills/faiss"
+repo_path = "home/skills/technology/faiss"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/faiss"
@@ -626,7 +626,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "pinecone"
 type = "skill"
-repo_path = "home/skills/pinecone"
+repo_path = "home/skills/technology/pinecone"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/pinecone"
@@ -636,7 +636,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "qdrant"
 type = "skill"
-repo_path = "home/skills/qdrant"
+repo_path = "home/skills/technology/qdrant"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/qdrant"
@@ -646,7 +646,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "sentence-transformers"
 type = "skill"
-repo_path = "home/skills/sentence-transformers"
+repo_path = "home/skills/technology/sentence-transformers"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/sentence-transformers"
@@ -656,7 +656,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "dspy"
 type = "skill"
-repo_path = "home/skills/dspy"
+repo_path = "home/skills/technology/dspy"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/dspy"
@@ -666,7 +666,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "guidance"
 type = "skill"
-repo_path = "home/skills/guidance"
+repo_path = "home/skills/technology/guidance"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/guidance"
@@ -676,7 +676,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "instructor"
 type = "skill"
-repo_path = "home/skills/instructor"
+repo_path = "home/skills/technology/instructor"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/instructor"
@@ -686,7 +686,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "outlines"
 type = "skill"
-repo_path = "home/skills/outlines"
+repo_path = "home/skills/technology/outlines"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/outlines"
@@ -696,7 +696,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "langsmith"
 type = "skill"
-repo_path = "home/skills/langsmith"
+repo_path = "home/skills/technology/langsmith"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/langsmith"
@@ -706,7 +706,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "phoenix"
 type = "skill"
-repo_path = "home/skills/phoenix"
+repo_path = "home/skills/technology/phoenix"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/phoenix"
@@ -716,7 +716,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "audiocraft"
 type = "skill"
-repo_path = "home/skills/audiocraft"
+repo_path = "home/skills/technology/audiocraft"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/audiocraft"
@@ -726,7 +726,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "blip-2"
 type = "skill"
-repo_path = "home/skills/blip-2"
+repo_path = "home/skills/technology/blip-2"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/blip-2"
@@ -736,7 +736,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "clip"
 type = "skill"
-repo_path = "home/skills/clip"
+repo_path = "home/skills/technology/clip"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/clip"
@@ -746,7 +746,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "cosmos-policy"
 type = "skill"
-repo_path = "home/skills/cosmos-policy"
+repo_path = "home/skills/technology/cosmos-policy"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/cosmos-policy"
@@ -756,7 +756,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "llava"
 type = "skill"
-repo_path = "home/skills/llava"
+repo_path = "home/skills/technology/llava"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/llava"
@@ -766,7 +766,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "openpi"
 type = "skill"
-repo_path = "home/skills/openpi"
+repo_path = "home/skills/technology/openpi"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/openpi"
@@ -776,7 +776,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "openvla-oft"
 type = "skill"
-repo_path = "home/skills/openvla-oft"
+repo_path = "home/skills/technology/openvla-oft"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/openvla-oft"
@@ -786,7 +786,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "segment-anything"
 type = "skill"
-repo_path = "home/skills/segment-anything"
+repo_path = "home/skills/technology/segment-anything"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/segment-anything"
@@ -796,7 +796,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "stable-diffusion"
 type = "skill"
-repo_path = "home/skills/stable-diffusion"
+repo_path = "home/skills/technology/stable-diffusion"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/stable-diffusion"
@@ -806,7 +806,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "whisper"
 type = "skill"
-repo_path = "home/skills/whisper"
+repo_path = "home/skills/technology/whisper"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/whisper"
@@ -816,7 +816,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "knowledge-distillation"
 type = "skill"
-repo_path = "home/skills/knowledge-distillation"
+repo_path = "home/skills/technology/knowledge-distillation"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/knowledge-distillation"
@@ -826,7 +826,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "long-context"
 type = "skill"
-repo_path = "home/skills/long-context"
+repo_path = "home/skills/technology/long-context"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/long-context"
@@ -836,7 +836,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "model-merging"
 type = "skill"
-repo_path = "home/skills/model-merging"
+repo_path = "home/skills/technology/model-merging"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/model-merging"
@@ -846,7 +846,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "model-pruning"
 type = "skill"
-repo_path = "home/skills/model-pruning"
+repo_path = "home/skills/technology/model-pruning"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/model-pruning"
@@ -856,7 +856,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "moe-training"
 type = "skill"
-repo_path = "home/skills/moe-training"
+repo_path = "home/skills/technology/moe-training"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/moe-training"
@@ -866,7 +866,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "speculative-decoding"
 type = "skill"
-repo_path = "home/skills/speculative-decoding"
+repo_path = "home/skills/technology/speculative-decoding"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/speculative-decoding"
@@ -876,7 +876,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "academic-plotting"
 type = "skill"
-repo_path = "home/skills/academic-plotting"
+repo_path = "home/skills/execution/academic-plotting"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/academic-plotting"
@@ -886,7 +886,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "ml-paper-writing"
 type = "skill"
-repo_path = "home/skills/ml-paper-writing"
+repo_path = "home/skills/execution/ml-paper-writing"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/ml-paper-writing"
@@ -896,7 +896,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "brainstorming-research-ideas"
 type = "skill"
-repo_path = "home/skills/brainstorming-research-ideas"
+repo_path = "home/skills/execution/brainstorming-research-ideas"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/brainstorming-research-ideas"
@@ -906,7 +906,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "creative-thinking-for-research"
 type = "skill"
-repo_path = "home/skills/creative-thinking-for-research"
+repo_path = "home/skills/execution/creative-thinking-for-research"
 status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/creative-thinking-for-research"
@@ -916,7 +916,7 @@ notes = "Imported from the canonical Orchestra skills checkout into repo-owned s
 [[skill]]
 id = "brainstorming"
 type = "skill"
-repo_path = "home/skills/brainstorming"
+repo_path = "home/skills/execution/brainstorming"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/brainstorming"
@@ -926,7 +926,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "dispatching-parallel-agents"
 type = "skill"
-repo_path = "home/skills/dispatching-parallel-agents"
+repo_path = "home/skills/orchestration/dispatching-parallel-agents"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/dispatching-parallel-agents"
@@ -936,7 +936,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "executing-plans"
 type = "skill"
-repo_path = "home/skills/executing-plans"
+repo_path = "home/skills/execution/executing-plans"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/executing-plans"
@@ -946,7 +946,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "finishing-a-development-branch"
 type = "skill"
-repo_path = "home/skills/finishing-a-development-branch"
+repo_path = "home/skills/execution/finishing-a-development-branch"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/finishing-a-development-branch"
@@ -956,7 +956,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "receiving-code-review"
 type = "skill"
-repo_path = "home/skills/receiving-code-review"
+repo_path = "home/skills/execution/receiving-code-review"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/receiving-code-review"
@@ -966,7 +966,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "requesting-code-review"
 type = "skill"
-repo_path = "home/skills/requesting-code-review"
+repo_path = "home/skills/execution/requesting-code-review"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/requesting-code-review"
@@ -976,7 +976,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "subagent-driven-development"
 type = "skill"
-repo_path = "home/skills/subagent-driven-development"
+repo_path = "home/skills/orchestration/subagent-driven-development"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/subagent-driven-development"
@@ -986,7 +986,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "systematic-debugging"
 type = "skill"
-repo_path = "home/skills/systematic-debugging"
+repo_path = "home/skills/execution/systematic-debugging"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/systematic-debugging"
@@ -996,7 +996,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "test-driven-development"
 type = "skill"
-repo_path = "home/skills/test-driven-development"
+repo_path = "home/skills/execution/test-driven-development"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/test-driven-development"
@@ -1006,7 +1006,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "using-git-worktrees"
 type = "skill"
-repo_path = "home/skills/using-git-worktrees"
+repo_path = "home/skills/execution/using-git-worktrees"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-git-worktrees"
@@ -1016,7 +1016,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "using-superpowers"
 type = "skill"
-repo_path = "home/skills/using-superpowers"
+repo_path = "home/skills/alignment/using-superpowers"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-superpowers"
@@ -1026,7 +1026,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "verification-before-completion"
 type = "skill"
-repo_path = "home/skills/verification-before-completion"
+repo_path = "home/skills/alignment/verification-before-completion"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/verification-before-completion"
@@ -1036,7 +1036,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "writing-plans"
 type = "skill"
-repo_path = "home/skills/writing-plans"
+repo_path = "home/skills/execution/writing-plans"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/writing-plans"
@@ -1046,7 +1046,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "writing-skills"
 type = "skill"
-repo_path = "home/skills/writing-skills"
+repo_path = "home/skills/execution/writing-skills"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/writing-skills"
@@ -1056,7 +1056,7 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 [[skill]]
 id = "agent-coordination"
 type = "skill"
-repo_path = "home/skills/agent-coordination"
+repo_path = "home/skills/orchestration/agent-coordination"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination"
@@ -1066,7 +1066,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "agent-coordination-multi-reviewer"
 type = "skill"
-repo_path = "home/skills/agent-coordination-multi-reviewer"
+repo_path = "home/skills/orchestration/agent-coordination-multi-reviewer"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-multi-reviewer"
@@ -1076,7 +1076,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "agent-coordination-parallel-debugging"
 type = "skill"
-repo_path = "home/skills/agent-coordination-parallel-debugging"
+repo_path = "home/skills/orchestration/agent-coordination-parallel-debugging"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-parallel-debugging"
@@ -1086,7 +1086,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "agent-coordination-parallel-feature-development"
 type = "skill"
-repo_path = "home/skills/agent-coordination-parallel-feature-development"
+repo_path = "home/skills/orchestration/agent-coordination-parallel-feature-development"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-parallel-feature-development"
@@ -1096,7 +1096,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "agent-coordination-task-coordination"
 type = "skill"
-repo_path = "home/skills/agent-coordination-task-coordination"
+repo_path = "home/skills/orchestration/agent-coordination-task-coordination"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-task-coordination"
@@ -1106,7 +1106,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "agent-coordination-team-composition"
 type = "skill"
-repo_path = "home/skills/agent-coordination-team-composition"
+repo_path = "home/skills/orchestration/agent-coordination-team-composition"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-team-composition"
@@ -1116,7 +1116,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "comprehensive-review"
 type = "skill"
-repo_path = "home/skills/comprehensive-review"
+repo_path = "home/skills/execution/comprehensive-review"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/comprehensive-review"
@@ -1126,7 +1126,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "comprehensive-review-architecture"
 type = "skill"
-repo_path = "home/skills/comprehensive-review-architecture"
+repo_path = "home/skills/execution/comprehensive-review-architecture"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/comprehensive-review-architecture"
@@ -1136,7 +1136,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "comprehensive-review-code-quality"
 type = "skill"
-repo_path = "home/skills/comprehensive-review-code-quality"
+repo_path = "home/skills/execution/comprehensive-review-code-quality"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/comprehensive-review-code-quality"
@@ -1146,7 +1146,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "comprehensive-review-reporting"
 type = "skill"
-repo_path = "home/skills/comprehensive-review-reporting"
+repo_path = "home/skills/execution/comprehensive-review-reporting"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/comprehensive-review-reporting"
@@ -1156,7 +1156,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "comprehensive-review-security-performance"
 type = "skill"
-repo_path = "home/skills/comprehensive-review-security-performance"
+repo_path = "home/skills/execution/comprehensive-review-security-performance"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/comprehensive-review-security-performance"
@@ -1166,7 +1166,7 @@ notes = "Imported from the local wshobson/agents extraction into repo-owned stor
 [[skill]]
 id = "comprehensive-review-testing-docs"
 type = "skill"
-repo_path = "home/skills/comprehensive-review-testing-docs"
+repo_path = "home/skills/execution/comprehensive-review-testing-docs"
 status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/comprehensive-review-testing-docs"

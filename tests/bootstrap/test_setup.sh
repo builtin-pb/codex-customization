@@ -6,9 +6,9 @@ tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
 test_repo="$tmpdir/test-repo"
-mkdir -p "$test_repo/bootstrap" "$test_repo/home/skills/managed-skill" "$test_repo/home/agents"
+mkdir -p "$test_repo/bootstrap" "$test_repo/home/skills/execution/managed-skill" "$test_repo/home/agents"
 cp "$repo_root/bootstrap/setup.sh" "$test_repo/bootstrap/setup.sh"
-printf 'managed skill\n' > "$test_repo/home/skills/managed-skill/SKILL.md"
+printf 'managed skill\n' > "$test_repo/home/skills/execution/managed-skill/SKILL.md"
 printf 'managed agent\n' > "$test_repo/home/agents/agent.txt"
 
 codex_home="$tmpdir/.codex"
@@ -33,7 +33,7 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ "$(cat "$codex_home/skills/custom-unmanaged/README.txt")" = "custom skill" ]
 [ -L "$codex_home/skills/managed-skill" ]
 [ -d "$codex_home/skills/managed-skill" ]
-[ "$(readlink "$codex_home/skills/managed-skill")" = "$test_repo/home/skills/managed-skill" ]
+[ "$(readlink "$codex_home/skills/managed-skill")" = "$test_repo/home/skills/execution/managed-skill" ]
 [ "$(cat "$codex_home/skills/managed-skill/SKILL.md")" = "managed skill" ]
 [ -f "$backup_root/skills/managed-skill/README.txt" ]
 [ "$(cat "$backup_root/skills/managed-skill/README.txt")" = "stale managed skill" ]
@@ -55,7 +55,7 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ "$(cat "$codex_home/skills/.system/default.txt")" = "system default" ]
 [ -L "$codex_home/skills/managed-skill" ]
 [ -d "$codex_home/skills/managed-skill" ]
-[ "$(readlink "$codex_home/skills/managed-skill")" = "$test_repo/home/skills/managed-skill" ]
+[ "$(readlink "$codex_home/skills/managed-skill")" = "$test_repo/home/skills/execution/managed-skill" ]
 [ -f "$backup_root/skills/managed-skill/README.txt" ]
 [ -L "$codex_home/agents" ]
 [ -d "$codex_home/agents" ]
@@ -65,7 +65,7 @@ CODEX_HOME="$codex_home" CODEX_BACKUP_ROOT="$backup_root" \
 [ ! -e "$codex_home/skills/removed-skill" ]
 
 overlap_repo="$tmpdir/overlap-repo"
-mkdir -p "$overlap_repo/bootstrap" "$overlap_repo/home/skills/managed-skill" "$overlap_repo/home/agents"
+mkdir -p "$overlap_repo/bootstrap" "$overlap_repo/home/skills/execution/managed-skill" "$overlap_repo/home/agents"
 cp "$repo_root/bootstrap/setup.sh" "$overlap_repo/bootstrap/setup.sh"
 
 overlap_home="$overlap_repo/home/portable-home"

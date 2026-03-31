@@ -8,12 +8,15 @@ backup_root="${CODEX_BACKUP_ROOT:-$HOME/.codex-backups/$(date +%Y%m%d-%H%M%S)}"
 managed_root="$repo_root/home"
 managed_skills_root="$managed_root/skills"
 managed_agents_root="$managed_root/agents"
+managed_skill_index_file="$(mktemp)"
 
 linked_paths=()
 backed_up_paths=()
 unmanaged_root_paths=()
 unmanaged_skill_paths=()
 pruned_paths=()
+
+trap 'rm -f "$managed_skill_index_file"' EXIT
 
 normalize_path() {
   local input="$1"
@@ -105,9 +108,38 @@ ensure_skills_container() {
   mkdir -p "$skills_dest"
 }
 
+populate_managed_skill_index() {
+  : > "$managed_skill_index_file"
+
+  while IFS= read -r skill_file; do
+    local skill_root
+    local name
+
+    [ -n "$skill_file" ] || continue
+    skill_root="$(dirname "$skill_file")"
+    name="$(basename "$skill_root")"
+
+    if grep -Fqx "$name	$skill_root" "$managed_skill_index_file"; then
+      continue
+    fi
+
+    if grep -Eq "^${name}	" "$managed_skill_index_file"; then
+      printf 'duplicate managed skill name detected: %s\n' "$name" >&2
+      exit 1
+    fi
+
+    printf '%s\t%s\n' "$name" "$skill_root" >> "$managed_skill_index_file"
+  done < <(find "$managed_skills_root" -type f -name 'SKILL.md' -print | LC_ALL=C sort)
+}
+
+managed_skill_exists() {
+  local name="$1"
+  grep -Eq "^${name}	" "$managed_skill_index_file"
+}
+
 link_managed_skill() {
   local src="$1"
-  local name
+  local name="${2:-$(basename "$src")}"
   local rel
   local dest
 
@@ -140,7 +172,7 @@ prune_stale_managed_skill_links() {
     case "$target" in
       "$expected_prefix"*)
         name="$(basename "$entry")"
-        if [ ! -e "$managed_skills_root/$name" ] && [ ! -L "$managed_skills_root/$name" ]; then
+        if [ ! -e "$target" ] || [ ! -f "$target/SKILL.md" ] || ! managed_skill_exists "$name"; then
           rm "$entry"
           pruned_paths+=("skills/$name")
         fi
@@ -168,7 +200,7 @@ record_unmanaged_skill_paths() {
   while IFS= read -r -d '' entry; do
     local name
     name="$(basename "$entry")"
-    if [ -e "$managed_skills_root/$name" ] || [ -L "$managed_skills_root/$name" ]; then
+    if managed_skill_exists "$name"; then
       continue
     fi
     unmanaged_skill_paths+=("skills/$name")
@@ -239,15 +271,16 @@ if [ ! -d "$managed_skills_root" ]; then
   exit 1
 fi
 
+populate_managed_skill_index
 mkdir -p "$codex_home"
 ensure_skills_container
 prune_stale_managed_skill_links
 
-shopt -s dotglob nullglob
-for entry in "$managed_skills_root"/*; do
-  link_managed_skill "$entry"
-done
-shopt -u dotglob nullglob
+while IFS=$'\t' read -r name src; do
+  [ -n "$name" ] || continue
+  [ -n "$src" ] || continue
+  link_managed_skill "$src" "$name"
+done < "$managed_skill_index_file"
 
 link_agents_root
 record_unmanaged_root_paths

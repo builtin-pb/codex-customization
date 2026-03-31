@@ -50,39 +50,44 @@ cp "$safe_repo/catalog/agents.toml" "$tmpdir/agents.before"
 SOURCE_CODEX_HOME="$source_codex" SOURCE_AGENTS_HOME="$source_agents" SOURCE_ORCHESTRA_ROOT="$source_orchestra" DEST_REPO_ROOT="$safe_repo" \
   bash "$repo_root/bootstrap/import_current_home.sh"
 
-[ -d "$safe_repo/home/skills/local-skill" ]
-[ ! -L "$safe_repo/home/skills/local-skill" ]
-[ -f "$safe_repo/home/skills/local-skill/SKILL.md" ]
-[ -d "$safe_repo/home/skills/external-skill" ]
-[ ! -L "$safe_repo/home/skills/external-skill" ]
-[ -f "$safe_repo/home/skills/external-skill/SKILL.md" ]
-[ -d "$safe_repo/home/skills/autoresearch" ]
-[ -f "$safe_repo/home/skills/autoresearch/SKILL.md" ]
-[ ! -e "$safe_repo/home/skills/0-autoresearch-skill" ]
-[ -d "$safe_repo/home/skills/brainstorming" ]
-[ -f "$safe_repo/home/skills/brainstorming/SKILL.md" ]
-[ -d "$safe_repo/home/skills/agent-coordination" ]
-[ -f "$safe_repo/home/skills/agent-coordination/SKILL.md" ]
-[ ! -e "$safe_repo/home/skills/skills-maintenance" ]
-[ ! -e "$safe_repo/home/skills/.system" ]
-[ ! -e "$safe_repo/home/skills/stray-folder" ]
+[ -d "$safe_repo/home/skills/technology/local-skill" ]
+[ ! -L "$safe_repo/home/skills/technology/local-skill" ]
+[ -f "$safe_repo/home/skills/technology/local-skill/SKILL.md" ]
+[ -d "$safe_repo/home/skills/technology/external-skill" ]
+[ ! -L "$safe_repo/home/skills/technology/external-skill" ]
+[ -f "$safe_repo/home/skills/technology/external-skill/SKILL.md" ]
+[ -d "$safe_repo/home/skills/execution/autoresearch" ]
+[ -f "$safe_repo/home/skills/execution/autoresearch/SKILL.md" ]
+[ ! -e "$safe_repo/home/skills/execution/0-autoresearch-skill" ]
+[ -d "$safe_repo/home/skills/execution/brainstorming" ]
+[ -f "$safe_repo/home/skills/execution/brainstorming/SKILL.md" ]
+[ -d "$safe_repo/home/skills/orchestration/agent-coordination" ]
+[ -f "$safe_repo/home/skills/orchestration/agent-coordination/SKILL.md" ]
+[ ! -e "$safe_repo/home/skills/technology/skills-maintenance" ]
+[ ! -e "$safe_repo/home/skills/technology/.system" ]
+[ ! -e "$safe_repo/home/skills/technology/stray-folder" ]
 [ "$(grep -c '^\[\[skill\]\]' "$safe_repo/catalog/skills.toml")" -eq 5 ]
 grep -q 'id = "local-skill"' "$safe_repo/catalog/skills.toml"
 grep -q 'status = "local"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_kind = "local-custom"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_ref = "local-custom/local-skill"' "$safe_repo/catalog/skills.toml"
+grep -q 'repo_path = "home/skills/technology/local-skill"' "$safe_repo/catalog/skills.toml"
 grep -q 'id = "external-skill"' "$safe_repo/catalog/skills.toml"
 grep -q 'status = "imported"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_kind = "orchestra"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_ref = "orchestra/external-skill"' "$safe_repo/catalog/skills.toml"
+grep -q 'repo_path = "home/skills/technology/external-skill"' "$safe_repo/catalog/skills.toml"
 grep -q 'id = "autoresearch"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_ref = "orchestra/0-autoresearch-skill"' "$safe_repo/catalog/skills.toml"
+grep -q 'repo_path = "home/skills/execution/autoresearch"' "$safe_repo/catalog/skills.toml"
 grep -q 'id = "brainstorming"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_kind = "superpowers"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_ref = "superpowers/brainstorming"' "$safe_repo/catalog/skills.toml"
+grep -q 'repo_path = "home/skills/execution/brainstorming"' "$safe_repo/catalog/skills.toml"
 grep -q 'id = "agent-coordination"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_kind = "wshobson-agents-extracted"' "$safe_repo/catalog/skills.toml"
 grep -q 'source_ref = "wshobson-agents-extracted/agent-coordination"' "$safe_repo/catalog/skills.toml"
+grep -q 'repo_path = "home/skills/orchestration/agent-coordination"' "$safe_repo/catalog/skills.toml"
 escaped_orchestra_skill_dir=${source_orchestra//\"/\\\"}
 grep -F -q "source_path = \"$escaped_orchestra_skill_dir/external-skill\"" "$safe_repo/catalog/skills.toml"
 [ -f "$safe_repo/home/agents/code-reviewer.md" ]

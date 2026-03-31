@@ -72,18 +72,19 @@ portable_source_ref() {
 
 write_skill_entry() {
   local id="$1"
-  local status="$2"
-  local source_kind="$3"
-  local source_ref="$4"
-  local source_path="$5"
-  local notes="$6"
+  local repo_path="$2"
+  local status="$3"
+  local source_kind="$4"
+  local source_ref="$5"
+  local source_path="$6"
+  local notes="$7"
 
   cat >> "$skills_catalog" <<EOF
 
 [[skill]]
 id = "$(toml_escape "$id")"
 type = "skill"
-repo_path = "home/skills/$(toml_escape "$id")"
+repo_path = "$(toml_escape "$repo_path")"
 status = "$(toml_escape "$status")"
 source_kind = "$(toml_escape "$source_kind")"
 source_ref = "$(toml_escape "$source_ref")"
@@ -123,6 +124,38 @@ canonical_repo_skill_name() {
       ;;
     *)
       printf '%s\n' "$source_name"
+      ;;
+  esac
+}
+
+skill_category() {
+  local name="$1"
+  local source_kind="$2"
+
+  case "$name" in
+    using-superpowers|verification-before-completion)
+      printf 'alignment\n'
+      return 0
+      ;;
+    agent-coordination|agent-coordination-*|dispatching-parallel-agents|subagent-driven-development)
+      printf 'orchestration\n'
+      return 0
+      ;;
+    academic-plotting|autoresearch|brainstorming|brainstorming-research-ideas|comprehensive-review|comprehensive-review-*|creative-thinking-for-research|executing-plans|finishing-a-development-branch|ml-paper-writing|receiving-code-review|requesting-code-review|systematic-debugging|test-driven-development|using-git-worktrees|writing-plans|writing-skills)
+      printf 'execution\n'
+      return 0
+      ;;
+  esac
+
+  case "$source_kind" in
+    superpowers)
+      printf 'execution\n'
+      ;;
+    wshobson-agents-extracted)
+      printf 'execution\n'
+      ;;
+    *)
+      printf 'technology\n'
       ;;
   esac
 }
@@ -196,7 +229,13 @@ import_skill() {
   local source_ref="$5"
   local source_path="$6"
   local notes="$7"
-  local dest="$skills_dest/$name"
+  local category
+  local repo_path
+  local dest
+
+  category="$(skill_category "$name" "$source_kind")"
+  repo_path="home/skills/$category/$name"
+  dest="$skills_dest/$category/$name"
 
   [ -f "$skill_root/SKILL.md" ] || return 0
   if grep -Fxq "$name" "$seen_skills"; then
@@ -205,8 +244,9 @@ import_skill() {
 
   printf '%s\n' "$name" >> "$seen_skills"
   rm -rf -- "$dest"
+  mkdir -p "$(dirname "$dest")"
   cp -R "$skill_root" "$dest"
-  write_skill_entry "$name" "$status" "$source_kind" "$source_ref" "$source_path" "$notes"
+  write_skill_entry "$name" "$repo_path" "$status" "$source_kind" "$source_ref" "$source_path" "$notes"
 }
 
 while IFS= read -r src; do
