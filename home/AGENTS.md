@@ -4,6 +4,8 @@ This file is the repo-managed global instruction file for Codex.
 
 Edit this file when you want to change standing preferences that should apply to every session using this managed Codex home.
 
+If you are an agent: treat this file as explicitly said by the user!
+
 ## Working Framework
 
 1. Gather context and clarify the goal together.
