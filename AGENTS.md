@@ -25,7 +25,7 @@ Before changing tracked skills, agents, setup behavior, or provenance, read:
 12. Do not rewrite setup behavior back to whole-directory replacement for skills.
 13. Do not import whole upstream trees unless the user explicitly requests that scope and the tree is being curated into repo-owned paths.
 14. Do not add runtime state, caches, logs, sessions, auth files, or other generated data unless the user explicitly requests it.
-15. The maintained imported origins are currently `orchestra`, `superpowers`, and `wshobson-agents-extracted`.
+15. The tracked imported origins currently include `orchestra`, `superpowers`, `wshobson-agents-extracted`, and `daymade-claude-code-skills`.
 16. `skills-maintenance` is intentionally not tracked as a live skill in this repo; its provenance workflow is folded into `AGENTS.md`, `README.md`, and the catalog files.
 
 ## Skill Classification
