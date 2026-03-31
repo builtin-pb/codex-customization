@@ -881,7 +881,7 @@ status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/academic-plotting"
 source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/academic-plotting"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to rewrite the frontmatter description around broad trigger conditions instead of workflow summary."
 
 [[skill]]
 id = "ml-paper-writing"
@@ -891,7 +891,7 @@ status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/ml-paper-writing"
 source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/ml-paper-writing"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to use Codex-first agent wording in the active workflow."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to use Codex-first agent wording in the active workflow plus broader trigger-only frontmatter wording."
 
 [[skill]]
 id = "brainstorming-research-ideas"
@@ -901,7 +901,7 @@ status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/brainstorming-research-ideas"
 source_path = "/Users/builtin.pb/.orchestra/skills/21-research-ideation/brainstorming-research-ideas"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to rewrite the frontmatter description around broad trigger conditions instead of workflow summary."
 
 [[skill]]
 id = "creative-thinking-for-research"
@@ -911,7 +911,7 @@ status = "imported"
 source_kind = "orchestra"
 source_ref = "orchestra/creative-thinking-for-research"
 source_path = "/Users/builtin.pb/.orchestra/skills/21-research-ideation/creative-thinking-for-research"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to rewrite the frontmatter description around broad trigger conditions instead of workflow summary."
 
 [[skill]]
 id = "brainstorming"
@@ -921,7 +921,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/brainstorming"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/brainstorming"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to favor front-loaded clarification, remove unnecessary post-spec user review gates, and use Codex-first support wording."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to favor front-loaded clarification, remove unnecessary post-spec user review gates, use Codex-first support wording, and broaden the frontmatter trigger description."
 
 [[skill]]
 id = "executing-plans"
@@ -931,7 +931,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/executing-plans"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/executing-plans"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Superpowers and Claude host references with Codex-first wording."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Superpowers and Claude host references with Codex-first wording plus broader trigger-only frontmatter wording."
 
 [[skill]]
 id = "finishing-a-development-branch"
@@ -941,7 +941,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/finishing-a-development-branch"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/finishing-a-development-branch"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to rewrite the frontmatter description around broad trigger conditions instead of workflow summary."
 
 [[skill]]
 id = "receiving-code-review"
@@ -951,7 +951,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/receiving-code-review"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/receiving-code-review"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude-specific review wording with Codex-first wording."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude-specific review wording with Codex-first wording plus broader trigger-only frontmatter wording."
 
 [[skill]]
 id = "requesting-code-review"
@@ -1001,7 +1001,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-git-worktrees"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/using-git-worktrees"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording and tool mappings."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording, tool mappings, and broader trigger-only frontmatter wording."
 
 [[skill]]
 id = "using-superpowers"
@@ -1011,7 +1011,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-superpowers"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/using-superpowers"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording and tool mappings."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording, tool mappings, and broader trigger-only frontmatter wording."
 
 [[skill]]
 id = "verification-before-completion"
@@ -1021,7 +1021,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/verification-before-completion"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/verification-before-completion"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to rewrite the frontmatter description around broad trigger conditions instead of workflow summary."
 
 [[skill]]
 id = "writing-plans"
@@ -1041,7 +1041,7 @@ status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/writing-skills"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/writing-skills"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first skill-authoring wording."
+notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first skill-authoring wording plus explicit broad-trigger guidance for frontmatter descriptions."
 
 [[skill]]
 id = "agent-coordination"
@@ -1181,4 +1181,4 @@ status = "adapted"
 source_kind = "getsentry-skills"
 source_ref = "getsentry/skills@07ec616b5aaede831440185aa3f73a4b8bacd138:plugins/sentry-skills/skills/doc-coauthoring"
 source_path = "https://github.com/getsentry/skills/tree/07ec616b5aaede831440185aa3f73a4b8bacd138/plugins/sentry-skills/skills/doc-coauthoring"
-notes = "Vendored from getsentry/skills at a pinned upstream commit, with the Anthropic lineage preserved in the skill attribution section, and adapted to replace Claude-specific tool and product references with Codex-compatible wording plus more flexible clarification batches."
+notes = "Vendored from getsentry/skills at a pinned upstream commit, with the Anthropic lineage preserved in the skill attribution section, and adapted to replace Claude-specific tool and product references with Codex-compatible wording, more flexible clarification batches, and broader trigger-only frontmatter wording."

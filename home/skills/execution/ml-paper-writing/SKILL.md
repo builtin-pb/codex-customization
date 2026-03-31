@@ -1,6 +1,6 @@
 ---
 name: ml-paper-writing
-description: Write publication-ready ML/AI/Systems papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM, OSDI, NSDI, ASPLOS, SOSP. Use when drafting papers from research repos, structuring arguments, verifying citations, or preparing camera-ready submissions. Includes LaTeX templates, reviewer guidelines, and citation verification workflows.
+description: Use when drafting, revising, or preparing ML, AI, or systems papers from research repos, results, notes, or existing drafts.
 version: 1.1.0
 author: Orchestra Research
 license: MIT

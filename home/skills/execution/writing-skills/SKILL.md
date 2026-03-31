@@ -99,6 +99,7 @@ skills/
 - `description`: Third-person, describes ONLY when to use (NOT what it does)
   - Start with "Use when..." to focus on triggering conditions
   - Include specific symptoms, situations, and contexts
+  - Bias toward recall over precision: false positives are better than false negatives
   - **NEVER summarize the skill's process or workflow** (see CSO section for why)
   - Keep under 500 characters if possible
 
@@ -150,6 +151,8 @@ Concrete results
 **CRITICAL: Description = When to Use, NOT What the Skill Does**
 
 The description should ONLY describe triggering conditions. Do NOT summarize the skill's process or workflow in the description.
+
+**Bias toward recall:** If a trigger is ambiguous, prefer a broader description that may cause the agent to read the skill and then decide it is unnecessary. Missing the right skill entirely is worse than loading a relevant skill one extra time.
 
 **Why this matters:** Testing revealed that when a description summarizes the skill's workflow, the agent may follow the description instead of reading the full skill content. A description saying "code review between tasks" caused the agent to do ONE review, even though the skill's flowchart clearly showed TWO reviews (spec compliance then code quality).
 
