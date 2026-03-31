@@ -137,7 +137,7 @@ skill_category() {
       printf 'alignment\n'
       return 0
       ;;
-    agent-coordination|agent-coordination-*|dispatching-parallel-agents|subagent-driven-development)
+    agent-coordination|agent-coordination-*|subagent-driven-development)
       printf 'orchestration\n'
       return 0
       ;;

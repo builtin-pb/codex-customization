@@ -1,15 +1,15 @@
 ---
 name: subagent-driven-development
-description: Use when executing implementation plans with independent tasks in the current session
+description: Use when executing implementation plans with independent or mostly independent tasks in the current session
 ---
 
 # Subagent-Driven Development
 
-Execute plan by dispatching fresh subagent per task, with two-stage review after each: spec compliance review first, then code quality review.
+Execute plans by keeping a controller in the current session and pushing as much work as possible into implement and review lanes. When multiple slices are ready, run them in parallel. When only one slice is ready, use the same workflow sequentially rather than switching methods.
 
-**Why subagents:** You delegate tasks to specialized agents with isolated context. By precisely crafting their instructions and context, you ensure they stay focused and succeed at their task. They should never inherit your session's context or history — you construct exactly what they need. This also preserves your own context for coordination work.
+**Why subagents:** You delegate tasks to specialized agents with isolated context. By crafting their instructions and context precisely, you keep them focused and preserve the controller's context for planning, routing, and integration.
 
-**Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration
+**Core principle:** Keep every stage busy. Multiple implementers and multiple reviewers can run in parallel, but every finished change still passes the same loop: implement -> spec review -> quality review -> integrate.
 
 ## When to Use
 
@@ -31,18 +31,27 @@ digraph when_to_use {
 }
 ```
 
-**vs. Executing Plans (parallel session):**
-- Same session (no context switch)
-- Fresh subagent per task (no context pollution)
-- Two-stage review after each task: spec compliance first, then code quality
-- Faster iteration (no human-in-loop between tasks)
+**Use this when:**
+- You already have a written plan or a clean task list
+- One or more tasks or slices are ready to execute in this session
+- You want maximum throughput inside the current session
+- You can tolerate controller overhead to gain better routing, review discipline, and integration quality
 
 **The plan file is a live execution log.** The controller updates the markdown plan as work progresses:
 - Change completed steps from `- [ ]` to `- [x]`
 - Add an `Observed:` line directly under each completed step
 - Capture what actually happened, including verification results, reviewer-driven fixes, surprises, and deviations from the original expectation
 
-Keep `TodoWrite`/`update_plan` for session tracking, but make the plan file itself readable as the durable execution record.
+Keep a session tracker such as `update_plan` for execution tracking, but make the plan file itself readable as the durable execution record.
+
+## Codex Prerequisites
+
+This workflow assumes the current environment can coordinate subagents and maintain a live execution tracker.
+
+- The leader is responsible for making implementer slices independent and safe to run concurrently. Use whatever isolation strategy fits the host and task, but do not dispatch overlapping write scopes.
+- In a Codex-like host, use the host's subagent-dispatch and plan-tracking capabilities rather than assuming a specific tool name.
+- In another host, use the closest equivalents for subagent dispatch, reviewer dispatch, and execution-state tracking.
+- If the current environment cannot dispatch subagents, cannot route follow-up messages, or cannot track execution state cleanly, do not force this workflow. Use `executing-plans` or manual execution instead.
 
 ## The Process
 
@@ -50,52 +59,118 @@ Keep `TodoWrite`/`update_plan` for session tracking, but make the plan file itse
 digraph process {
     rankdir=TB;
 
-    subgraph cluster_per_task {
-        label="Per Task";
-        "Dispatch implementer subagent (./implementer-prompt.md)" [shape=box];
-        "Implementer subagent asks questions?" [shape=diamond];
-        "Answer questions, provide context" [shape=box];
-        "Implementer subagent implements, tests, commits, self-reviews" [shape=box];
-        "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)" [shape=box];
-        "Spec reviewer subagent confirms code matches spec?" [shape=diamond];
-        "Implementer subagent fixes spec gaps" [shape=box];
-        "Dispatch code quality reviewer subagent (./code-quality-reviewer-prompt.md)" [shape=box];
-        "Code quality reviewer subagent approves?" [shape=diamond];
-        "Implementer subagent fixes quality issues" [shape=box];
-        "Update plan file + mark task complete in TodoWrite" [shape=box];
+    subgraph cluster_controller {
+        label="Controller";
+        "Read plan, extract tasks, note dependencies, create session tracker" [shape=box];
+        "Split work into independent slices" [shape=box];
+        "Keep implement lane full" [shape=box];
+        "Keep review lane full" [shape=box];
+        "Integrate accepted work and update plan file" [shape=box];
+        "All slices integrated?" [shape=diamond];
+        "Dispatch final code reviewer subagent for entire implementation" [shape=box];
     }
 
-    "Read plan, extract all tasks with full text, note context, create TodoWrite" [shape=box];
-    "More tasks remain?" [shape=diamond];
-    "Dispatch final code reviewer subagent for entire implementation" [shape=box];
+    subgraph cluster_loop {
+        label="Per Slice";
+        "Dispatch implementer subagent(s)" [shape=box];
+        "Implementer asks for context?" [shape=diamond];
+        "Answer and re-dispatch or unblock" [shape=box];
+        "Implementer finishes slice with tests and self-review" [shape=box];
+        "Dispatch spec reviewer subagent(s)" [shape=box];
+        "Spec compliant?" [shape=diamond];
+        "Implementer fixes spec gaps" [shape=box];
+        "Dispatch quality reviewer subagent(s)" [shape=box];
+        "Quality approved?" [shape=diamond];
+        "Implementer fixes quality issues" [shape=box];
+    }
+
     "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
-    "Read plan, extract all tasks with full text, note context, create TodoWrite" -> "Dispatch implementer subagent (./implementer-prompt.md)";
-    "Dispatch implementer subagent (./implementer-prompt.md)" -> "Implementer subagent asks questions?";
-    "Implementer subagent asks questions?" -> "Answer questions, provide context" [label="yes"];
-    "Answer questions, provide context" -> "Dispatch implementer subagent (./implementer-prompt.md)";
-    "Implementer subagent asks questions?" -> "Implementer subagent implements, tests, commits, self-reviews" [label="no"];
-    "Implementer subagent implements, tests, commits, self-reviews" -> "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)";
-    "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)" -> "Spec reviewer subagent confirms code matches spec?";
-    "Spec reviewer subagent confirms code matches spec?" -> "Implementer subagent fixes spec gaps" [label="no"];
-    "Implementer subagent fixes spec gaps" -> "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)" [label="re-review"];
-    "Spec reviewer subagent confirms code matches spec?" -> "Dispatch code quality reviewer subagent (./code-quality-reviewer-prompt.md)" [label="yes"];
-    "Dispatch code quality reviewer subagent (./code-quality-reviewer-prompt.md)" -> "Code quality reviewer subagent approves?";
-    "Code quality reviewer subagent approves?" -> "Implementer subagent fixes quality issues" [label="no"];
-    "Implementer subagent fixes quality issues" -> "Dispatch code quality reviewer subagent (./code-quality-reviewer-prompt.md)" [label="re-review"];
-    "Code quality reviewer subagent approves?" -> "Update plan file + mark task complete in TodoWrite" [label="yes"];
-    "Update plan file + mark task complete in TodoWrite" -> "More tasks remain?";
-    "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
-    "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
+    "Read plan, extract tasks, note dependencies, create session tracker" -> "Split work into independent slices";
+    "Split work into independent slices" -> "Keep implement lane full";
+    "Keep implement lane full" -> "Dispatch implementer subagent(s)";
+    "Dispatch implementer subagent(s)" -> "Implementer asks for context?";
+    "Implementer asks for context?" -> "Answer and re-dispatch or unblock" [label="yes"];
+    "Answer and re-dispatch or unblock" -> "Dispatch implementer subagent(s)";
+    "Implementer asks for context?" -> "Implementer finishes slice with tests and self-review" [label="no"];
+    "Implementer finishes slice with tests and self-review" -> "Keep review lane full";
+    "Keep review lane full" -> "Dispatch spec reviewer subagent(s)";
+    "Dispatch spec reviewer subagent(s)" -> "Spec compliant?";
+    "Spec compliant?" -> "Implementer fixes spec gaps" [label="no"];
+    "Implementer fixes spec gaps" -> "Dispatch spec reviewer subagent(s)" [label="re-review"];
+    "Spec compliant?" -> "Dispatch quality reviewer subagent(s)" [label="yes"];
+    "Dispatch quality reviewer subagent(s)" -> "Quality approved?";
+    "Quality approved?" -> "Implementer fixes quality issues" [label="no"];
+    "Implementer fixes quality issues" -> "Dispatch quality reviewer subagent(s)" [label="re-review"];
+    "Quality approved?" -> "Integrate accepted work and update plan file" [label="yes"];
+    "Integrate accepted work and update plan file" -> "Keep implement lane full";
+    "Integrate accepted work and update plan file" -> "Keep review lane full";
+    "Integrate accepted work and update plan file" -> "All slices integrated?";
+    "All slices integrated?" -> "Keep implement lane full" [label="no"];
+    "All slices integrated?" -> "Dispatch final code reviewer subagent for entire implementation" [label="yes"];
     "Dispatch final code reviewer subagent for entire implementation" -> "Use superpowers:finishing-a-development-branch";
 }
 ```
+
+## Throughput Rules
+
+- Default to multiple implementers when you have multiple ready slices. If only one slice is ready, keep the same workflow and run a single implement lane until more work opens up.
+- Default to multiple reviewers when finished slices are waiting. Review is a parallel lane, not a single checkpoint.
+- If throughput drops and there is finished work waiting for review, spawn another reviewer. More review capacity is usually cheaper than letting completed work sit idle.
+- A reviewer can start as soon as a slice finishes, even while other implementers are still working.
+- After a set of related slices is complete, dispatch an additional combined review for their seam if integration risk justifies it.
+- If seam review finds follow-up work, treat that follow-up as a new seam slice with a clear owner. That seam slice must pass spec review and quality review like any other slice before it is considered done.
+- Keep role ownership clear: implementers own their assigned slice, reviewers own review findings for a specific slice and stage.
+- Do not serialize the whole plan around one task. Only serialize on real dependencies, shared write conflicts, or integration risk.
+- Prefer smaller slices if that lets you keep more agents productive without collisions.
+
+## Controller Responsibilities
+
+The controller is not another implementer. The controller:
+
+- reads the full plan once and extracts tasks with context
+- identifies which slices are ready now and which are blocked by dependencies
+- keeps enough implementers running to saturate ready work
+- keeps enough reviewers running to prevent a review backlog
+- routes review findings back to the right implementer
+- integrates accepted work and updates the durable plan log
+
+If the controller notices idle agents or completed work waiting in queue, rebalance immediately instead of waiting for the queue to clear itself.
+
+## Slice Design
+
+Split the plan into slices that are small enough to review quickly and independent enough to avoid merge pain.
+
+Good slice boundaries:
+- one feature flag or one spec section
+- one module or file cluster with a clear owner
+- one testable bugfix with a narrow blast radius
+
+Bad slice boundaries:
+- many unrelated edits handed to one implementer
+- overlapping edits with unclear ownership
+- review tasks that cover too much code to finish quickly
+
+## The Review Loop
+
+Every finished slice goes through the same loop:
+
+1. An implementer completes the assigned slice, runs targeted tests, and performs self-review.
+2. A spec reviewer checks only whether the slice matches the requested behavior and does not add unrequested scope.
+3. If spec review fails, the slice goes back to the owning implementer for correction, then re-enters spec review.
+4. After spec approval, a quality reviewer checks code quality, maintainability, tests, and local design fit.
+5. If quality review fails, the slice goes back to the owning implementer for correction, then re-enters quality review.
+6. After both reviews pass, the controller integrates the slice and updates the plan file.
+
+This loop is mandatory per slice, but the loop itself can run for many slices in parallel.
+
+Cross-slice seam fixes are not special exemptions. If seam review finds an issue, create a new seam slice, assign one owner, and run the same two review gates on that seam slice before integrating it.
 
 ## Model Selection
 
 Use the least powerful model that can handle each role to conserve cost and increase speed.
 
-**Mechanical implementation tasks** (isolated functions, clear specs, 1-2 files): use a fast, cheap model. Most implementation tasks are mechanical when the plan is well-specified.
+**Mechanical implementation tasks** (isolated functions, clear specs, 1-2 files): use a fast, cheap model. Most slices are mechanical when the plan is well-specified.
 
 **Integration and judgment tasks** (multi-file coordination, pattern matching, debugging): use a standard model.
 
@@ -105,6 +180,8 @@ Use the least powerful model that can handle each role to conserve cost and incr
 - Touches 1-2 files with a complete spec → cheap model
 - Touches multiple files with integration concerns → standard model
 - Requires design judgment or broad codebase understanding → most capable model
+
+Use cheaper models to widen the implement lane. Spend stronger models on review, integration, and any slice that keeps bouncing.
 
 ## Handling Implementer Status
 
@@ -124,9 +201,20 @@ Implementer subagents report one of four statuses. Handle each appropriately:
 
 **Never** ignore an escalation or force the same model to retry without changes. If the implementer said it's stuck, something needs to change.
 
+## Handling Review Capacity
+
+Reviewers should not become the bottleneck.
+
+- If one or more completed slices are waiting for spec review, dispatch more spec reviewers.
+- If one or more spec-approved slices are waiting for quality review, dispatch more quality reviewers.
+- If a reviewer returns low-signal comments, replace them or tighten the prompt. Do not let weak review slow the lane.
+- If a slice keeps bouncing between implementer and reviewer, either upgrade the implementer model or narrow the slice.
+
+Throughput matters. A finished implementation sitting unreviewed is wasted latency.
+
 ## Updating the Plan File
 
-After each task is accepted by both review stages, update the plan file before moving on:
+After each accepted slice, update the plan file before moving on:
 
 1. Convert each completed task step from `- [ ]` to `- [x]`
 2. Add an `Observed:` line directly under each completed step
@@ -137,7 +225,7 @@ After each task is accepted by both review stages, update the plan file before m
    - notable constraints discovered during execution
 4. If a step is still incomplete or blocked, leave it unchecked and add a brief `Blocked:` line directly under it
 
-Do not wait until the end of the whole plan. Backfill the plan task-by-task while context is fresh.
+Do not wait until the end of the whole plan. Backfill the plan slice-by-slice while context is fresh.
 
 ## Prompt Templates
 
@@ -152,92 +240,117 @@ You: I'm using Subagent-Driven Development to execute this plan.
 
 [Read plan file once: docs/agent/plans/feature-plan.md]
 [Extract all 5 tasks with full text and context]
-[Create TodoWrite with all tasks]
+[Split into 3 ready slices and 2 dependent slices]
+[Create update_plan tracker with all tasks]
 
-Task 1: Hook installation script
+Wave 1: start two implementers in parallel
 
-[Get Task 1 text and context (already extracted)]
-[Dispatch implementation subagent with full task text + context]
+Implementer A: Task 1: Hook installation script
+Implementer B: Task 2: Recovery modes
 
-Implementer: "Before I begin - should the hook be installed at user or system level?"
+Implementer A: "Before I begin - should the hook be installed at user or system level?"
 
 You: "User level (~/.config/superpowers/hooks/)"
 
-Implementer: "Got it. Implementing now..."
-[Later] Implementer:
+Implementer A: "Got it. Implementing now..."
+Implementer B: [No questions, proceeds]
+
+[Later]
+Implementer A: DONE
   - Implemented install-hook command
   - Added tests, 5/5 passing
   - Self-review: Found I missed --force flag, added it
-  - Committed
+Implementer B: STILL_WORKING
+  - Recovery modes implemented
+  - Finishing tests and self-review
 
-[Dispatch spec compliance reviewer]
-Spec reviewer: ✅ Spec compliant - all requirements met, nothing extra
+[Task 1 finishes]
+[Dispatch spec reviewer for Task 1 immediately after Task 1 finishes]
+Spec reviewer 1: ✅ Task 1 spec compliant
 
-[Get git SHAs, dispatch code quality reviewer]
-Code reviewer: Strengths: Good test coverage, clean. Issues: None. Approved.
+[Task 1 moves forward immediately]
+[Dispatch quality reviewer for Task 1]
+Quality reviewer 1: ✅ Approved
 
-[Update plan file: mark each completed Task 1 step as `- [x]` and add `Observed:` lines under each]
-[Mark Task 1 complete]
+[Update plan file for Task 1]
+[Launch Task 3 implementer while Implementer B is still working]
 
-Task 2: Recovery modes
+Implementer C: DONE
+  - Completed Task 3
+  - Ran targeted tests
+  - Self-review: All good
 
-[Get Task 2 text and context (already extracted)]
-[Dispatch implementation subagent with full task text + context]
-
-Implementer: [No questions, proceeds]
-Implementer:
+[Task 2 finishes]
+Implementer B: DONE
   - Added verify/repair modes
   - 8/8 tests passing
   - Self-review: All good
-  - Committed
+[Dispatch spec reviewer for Task 2]
+Spec reviewer 2: ❌ Task 2 issues:
+  - Missing progress reporting every 100 items
+  - Added unrequested --json flag
 
-[Dispatch spec compliance reviewer]
-Spec reviewer: ❌ Issues:
-  - Missing: Progress reporting (spec says "report every 100 items")
-  - Extra: Added --json flag (not requested)
+[Route Task 2 back to Implementer B]
+Implementer B: DONE
+  - Removed --json flag
+  - Added progress reporting
 
-[Implementer fixes issues]
-Implementer: Removed --json flag, added progress reporting
+[Spec re-review for Task 2]
+Spec reviewer 3: ✅ Task 2 spec compliant now
 
-[Spec reviewer reviews again]
-Spec reviewer: ✅ Spec compliant now
+[Task 3 enters review]
+[Dispatch spec reviewer for Task 3]
+Spec reviewer 4: ✅ Task 3 spec compliant
 
-[Dispatch code quality reviewer]
-Code reviewer: Strengths: Solid. Issues (Important): Magic number (100)
+[Dispatch quality reviewers for Task 2 and Task 3 in parallel]
+Quality reviewer 2: Task 2 issue: magic number `100`
+Quality reviewer 5: Task 3 approved
 
-[Implementer fixes]
-Implementer: Extracted PROGRESS_INTERVAL constant
+[Route Task 2 back to Implementer B]
+Implementer B: DONE
+  - Extracted `PROGRESS_INTERVAL`
 
-[Code reviewer reviews again]
-Code reviewer: ✅ Approved
+[Quality re-review]
+Quality reviewer 6: ✅ Task 2 approved
 
-[Update plan file: mark each completed Task 2 step as `- [x]` and add `Observed:` lines under each, including review-driven fixes]
-[Mark Task 2 complete]
+[Update plan file for Tasks 2 and 3]
+[Dispatch combined seam review for Tasks 2 and 3 because they touch the same user flow]
+Combined reviewer: ✅ Individual slices are fine, but integration needs one shared constant and one docs note
+[Create new seam slice owned by Implementer B]
+[Implement seam fix]
+[Dispatch seam spec reviewer]
+[Dispatch seam quality reviewer]
+[Integrate seam slice after both reviews pass]
+[Notice completed slices are waiting for review in the next wave]
+[Spawn another reviewer rather than letting the queue build]
 
 ...
 
 [After all tasks]
-[Dispatch final code-reviewer]
-Final reviewer: All requirements met, ready to merge
+[Dispatch required final integrated reviewer]
+Final reviewer: All requirements met across the full implementation, ready to merge
 
-Done!
+[Use superpowers:finishing-a-development-branch]
+Done.
 ```
 
 ## Advantages
 
 **vs. Manual execution:**
-- Subagents follow TDD naturally
-- Fresh context per task (no confusion)
-- Parallel-safe (subagents don't interfere)
-- Subagent can ask questions (before AND during work)
+- More total throughput because implement and review lanes stay busy
+- Fresh context per slice reduces confusion
+- Clear ownership per slice reduces accidental overlap
+- Review happens continuously instead of bunching at the end
 
 **vs. Executing Plans:**
-- Same session (no handoff)
-- Continuous progress (no waiting)
-- Review checkpoints automatic
+- Same session, so the controller can rebalance instantly
+- Parallel waves of implementers and reviewers
+- Review backlog can be solved by adding more reviewers instead of waiting
 
 **Efficiency gains:**
-- No file reading overhead (controller provides full text)
+- No repeated plan-reading overhead
+- Parallel review keeps finished work flowing
+- Small slices surface issues earlier
 - Controller curates exactly what context is needed
 - Subagent gets complete information upfront
 - Questions surfaced before work begins (not after)
@@ -261,7 +374,7 @@ Done!
 - Start implementation on main/master branch without explicit user consent
 - Skip reviews (spec compliance OR code quality)
 - Proceed with unfixed issues
-- Dispatch multiple implementation subagents in parallel (conflicts)
+- Dispatch multiple implementation subagents in parallel when their write scope overlaps or ownership is unclear
 - Make subagent read plan file (provide full text instead)
 - Skip scene-setting context (subagent needs to understand where task fits)
 - Ignore subagent questions (answer before letting them proceed)
@@ -269,7 +382,7 @@ Done!
 - Skip review loops (reviewer found issues = implementer fixes = review again)
 - Let implementer self-review replace actual review (both are needed)
 - **Start code quality review before spec compliance is ✅** (wrong order)
-- Move to next task while either review has open issues
+- Move a slice forward or mark it done while either of that slice's review stages has open issues
 - Leave completed plan steps as `- [ ]`
 - Write generic `Observed:` lines that just restate the plan instead of recording what happened
 
@@ -290,14 +403,17 @@ Done!
 
 ## Integration
 
-**Required workflow skills:**
-- **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+**Helpful companion skills in this repo:**
 - **superpowers:writing-plans** - Creates the plan this skill executes
-- **superpowers:requesting-code-review** - Code review template for reviewer subagents
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
 
-**Subagents should use:**
+**Implementer subagents should use:**
 - **superpowers:test-driven-development** - Subagents follow TDD for each task
+
+**Reviewer subagents should use:**
+- The local prompt templates in this skill for slice-level spec review and code-quality review.
+- The final integrated review shown in this skill is still required after all slices are integrated.
+- A broader generic review workflow is optional when you intentionally want wider end-of-implementation coverage beyond the required final integrated review.
 
 **Alternative workflow:**
 - **superpowers:executing-plans** - Use for parallel session instead of same-session execution

@@ -924,16 +924,6 @@ source_path = "/Users/builtin.pb/.codex/superpowers/skills/brainstorming"
 notes = "Imported from the local Superpowers checkout into repo-owned storage."
 
 [[skill]]
-id = "dispatching-parallel-agents"
-type = "skill"
-repo_path = "home/skills/orchestration/dispatching-parallel-agents"
-status = "imported"
-source_kind = "superpowers"
-source_ref = "superpowers/dispatching-parallel-agents"
-source_path = "/Users/builtin.pb/.codex/superpowers/skills/dispatching-parallel-agents"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
-
-[[skill]]
 id = "executing-plans"
 type = "skill"
 repo_path = "home/skills/execution/executing-plans"
@@ -977,11 +967,11 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage."
 id = "subagent-driven-development"
 type = "skill"
 repo_path = "home/skills/orchestration/subagent-driven-development"
-status = "imported"
+status = "adapted"
 source_kind = "superpowers"
 source_ref = "superpowers/subagent-driven-development"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/subagent-driven-development"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+notes = "Adapted from the local Superpowers checkout to emphasize aggressive parallel implement/review lanes, multiple implementers and reviewers, and reviewer scaling when finished work queues build."
 
 [[skill]]
 id = "systematic-debugging"
