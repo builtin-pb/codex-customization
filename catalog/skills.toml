@@ -1182,3 +1182,13 @@ source_kind = "getsentry-skills"
 source_ref = "getsentry/skills@07ec616b5aaede831440185aa3f73a4b8bacd138:plugins/sentry-skills/skills/doc-coauthoring"
 source_path = "https://github.com/getsentry/skills/tree/07ec616b5aaede831440185aa3f73a4b8bacd138/plugins/sentry-skills/skills/doc-coauthoring"
 notes = "Vendored from getsentry/skills at a pinned upstream commit, with the Anthropic lineage preserved in the skill attribution section, and adapted to replace Claude-specific tool and product references with Codex-compatible wording, more flexible clarification batches, and broader trigger-only frontmatter wording."
+
+[[skill]]
+id = "slack-development"
+type = "skill"
+repo_path = "home/skills/technology/slack-development"
+status = "adapted"
+source_kind = "multi-source"
+source_ref = "docs.slack.dev + community inspiration @ 2026-04-01"
+source_path = "https://docs.slack.dev/ ; https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/slack-bot-builder ; https://www.codaone.ai/skills/slack-bot-builder/"
+notes = "Repo-owned Slack development skill synthesized from official Slack documentation and SDKs, with the antigravity-awesome-skills and Coda One Slack bot builder skills used only as inspiration for coverage and structure."
