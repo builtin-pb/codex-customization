@@ -29,6 +29,18 @@ Generate publication-quality figures for ML/AI conference papers. Two distinct w
 
 **Rule of thumb**: If the figure has numerical axes, use matplotlib. If the figure has boxes and arrows, use Gemini.
 
+## Hard Completion Rule
+
+Before claiming the task is finished, always inspect the actual figure with a vision-capable tool or image viewer and judge whether it is visually pleasing.
+
+This rule applies to every plotting task:
+- creating a new figure
+- editing an existing figure
+- revising labels, layout, colors, or styling
+- regenerating a diagram candidate
+
+Do not stop at code correctness or file existence. The figure must be visually checked as an image, and the final pass must explicitly verify readability, balance, spacing, color use, and overall polish.
+
 ---
 
 ## Step 0: Context Analysis & Extraction
@@ -196,6 +208,7 @@ VISUAL STYLE — CLASSIC ACCENT BAR:
 - [ ] Write a detailed prompt: style block + layout + connections + constraints
 - [ ] Generate script at `figures/gen_fig_<name>.py`, run for 3 attempts
 - [ ] Review, select best, save as `figures/fig_<name>.png`
+- [ ] Use vision to inspect the image and confirm it is visually pleasing before claiming completion
 
 ### Prompt Structure (6 Sections)
 
@@ -462,7 +475,7 @@ fig.savefig("figures/fig_leaderboard.pdf")
 |------|-----------|-------------|
 | Architecture diagrams | Gemini generation | TikZ (manual), draw.io (interactive), Mermaid (simple) |
 | Data charts | matplotlib/seaborn | Plotly (interactive), R/ggplot2 (statistics-heavy) |
-| Full paper writing | Use with `ml-paper-writing` | — |
+| Full paper writing | Use with `research-paper-writing` | Use `repo-to-paper-rough-draft` first if there is only a codebase and no draft |
 | Poster figures | Larger fonts, wider | `latex-posters` skill |
 | Presentation figures | Larger text, fewer details | PowerPoint/Keynote export |
 

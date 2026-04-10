@@ -174,7 +174,8 @@ When you encounter a domain-specific task during research, search the skills lib
 | Task | Skill | Location |
 |---|---|---|
 | Generate research ideas | Research Ideation | `21-research-ideation/` |
-| Write publication-ready paper | ML Paper Writing | `20-ml-paper-writing/` |
+| Create rough manuscript from repo/results | Repo To Paper Rough Draft | `repo-to-paper-rough-draft/` |
+| Rewrite and polish paper sections | Research Paper Writing | `research-paper-writing/` |
 
 ## Common Research Workflows
 

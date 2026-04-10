@@ -884,14 +884,24 @@ source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/academic-
 notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to rewrite the frontmatter description around broad trigger conditions instead of workflow summary."
 
 [[skill]]
-id = "ml-paper-writing"
+id = "repo-to-paper-rough-draft"
 type = "skill"
-repo_path = "home/skills/execution/ml-paper-writing"
-status = "imported"
+repo_path = "home/skills/execution/repo-to-paper-rough-draft"
+status = "adapted"
 source_kind = "orchestra"
 source_ref = "orchestra/ml-paper-writing"
 source_path = "/Users/builtin.pb/.orchestra/skills/20-ml-paper-writing/ml-paper-writing"
-notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and adapted on 2026-03-31 to use Codex-first agent wording in the active workflow plus broader trigger-only frontmatter wording."
+notes = "Imported from the canonical Orchestra skills checkout into repo-owned storage and renamed/adapted on 2026-04-10 to cover only rough first-draft generation from a research codebase before handoff to `research-paper-writing`."
+
+[[skill]]
+id = "research-paper-writing"
+type = "skill"
+repo_path = "home/skills/execution/research-paper-writing"
+status = "adapted"
+source_kind = "github"
+source_ref = "Master-cai/Research-Paper-Writing-Skills@85abfd27346eb680a6cebb03510c28141393775c"
+source_path = "research-paper-writing/"
+notes = "Imported from the upstream GitHub repository on 2026-04-10 and lightly adapted so it serves as the primary paper-writing and section-revision skill in this collection, with `repo-to-paper-rough-draft` reserved for repo-to-draft scaffolding."
 
 [[skill]]
 id = "brainstorming-research-ideas"

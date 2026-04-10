@@ -69,7 +69,7 @@ Create this structure at the project root:
 │       ├── results/          # Raw outputs, metrics, logs
 │       └── analysis.md       # What we learned
 ├── to_human/                 # Progress presentations and reports for human review
-└── paper/                    # Final paper (via ml-paper-writing)
+└── paper/                    # Rough draft + final paper workflow
 ```
 
 - **`src/`**: When you write useful code (plotting functions, data loaders, evaluation helpers), move it here so it can be reused across experiments. Don't duplicate code in every experiment directory.
@@ -95,7 +95,9 @@ OUTER LOOP (periodic, reflective)
   Goal: synthesize understanding, find the story — this is where novelty comes from
 
 FINALIZE (when concluding)
-  Write paper via ml-paper-writing → final presentation → archive
+  Rough draft via repo-to-paper-rough-draft →
+  rewrite via research-paper-writing →
+  final presentation → archive
 ```
 
 The inner loop runs tight experiment cycles with clear measurable outcomes. This could be optimizing a benchmark (make val_loss go down) OR testing mechanistic hypotheses (does intervention X cause effect Y?). The outer loop steps back to ask: what do these results *mean*? What patterns emerge? What's the story? Research is open-ended — the two loops let you both optimize and discover.
@@ -118,7 +120,7 @@ Before entering the loops, understand the landscape. Keep this efficient — the
 
 1. **Search literature** for the research question. Use multiple sources — never stop at one:
    - **Exa MCP** (`web_search_exa`) if available — best for broad discovery and finding relevant papers quickly
-   - **Semantic Scholar** (`pip install semanticscholar`) — best for ML/AI papers, citation graphs, and specific paper lookup. See `20-ml-paper-writing` skill's `references/citation-workflow.md` for complete API code examples
+   - **Semantic Scholar** (`pip install semanticscholar`) — best for ML/AI papers, citation graphs, and specific paper lookup. See `repo-to-paper-rough-draft` skill's `references/citation-workflow.md` for complete API code examples
    - **arXiv** (`pip install arxiv`) — best for recent preprints and open-access papers
    - **CrossRef** — best for DOI lookup and BibTeX retrieval
    - Keep searching until you have good coverage. If one source comes up empty, try another with different keywords
@@ -270,7 +272,7 @@ The "Lessons and Constraints" section is especially important — it captures sp
 **First action — run this immediately:**
 
 ```
-/loop 20m Continue autoresearch. Read research-state.yaml and findings.md. Re-read the autoresearch SKILL.md occasionally to stay aligned. Step back and reflect holistically — is the research making real progress? Are you deepening understanding or just running experiments? If stalling, pivot or search literature for new ideas. Keep making research progress — never idle, never stop. Update findings.md, research-log.md, and research-state.yaml when there's new progress. Git commit periodically and clean up the repo if needed. Show the human your research progress with key plots and findings by preparing a report in to_human/ and opening the HTML/PDF. Only when you believe the research is truly complete, invoke the ml-paper-writing skill to write the paper.
+/loop 20m Continue autoresearch. Read research-state.yaml and findings.md. Re-read the autoresearch SKILL.md occasionally to stay aligned. Step back and reflect holistically — is the research making real progress? Are you deepening understanding or just running experiments? If stalling, pivot or search literature for new ideas. Keep making research progress — never idle, never stop. Update findings.md, research-log.md, and research-state.yaml when there's new progress. Git commit periodically and clean up the repo if needed. Show the human your research progress with key plots and findings by preparing a report in to_human/ and opening the HTML/PDF. Only when you believe the research is truly complete, invoke `repo-to-paper-rough-draft` and then `research-paper-writing` to produce the paper.
 ```
 
 This fires every 20 minutes regardless of what's happening. It's a rhythm that keeps you working — not a research phase boundary. If your previous work isn't done, just continue it.
@@ -288,7 +290,7 @@ Use the `cron.add` tool to create a recurring job bound to this chat session:
   "sessionTarget": "current",
   "payload": {
     "kind": "agentTurn",
-    "message": "Continue autoresearch. Read research-state.yaml and findings.md. Re-read the autoresearch SKILL.md occasionally to stay aligned. Step back and reflect holistically — is the research making real progress? Are you deepening understanding or just running experiments? If stalling, pivot or search literature for new ideas. Keep making research progress — never idle, never stop. Update findings.md, research-log.md, and research-state.yaml when there's new progress. Git commit periodically and clean up the repo if needed. Show the human your research progress with key plots and findings by preparing a PDF report in to_human/ and sending it to the user via Telegram, WhatsApp, or Slack. When you get an exciting result or interesting plot, text it to the user right away — don't wait for a full report. Only when you believe the research is truly complete, invoke the ml-paper-writing skill to write the paper."
+    "message": "Continue autoresearch. Read research-state.yaml and findings.md. Re-read the autoresearch SKILL.md occasionally to stay aligned. Step back and reflect holistically — is the research making real progress? Are you deepening understanding or just running experiments? If stalling, pivot or search literature for new ideas. Keep making research progress — never idle, never stop. Update findings.md, research-log.md, and research-state.yaml when there's new progress. Git commit periodically and clean up the repo if needed. Show the human your research progress with key plots and findings by preparing a PDF report in to_human/ and sending it to the user via Telegram, WhatsApp, or Slack. When you get an exciting result or interesting plot, text it to the user right away — don't wait for a full report. Only when you believe the research is truly complete, invoke `repo-to-paper-rough-draft` and then `research-paper-writing` to write the paper."
   }
 }
 ```
@@ -352,12 +354,12 @@ When the outer loop decides to CONCLUDE:
 
 1. Ensure findings.md has a clear, well-supported narrative
 2. Study 2-3 top related papers to learn their format, style, and section structure
-3. Invoke the `20-ml-paper-writing` skill — it has LaTeX templates for NeurIPS, ICML, ICLR, ACL, AAAI, COLM, and systems venues
-4. Feed it the accumulated literature, experimental results, and findings
-5. Follow its citation verification workflow — never hallucinate references
+3. Invoke `repo-to-paper-rough-draft` to turn the codebase, findings, and literature into a rough first manuscript
+4. Invoke `research-paper-writing` to rewrite that draft for structure, flow, and reviewer-facing clarity
+5. Follow the rough-draft skill's citation verification workflow — never hallucinate references
 6. Generate a final comprehensive research presentation
 
-Proceed autonomously through the writing process. If the ml-paper-writing skill suggests human collaboration points, adapt and keep going — produce the best draft you can. The human will review and provide feedback.
+Proceed autonomously through the writing process. Use the rough-draft skill to get from repo to manuscript quickly, then rely on `research-paper-writing` for the actual writing quality pass. The human will review and provide feedback.
 
 ## Research Discipline
 
@@ -413,7 +415,7 @@ Investigate, don't ignore. Return to literature — your protocol might have an 
 Ensure research-state.yaml and findings.md are updated after every action. These files are your memory across sessions.
 
 **Can't find relevant papers**
-Try multiple approaches in order: Exa MCP for broad search, Semantic Scholar for specific ML/AI paper lookup (`pip install semanticscholar`), arXiv for preprints (`pip install arxiv`). Check `20-ml-paper-writing` skill's `references/citation-workflow.md` for complete API code. Note: Google Scholar has no official API — use Semantic Scholar instead for programmatic search.
+Try multiple approaches in order: Exa MCP for broad search, Semantic Scholar for specific ML/AI paper lookup (`pip install semanticscholar`), arXiv for preprints (`pip install arxiv`). Check `repo-to-paper-rough-draft` skill's `references/citation-workflow.md` for complete API code. Note: Google Scholar has no official API — use Semantic Scholar instead for programmatic search.
 
 **No GPU available**
 Use CPU and scale experiments down. Many research tasks (analysis, interpretability, small model training) run fine on CPU. Adjust experiment design to fit available compute rather than blocking.
