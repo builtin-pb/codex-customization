@@ -1,6 +1,6 @@
 ---
 name: research-paper-writing
-description: Use when drafting or revising ML/CV/NLP-style paper sections, improving paragraph flow, checking claim-support alignment, or performing reviewer-style self-review before submission.
+description: Use when drafting or revising ML/CV/NLP-style paper sections, improving paragraph flow, checking claim-support alignment, polishing figures or tables, or performing reviewer-style self-review before submission.
 ---
 # Research Paper Writing
 
