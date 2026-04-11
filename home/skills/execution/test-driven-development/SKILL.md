@@ -1,82 +1,112 @@
 ---
 name: test-driven-development
-description: Use when implementing any feature or bugfix, before writing implementation code
+description: Use when implementing features, bug fixes, refactors, or behavior changes, before writing implementation code.
 ---
 
-# Test-Driven Development (TDD)
+# Test-Driven Development
 
 ## Overview
 
-Write the test first. Watch it fail. Write minimal code to pass.
+Use TDD to drive behavior through tests, not to validate code after the fact.
 
-**Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
+**Core principle:** tests should verify observable behavior through public interfaces. Code can change completely; tests should still pass if behavior stays correct.
 
-**Violating the letter of the rules is violating the spirit of the rules.**
+Good TDD usually produces integration-style tests over real code paths. Prefer tests that read like specifications, use public APIs, and survive internal refactors. Avoid tests that mainly prove mocks, private methods, or internal wiring.
+
+Load [testing-anti-patterns.md](testing-anti-patterns.md) when you are adding mocks, changing test structure, or feeling pressure to expose internals just to make tests easier.
 
 ## When to Use
 
-**Always:**
+Use for:
 - New features
-- Bug fixes
-- Refactoring
-- Behavior changes
+- Bug fixes and regression tests
+- Refactoring with behavior protection
+- Any behavior change that should be driven by failing tests first
 
-**Exceptions (ask your human partner):**
+Usually do not use for:
 - Throwaway prototypes
-- Generated code
-- Configuration files
+- Pure configuration changes with no meaningful behavior to specify
+- Generated code you do not intend to maintain directly
 
-Thinking "skip TDD just this once"? Stop. That's rationalization.
+If the work is still exploratory, spike quickly if needed, then throw the spike away and restart from a failing test once the behavior is clear enough to implement for real.
 
-## The Iron Law
+## Core Rules
 
+1. No production code before a failing test for the current behavior.
+2. Write one behavior-focused test at a time.
+3. Make the test fail for the right reason before implementing.
+4. Write the minimum code that makes the current test pass.
+5. Refactor only while green.
+
+## Recovery Path
+
+If code already exists before `RED`, do not keep building forward and call it TDD later.
+
+Use one of these paths:
+- If the code was exploratory and disposable, throw it away and restart from a failing test.
+- If the code must be preserved, stop changing production code, identify the next externally visible behavior that still is not protected, write the smallest test that fails honestly for that behavior, then continue from that `RED`.
+- If this is a pure refactor and the relevant behavior is already covered by passing characterization tests, stay `GREEN`: strengthen coverage first if needed, then refactor under those passing tests. Do not invent a fake failing test just to simulate compliance.
+
+The rule is simple: either recover an honest failing test for the next behavior, or admit you are doing a green-only refactor under existing coverage.
+
+## Anti-Pattern: Horizontal Slices
+
+Do not treat RED as "write all the tests" and GREEN as "write all the code."
+
+That creates brittle tests for imagined designs instead of real behavior:
+- Tests lock onto shapes and signatures too early
+- The suite becomes insensitive to real regressions
+- You commit to structure before learning from the first slice
+
+Use vertical slices instead:
+
+```text
+WRONG (horizontal):
+  RED:   test1, test2, test3, test4
+  GREEN: impl1, impl2, impl3, impl4
+
+RIGHT (vertical):
+  RED→GREEN: test1→impl1
+  RED→GREEN: test2→impl2
+  RED→GREEN: test3→impl3
 ```
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
-```
 
-Write code before the test? Delete it. Start over.
+Each cycle should teach you something about the next one.
 
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
+## Workflow
 
-Implement fresh from tests. Period.
+### 1. Orient On Behavior
 
-## Red-Green-Refactor
+Before writing the next test:
+- Identify the public interface or user-visible behavior being added or fixed
+- Decide which behavior is most important to prove first
+- Prefer small interfaces and simple boundaries
+- Introduce seams at real external boundaries, not just to make tests easier
+- If requirements are unclear, clarify only what is necessary to write the next correct test
 
-```dot
-digraph tdd_cycle {
-    rankdir=LR;
-    red [label="RED\nWrite failing test", shape=box, style=filled, fillcolor="#ffcccc"];
-    verify_red [label="Verify fails\ncorrectly", shape=diamond];
-    green [label="GREEN\nMinimal code", shape=box, style=filled, fillcolor="#ccffcc"];
-    verify_green [label="Verify passes\nAll green", shape=diamond];
-    refactor [label="REFACTOR\nClean up", shape=box, style=filled, fillcolor="#ccccff"];
-    next [label="Next", shape=ellipse];
+Ask:
+- What should the caller or user observe?
+- What is the smallest useful path I can prove end-to-end?
+- Can the interface be smaller or simpler?
+- Can this module stay deep: small interface, substantial logic hidden inside?
 
-    red -> verify_red;
-    verify_red -> green [label="yes"];
-    verify_red -> red [label="wrong\nfailure"];
-    green -> verify_green;
-    verify_green -> refactor [label="yes"];
-    verify_green -> green [label="no"];
-    refactor -> verify_green [label="stay\ngreen"];
-    verify_green -> next;
-    next -> red;
-}
-```
+### 2. RED
 
-### RED - Write Failing Test
+Write one test for one behavior.
 
-Write one minimal test showing what should happen.
+Requirements:
+- Clear name
+- Public interface or observable effect
+- Real code path unless isolation is genuinely needed
+- Narrow scope: one behavior, one reason to fail
 
-<Good>
+Good:
+
 ```typescript
-test('retries failed operations 3 times', async () => {
+test('retries failed operations 3 times before succeeding', async () => {
   let attempts = 0;
-  const operation = () => {
+
+  const operation = async () => {
     attempts++;
     if (attempts < 3) throw new Error('fail');
     return 'success';
@@ -88,284 +118,135 @@ test('retries failed operations 3 times', async () => {
   expect(attempts).toBe(3);
 });
 ```
-Clear name, tests real behavior, one thing
-</Good>
 
-<Bad>
+Bad:
+
 ```typescript
 test('retry works', async () => {
   const mock = jest.fn()
     .mockRejectedValueOnce(new Error())
     .mockRejectedValueOnce(new Error())
     .mockResolvedValueOnce('success');
+
   await retryOperation(mock);
+
   expect(mock).toHaveBeenCalledTimes(3);
 });
 ```
-Vague name, tests mock not code
-</Bad>
 
-**Requirements:**
-- One behavior
-- Clear name
-- Real code (no mocks unless unavoidable)
+Why this is weak:
+- Name is vague
+- It mostly checks one interaction detail
+- It does not clearly specify the externally useful behavior
 
-### Verify RED - Watch It Fail
+### 3. Verify RED
 
-**MANDATORY. Never skip.**
+Run the test and confirm it fails for the expected reason.
 
 ```bash
 npm test path/to/test.test.ts
 ```
 
-Confirm:
-- Test fails (not errors)
-- Failure message is expected
-- Fails because feature missing (not typos)
+Check:
+- The test fails, not errors unexpectedly
+- The failure matches the missing behavior
+- It is not already green because the behavior exists or the assertion is too weak
 
-**Test passes?** You're testing existing behavior. Fix test.
+If the test passes immediately, you have not proved the new behavior yet. Strengthen or replace the test before writing production code.
 
-**Test errors?** Fix error, re-run until it fails correctly.
+### 4. GREEN
 
-### GREEN - Minimal Code
+Write the smallest production change that makes the current test pass.
 
-Write simplest code to pass the test.
+Do not:
+- Add behavior for future tests
+- Refactor unrelated code
+- Generalize prematurely
+- Add extra options "while you are here"
 
-<Good>
-```typescript
-async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
-  for (let i = 0; i < 3; i++) {
-    try {
-      return await fn();
-    } catch (e) {
-      if (i === 2) throw e;
-    }
-  }
-  throw new Error('unreachable');
-}
-```
-Just enough to pass
-</Good>
+If the implementation feels awkward, that is often design feedback. Finish the slice, get green, then refactor.
 
-<Bad>
-```typescript
-async function retryOperation<T>(
-  fn: () => Promise<T>,
-  options?: {
-    maxRetries?: number;
-    backoff?: 'linear' | 'exponential';
-    onRetry?: (attempt: number) => void;
-  }
-): Promise<T> {
-  // YAGNI
-}
-```
-Over-engineered
-</Bad>
+### 5. Verify GREEN
 
-Don't add features, refactor other code, or "improve" beyond the test.
+Run the focused test again, then the relevant surrounding tests.
 
-### Verify GREEN - Watch It Pass
+Check:
+- The current test passes
+- Related tests still pass
+- Output is clean enough to trust
 
-**MANDATORY.**
+If other tests fail, fix the breakage before moving on.
 
-```bash
-npm test path/to/test.test.ts
-```
+### 6. REFACTOR
 
-Confirm:
-- Test passes
-- Other tests still pass
-- Output pristine (no errors, warnings)
-
-**Test fails?** Fix code, not test.
-
-**Other tests fail?** Fix now.
-
-### REFACTOR - Clean Up
-
-After green only:
+Only after green:
 - Remove duplication
 - Improve names
-- Extract helpers
+- Extract helpers or values
+- Deepen modules by hiding complexity behind smaller interfaces
+- Fix shallow APIs exposed by the previous slice
+- Return results or other observable effects in ways callers can verify without peeking into internals
 
-Keep tests green. Don't add behavior.
+Run tests after each refactor step. Stay behavior-preserving.
 
-### Repeat
+### 7. Repeat
 
-Next failing test for next feature.
+Choose the next most valuable behavior and start another vertical slice.
 
-## Good Tests
+## What Good Tests Look Like
 
-| Quality | Good | Bad |
-|---------|------|-----|
-| **Minimal** | One thing. "and" in name? Split it. | `test('validates email and domain and whitespace')` |
-| **Clear** | Name describes behavior | `test('test1')` |
-| **Shows intent** | Demonstrates desired API | Obscures what code should do |
+Good tests:
+- Describe behavior, not implementation
+- Use public interfaces
+- Survive internal refactors
+- Prefer real collaborators over deep mocking
+- Make the intended API clearer
 
-## Why Order Matters
+Weak tests:
+- Assert on mock behavior instead of system behavior
+- Reach into private helpers or hidden state
+- Depend on exact internal call structure
+- Verify database rows, logs, or internals when a public result is available
+- Cover several behaviors under one vague name
 
-**"I'll write tests after to verify it works"**
+Design cues from good TDD:
+- Prefer small public surfaces over many tiny test-only seams
+- Accept dependencies at genuine system boundaries, not by default
+- Return values or other observable outcomes when that makes behavior easier to specify
+- Let tests push modules deeper, not wider
 
-Tests written after code pass immediately. Passing immediately proves nothing:
-- Might test wrong thing
-- Might test implementation, not behavior
-- Might miss edge cases you forgot
-- You never saw it catch the bug
+## Rationalizations To Reject
 
-Test-first forces you to see the test fail, proving it actually tests something.
-
-**"I already manually tested all the edge cases"**
-
-Manual testing is ad-hoc. You think you tested everything but:
-- No record of what you tested
-- Can't re-run when code changes
-- Easy to forget cases under pressure
-- "It worked when I tried it" ≠ comprehensive
-
-Automated tests are systematic. They run the same way every time.
-
-**"Deleting X hours of work is wasteful"**
-
-Sunk cost fallacy. The time is already gone. Your choice now:
-- Delete and rewrite with TDD (X more hours, high confidence)
-- Keep it and add tests after (30 min, low confidence, likely bugs)
-
-The "waste" is keeping code you can't trust. Working code without real tests is technical debt.
-
-**"TDD is dogmatic, being pragmatic means adapting"**
-
-TDD IS pragmatic:
-- Finds bugs before commit (faster than debugging after)
-- Prevents regressions (tests catch breaks immediately)
-- Documents behavior (tests show how to use code)
-- Enables refactoring (change freely, tests catch breaks)
-
-"Pragmatic" shortcuts = debugging in production = slower.
-
-**"Tests after achieve the same goals - it's spirit not ritual"**
-
-No. Tests-after answer "What does this do?" Tests-first answer "What should this do?"
-
-Tests-after are biased by your implementation. You test what you built, not what's required. You verify remembered edge cases, not discovered ones.
-
-Tests-first force edge case discovery before implementing. Tests-after verify you remembered everything (you didn't).
-
-30 minutes of tests after ≠ TDD. You get coverage, lose proof tests work.
-
-## Common Rationalizations
-
-| Excuse | Reality |
-|--------|---------|
-| "Too simple to test" | Simple code breaks. Test takes 30 seconds. |
-| "I'll test after" | Tests passing immediately prove nothing. |
-| "Tests after achieve same goals" | Tests-after = "what does this do?" Tests-first = "what should this do?" |
-| "Already manually tested" | Ad-hoc ≠ systematic. No record, can't re-run. |
-| "Deleting X hours is wasteful" | Sunk cost fallacy. Keeping unverified code is technical debt. |
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
-| "Need to explore first" | Fine. Throw away exploration, start with TDD. |
-| "Test hard = design unclear" | Listen to test. Hard to test = hard to use. |
-| "TDD will slow me down" | TDD faster than debugging. Pragmatic = test-first. |
-| "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
-| "Existing code has no tests" | You're improving it. Add tests for existing code. |
-
-## Red Flags - STOP and Start Over
-
-- Code before test
-- Test after implementation
-- Test passes immediately
-- Can't explain why test failed
-- Tests added "later"
-- Rationalizing "just this once"
-- "I already manually tested it"
-- "Tests after achieve the same purpose"
-- "It's about spirit not ritual"
-- "Keep as reference" or "adapt existing code"
-- "Already spent X hours, deleting is wasteful"
-- "TDD is dogmatic, I'm being pragmatic"
-- "This is different because..."
-
-**All of these mean: Delete code. Start over with TDD.**
-
-## Example: Bug Fix
-
-**Bug:** Empty email accepted
-
-**RED**
-```typescript
-test('rejects empty email', async () => {
-  const result = await submitForm({ email: '' });
-  expect(result.error).toBe('Email required');
-});
-```
-
-**Verify RED**
-```bash
-$ npm test
-FAIL: expected 'Email required', got undefined
-```
-
-**GREEN**
-```typescript
-function submitForm(data: FormData) {
-  if (!data.email?.trim()) {
-    return { error: 'Email required' };
-  }
-  // ...
-}
-```
-
-**Verify GREEN**
-```bash
-$ npm test
-PASS
-```
-
-**REFACTOR**
-Extract validation for multiple fields if needed.
-
-## Verification Checklist
-
-Before marking work complete:
-
-- [ ] Every new function/method has a test
-- [ ] Watched each test fail before implementing
-- [ ] Each test failed for expected reason (feature missing, not typo)
-- [ ] Wrote minimal code to pass each test
-- [ ] All tests pass
-- [ ] Output pristine (no errors, warnings)
-- [ ] Tests use real code (mocks only if unavoidable)
-- [ ] Edge cases and errors covered
-
-Can't check all boxes? You skipped TDD. Start over.
-
-## When Stuck
-
-| Problem | Solution |
-|---------|----------|
-| Don't know how to test | Write wished-for API. Write assertion first. Ask your human partner. |
-| Test too complicated | Design too complicated. Simplify interface. |
-| Must mock everything | Code too coupled. Use dependency injection. |
-| Test setup huge | Extract helpers. Still complex? Simplify design. |
+| Thought | Correction |
+|---------|------------|
+| "I'll write tests after." | Passing afterward proves much less than watching the test fail first. |
+| "I'll add all the tests now." | Horizontal slicing weakens feedback; do one slice at a time. |
+| "This is too simple to test." | The simplest behavior is usually the cheapest test to write. |
+| "I already tried it manually." | Manual checks are not a repeatable regression suite. |
+| "I'll just add the future option now." | That is speculative code; wait for the next failing test. |
+| "Mocking this is easier." | Easier setup is not enough; prefer real behavior unless the boundary is truly external or slow. |
+| "I already wrote the code, I'll add tests now." | Stop. Either discard the spike and restart from `RED`, or freeze code changes until you recover an honest failing test for the next behavior. |
 
 ## Debugging Integration
 
-Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix and prevents regression.
+When fixing a bug:
+1. Reproduce it with a failing test.
+2. Watch that test fail for the right reason.
+3. Fix the bug with the smallest change.
+4. Keep the test as regression protection.
 
-Never fix bugs without a test.
+Do not rely on a fix without a reproducible regression test unless the situation makes automated coverage impossible.
 
-## Testing Anti-Patterns
+## Checklist Per Cycle
 
-When adding mocks or test utilities, read @testing-anti-patterns.md to avoid common pitfalls:
-- Testing mock behavior instead of real behavior
-- Adding test-only methods to production classes
-- Mocking without understanding dependencies
-
-## Final Rule
-
+```text
+[ ] Test describes behavior, not implementation
+[ ] Test uses a public interface or observable effect
+[ ] Test failed for the expected reason before implementation
+[ ] Code added was minimal for this behavior
+[ ] No speculative features were added
+[ ] Relevant tests are green before moving on
+[ ] The relevant surrounding test set is green before claiming completion
+[ ] Tests use real code unless a boundary genuinely requires isolation
+[ ] Important error paths and edge cases for this behavior are covered
 ```
-Production code → test exists and failed first
-Otherwise → not TDD
-```
-
-No exceptions without your human partner's permission.

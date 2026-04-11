@@ -13,7 +13,7 @@ LLMs respond to the same persuasion principles as humans. Understanding this psy
 
 **How it works in skills:**
 - Imperative language: "YOU MUST", "Never", "Always"
-- Non-negotiable framing: "No exceptions"
+- Clear boundary framing: "stop here", "do not continue", "recover before proceeding"
 - Eliminates decision fatigue and rationalization
 
 **When to use:**
@@ -23,7 +23,7 @@ LLMs respond to the same persuasion principles as humans. Understanding this psy
 
 **Example:**
 ```markdown
-✅ Write code before test? Delete it. Start over. No exceptions.
+✅ Write code before test? Stop forward edits and recover an honest failing test.
 ❌ Consider writing tests first when feasible.
 ```
 

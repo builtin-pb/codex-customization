@@ -408,7 +408,7 @@ Done.
 - **finishing-a-development-branch** - Complete development after all tasks
 
 **Implementer subagents should use:**
-- **test-driven-development** - Subagents follow TDD for each task
+- **test-driven-development** - Subagents follow TDD for feature, bugfix, refactor, and behavior-change tasks, including green-only refactors under existing characterization coverage where appropriate
 
 **Reviewer subagents should use:**
 - The local prompt templates in this skill for slice-level spec review and code-quality review.

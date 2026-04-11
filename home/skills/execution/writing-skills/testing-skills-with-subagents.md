@@ -4,11 +4,11 @@
 
 ## Overview
 
-**Testing skills is just TDD applied to process documentation.**
+**Testing skills is TDD applied to process documentation, including green-only refactors when existing coverage already protects behavior.**
 
-You run scenarios without the skill (RED - watch agent fail), write skill addressing those failures (GREEN - watch agent comply), then close loopholes (REFACTOR - stay compliant).
+You establish baseline evidence for the change you are making, write the skill addressing that evidence, verify the updated skill complies, then close loopholes.
 
-**Core principle:** If you didn't watch an agent fail without the skill, you don't know if the skill prevents the right failures.
+**Core principle:** Use the strongest honest evidence available for the kind of edit you are making. For new behavior, that usually means watching an agent fail without the skill first. For pure refactors under existing coverage, it can mean staying green and preserving verified behavior.
 
 **REQUIRED BACKGROUND:** You MUST understand `test-driven-development` before using this skill. That skill defines the fundamental RED-GREEN-REFACTOR cycle. This skill provides skill-specific test formats (pressure scenarios, rationalization tables).
 
@@ -22,16 +22,18 @@ Test skills that:
 - Could be rationalized away ("just this once")
 - Contradict immediate goals (speed over quality)
 
-Don't test:
-- Pure reference skills (API docs, syntax guides)
+Don't pressure-test:
+- Pure reference skills (API docs, syntax guides) with discipline-style temptation scenarios
 - Skills without rules to violate
 - Skills agents have no incentive to bypass
+
+For pure reference skills, use lightweight retrieval/application/gap checks instead of pressure scenarios.
 
 ## TDD Mapping for Skill Testing
 
 | TDD Phase | Skill Testing | What You Do |
 |-----------|---------------|-------------|
-| **RED** | Baseline test | Run scenario WITHOUT skill, watch agent fail |
+| **RED** | Baseline test | For new behavior, run scenario WITHOUT skill and watch agent fail |
 | **Verify RED** | Capture rationalizations | Document exact failures verbatim |
 | **GREEN** | Write skill | Address specific baseline failures |
 | **Verify GREEN** | Pressure test | Run scenario WITH skill, verify compliance |
@@ -42,11 +44,11 @@ Same cycle as code TDD, different test format.
 
 ## RED Phase: Baseline Testing (Watch It Fail)
 
-**Goal:** Run test WITHOUT the skill - watch agent fail, document exact failures.
+**Goal:** For new behavior or behavioral changes, run test WITHOUT the skill to watch the agent fail and document exact failures.
 
-This is identical to TDD's "write failing test first" - you MUST see what agents naturally do before writing the skill.
+This is identical to TDD's fail-first discipline. For pure refactors to an already-covered skill, you may stay GREEN if the existing tests already protect the behavior you are editing.
 
-**Process:**
+**Process for new behavior or behavior-changing edits:**
 
 - [ ] **Create pressure scenarios** (3+ combined pressures)
 - [ ] **Run WITHOUT skill** - give agents realistic task with pressures
@@ -64,9 +66,9 @@ You manually tested all edge cases. It's 6pm, dinner at 6:30pm.
 Code review tomorrow at 9am. You just realized you didn't write tests.
 
 Options:
-A) Delete code, start over with TDD tomorrow
+A) Freeze code changes, recover an honest failing test for the next uncovered behavior, then continue
 B) Commit now, write tests tomorrow
-C) Write tests now (30 min delay)
+C) Pretend the existing code is your GREEN step and move on
 
 Choose A, B, or C.
 ```
@@ -74,7 +76,7 @@ Choose A, B, or C.
 Run this WITHOUT a TDD skill. Agent chooses B or C and rationalizes:
 - "I already manually tested it"
 - "Tests after achieve same goals"
-- "Deleting is wasteful"
+- "Recovering an honest RED is wasteful"
 - "Being pragmatic not dogmatic"
 
 **NOW you know exactly what the skill must prevent.**
@@ -115,9 +117,9 @@ It's 6pm, dinner at 6:30pm. Code review tomorrow 9am.
 Just realized you forgot TDD.
 
 Options:
-A) Delete 200 lines, start fresh tomorrow with TDD
+A) Freeze forward edits, recover an honest failing test for the next uncovered behavior, then continue
 B) Commit now, add tests tomorrow
-C) Write tests now (30 min), then commit
+C) Pretend the existing code is already the green step and move on
 
 Choose A, B, or C. Be honest.
 ```
@@ -183,19 +185,16 @@ For each new rationalization, add:
 
 <Before>
 ```markdown
-Write code before test? Delete it.
+Write code before test? Consider adding tests later.
 ```
 </Before>
 
 <After>
 ```markdown
-Write code before test? Delete it. Start over.
+Write code before test? Stop forward edits.
 
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
+Recover by either discarding the spike and restarting from an honest failing test,
+or freezing production changes until you recover an honest RED for the next behavior.
 ```
 </After>
 
@@ -204,7 +203,7 @@ Write code before test? Delete it. Start over.
 ```markdown
 | Excuse | Reality |
 |--------|---------|
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
+| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Stop forward edits and recover an honest RED. |
 ```
 
 ### 3. Red Flag Entry
@@ -219,10 +218,10 @@ Write code before test? Delete it. Start over.
 ### 4. Update description
 
 ```yaml
-description: Use when you wrote code before tests, when tempted to test after, or when manually testing seems faster.
+description: Use when implementing features, bug fixes, refactors, or behavior changes, before writing implementation code.
 ```
 
-Add symptoms of ABOUT to violate.
+Keep violation symptoms in the body, pressure scenarios, or rationalization table rather than in the description.
 
 ### Re-verify After Refactoring
 
@@ -245,15 +244,15 @@ Agent should now:
 your human partner: You read the skill and chose Option C anyway.
 
 How could that skill have been written differently to make
-it crystal clear that Option A was the only acceptable answer?
+it crystal clear that only an honest recovery path, not tests-after or forward implementation, was acceptable here?
 ```
 
 **Three possible responses:**
 
 1. **"The skill WAS clear, I chose to ignore it"**
    - Not documentation problem
-   - Need stronger foundational principle
-   - Add "Violating letter is violating spirit"
+   - Treat as noncompliance under pressure, not a wording gap
+   - Pressure-test again or add stronger enforcement only if multiple agents make the same misread
 
 2. **"The skill should have said X"**
    - Documentation problem
@@ -295,10 +294,10 @@ Re-tested: Agent STILL chose C
 New rationalization: "Spirit not letter"
 ```
 
-### Iteration 2 - Add Foundational Principle
+### Iteration 2 - Add Recovery Rule
 ```markdown
-Added: "Violating letter is violating spirit"
-Re-tested: Agent chose A (delete it)
+Added: "Stop forward edits and recover an honest RED before continuing"
+Re-tested: Agent chose A (recover honest RED before more implementation)
 Cited: New principle directly
 Meta-test: "Skill was clear, I should follow it"
 ```
@@ -309,10 +308,9 @@ Meta-test: "Skill was clear, I should follow it"
 
 Before deploying skill, verify you followed RED-GREEN-REFACTOR:
 
-**RED Phase:**
-- [ ] Created pressure scenarios (3+ combined pressures)
-- [ ] Ran scenarios WITHOUT skill (baseline)
-- [ ] Documented agent failures and rationalizations verbatim
+**Baseline Evidence:**
+- [ ] For new behavior or behavior-changing edits: created pressure scenarios (3+ combined pressures), ran scenarios WITHOUT skill, and documented agent failures/rationalizations verbatim
+- [ ] For pure refactors under existing coverage: explicitly confirmed the existing checks still protect the behavior being edited
 
 **GREEN Phase:**
 - [ ] Wrote skill addressing specific baseline failures
@@ -324,7 +322,7 @@ Before deploying skill, verify you followed RED-GREEN-REFACTOR:
 - [ ] Added explicit counters for each loophole
 - [ ] Updated rationalization table
 - [ ] Updated red flags list
-- [ ] Updated description with violation symptoms
+- [ ] Kept the description focused on triggering conditions and put violation symptoms in the body/examples
 - [ ] Re-tested - agent still complies
 - [ ] Meta-tested to verify clarity
 - [ ] Agent follows rule under maximum pressure
@@ -333,7 +331,7 @@ Before deploying skill, verify you followed RED-GREEN-REFACTOR:
 
 **❌ Writing skill before testing (skipping RED)**
 Reveals what YOU think needs preventing, not what ACTUALLY needs preventing.
-✅ Fix: Always run baseline scenarios first.
+✅ Fix: Run baseline scenarios for new behavior, or explicitly confirm existing coverage for a pure green-only refactor.
 
 **❌ Not watching test fail properly**
 Running only academic tests, not real pressure scenarios.
@@ -359,7 +357,7 @@ Tests pass once ≠ bulletproof.
 
 | TDD Phase | Skill Testing | Success Criteria |
 |-----------|---------------|------------------|
-| **RED** | Run scenario without skill | Agent fails, document rationalizations |
+| **RED** | For new behavior, run scenario without skill | Agent fails, document rationalizations |
 | **Verify RED** | Capture exact wording | Verbatim documentation of failures |
 | **GREEN** | Write skill addressing failures | Agent now complies with skill |
 | **Verify GREEN** | Re-test scenarios | Agent follows rule under pressure |

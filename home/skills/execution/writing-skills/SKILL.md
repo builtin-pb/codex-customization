@@ -11,9 +11,9 @@ description: Use when creating new skills, editing existing skills, or verifying
 
 **Managed skills in this repo live under `home/skills/` and deploy to `~/.codex/skills/`.**
 
-You write test cases (pressure scenarios with subagents), watch them fail (baseline behavior), write the skill (documentation), watch tests pass (agents comply), and refactor (close loopholes).
+You establish baseline evidence, write the skill (documentation), verify agents comply, and refactor (close loopholes). For new behavior, that usually means watching a baseline fail; for pure refactors under existing coverage, it can mean staying green.
 
-**Core principle:** If you didn't watch an agent fail without the skill, you don't know if the skill teaches the right thing.
+**Core principle:** Establish the strongest honest evidence available for the change you are making. For new behavior, that usually means watching an agent fail without the skill first. For pure refactors under existing coverage, it can mean staying green and preserving verified behavior.
 
 **REQUIRED BACKGROUND:** You MUST understand `test-driven-development` before using this skill. That skill defines the fundamental RED-GREEN-REFACTOR cycle. This skill adapts TDD to documentation.
 
@@ -33,16 +33,16 @@ A **skill** is a reference guide for proven techniques, patterns, or tools. Skil
 |-------------|----------------|
 | **Test case** | Pressure scenario with subagent |
 | **Production code** | Skill document (SKILL.md) |
-| **Test fails (RED)** | Agent violates rule without skill (baseline) |
+| **Test fails (RED)** | For new behavior, agent violates rule without skill (baseline) |
 | **Test passes (GREEN)** | Agent complies with skill present |
 | **Refactor** | Close loopholes while maintaining compliance |
-| **Write test first** | Run baseline scenario BEFORE writing skill |
-| **Watch it fail** | Document exact rationalizations agent uses |
+| **Write test first** | For new behavior, run baseline scenario before writing skill |
+| **Watch it fail** | For new behavior, document exact rationalizations agent uses |
 | **Minimal code** | Write skill addressing those specific violations |
 | **Watch it pass** | Verify agent now complies |
 | **Refactor cycle** | Find new rationalizations → plug → re-verify |
 
-The entire skill creation process follows RED-GREEN-REFACTOR.
+Skill creation follows the same discipline as RED-GREEN-REFACTOR: baseline evidence first for new behavior, or staying GREEN for pure refactors already protected by existing coverage.
 
 ## When to Create a Skill
 
@@ -98,7 +98,7 @@ skills/
 - `name`: Use letters, numbers, and hyphens only (no parentheses, special chars)
 - `description`: Third-person, describes ONLY when to use (NOT what it does)
   - Start with "Use when..." to focus on triggering conditions
-  - Include specific symptoms, situations, and contexts
+  - Include specific triggering conditions, situations, and contexts
   - Bias toward recall over precision: false positives are better than false negatives
   - **NEVER summarize the skill's process or workflow** (see CSO section for why)
   - Keep under 500 characters if possible
@@ -106,7 +106,7 @@ skills/
 ```markdown
 ---
 name: Skill-Name-With-Hyphens
-description: Use when [specific triggering conditions and symptoms]
+description: Use when [specific triggering conditions and situations]
 ---
 
 # Skill Name
@@ -171,7 +171,7 @@ description: Use for TDD - write test first, watch it fail, write minimal code, 
 description: Use when executing implementation plans with independent tasks in the current session
 
 # ✅ GOOD: Triggering conditions only
-description: Use when implementing any feature or bugfix, before writing implementation code
+description: Use when implementing features, bug fixes, refactors, or behavior changes, before writing implementation code
 ```
 
 **Content:**
@@ -377,21 +377,19 @@ When: Reference material too large for inline
 ## The Iron Law (Same as TDD)
 
 ```
-NO SKILL WITHOUT A FAILING TEST FIRST
+NO MATERIAL SKILL CHANGE WITHOUT BASELINE EVIDENCE FIRST
 ```
 
 This applies to NEW skills AND EDITS to existing skills.
 
-Write skill before testing? Delete it. Start over.
+Write skill before testing? Stop forward edits and recover a real failing test.
 Edit skill without testing? Same violation.
 
-**No exceptions:**
-- Not for "simple additions"
-- Not for "just adding a section"
-- Not for "documentation updates"
-- Don't keep untested changes as "reference"
+Recover from the violation the same way the canonical TDD skill does:
+- discard disposable exploratory work and restart from an honest failing test
+- or freeze forward edits and recover an honest failing test for the next unprotected behavior
+- or, for pure refactors under existing coverage, stay green and strengthen coverage before changing behavior
 - Don't "adapt" while running tests
-- Delete means delete
 
 **REQUIRED BACKGROUND:** The `test-driven-development` skill explains why this matters. Same principles apply to documentation.
 
@@ -457,7 +455,7 @@ Different skill types need different test approaches:
 | "Academic review is enough" | Reading ≠ using. Test application scenarios. |
 | "No time to test" | Deploying untested skill wastes more time fixing it later. |
 
-**All of these mean: Test before deploying. No exceptions.**
+**All of these mean: verify the skill in proportion to its type before deploying.**
 
 ## Bulletproofing Skills Against Rationalization
 
@@ -471,28 +469,25 @@ Don't just state the rule - forbid specific workarounds:
 
 <Bad>
 ```markdown
-Write code before test? Delete it.
+Write code before test? Consider adding tests later.
 ```
 </Bad>
 
 <Good>
 ```markdown
-Write code before test? Delete it. Start over.
+Write code before test? Stop forward edits.
 
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
+Recover by either discarding the spike and restarting from an honest failing test,
+or freezing production changes until you recover an honest RED for the next behavior.
 ```
 </Good>
 
-### Address "Spirit vs Letter" Arguments
+### Address "Tests-After Is Fine" Arguments
 
-Add foundational principle early:
+Add the concrete recovery rule early:
 
 ```markdown
-**Violating the letter of the rules is violating the spirit of the rules.**
+Stop forward edits and recover an honest RED before continuing.
 ```
 
 This cuts off entire class of "I'm following the spirit" rationalizations.
@@ -514,7 +509,7 @@ Capture rationalizations from baseline testing (see Testing section below). Ever
 Make it easy for agents to self-check when rationalizing:
 
 ```markdown
-## Red Flags - STOP and Start Over
+## Red Flags - STOP and Recover
 
 - Code before test
 - "I already manually tested it"
@@ -522,15 +517,15 @@ Make it easy for agents to self-check when rationalizing:
 - "It's about spirit not ritual"
 - "This is different because..."
 
-**All of these mean: Delete code. Start over with TDD.**
+**All of these mean: stop forward implementation and recover an honest RED, or explicitly treat the work as a green-only refactor under existing coverage.**
 ```
 
-### Update CSO for Violation Symptoms
+### Keep Description Focused On Triggering Conditions
 
-Add to description: symptoms of when you're ABOUT to violate the rule:
+Keep violation symptoms in the body, pressure scenarios, or rationalization table rather than in the description:
 
 ```yaml
-description: use when implementing any feature or bugfix, before writing implementation code
+description: use when implementing features, bug fixes, refactors, or behavior changes, before writing implementation code
 ```
 
 ## RED-GREEN-REFACTOR for Skills
@@ -539,12 +534,12 @@ Follow the TDD cycle:
 
 ### RED: Write Failing Test (Baseline)
 
-Run pressure scenario with subagent WITHOUT the skill. Document exact behavior:
+For new behavior or behavior-changing edits, run pressure scenario with subagent WITHOUT the skill. For pure refactors under existing coverage, confirm the existing checks still protect the behavior you are editing. Document exact behavior:
 - What choices did they make?
 - What rationalizations did they use (verbatim)?
 - Which pressures triggered violations?
 
-This is "watch the test fail" - you must see what agents naturally do before writing the skill.
+For new behavior, this is "watch the test fail" for skills: see what agents naturally do before writing the skill. For pure refactors under existing coverage, preserve the verified behavior instead of forcing a fake failing baseline.
 
 ### GREEN: Write Minimal Skill
 
@@ -601,14 +596,15 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 **IMPORTANT: Use TodoWrite to create todos for EACH checklist item below.**
 
 **RED Phase - Write Failing Test:**
-- [ ] Create pressure scenarios (3+ combined pressures for discipline skills)
-- [ ] Run scenarios WITHOUT skill - document baseline behavior verbatim
-- [ ] Identify patterns in rationalizations/failures
+- [ ] For new behavior or behavior-changing edits: create pressure scenarios (3+ combined pressures for discipline skills)
+- [ ] For new behavior or behavior-changing edits: run scenarios WITHOUT skill and document baseline behavior verbatim
+- [ ] For green-only refactors under existing coverage: confirm existing tests still protect the behavior being edited
+- [ ] Identify patterns in rationalizations/failures or coverage gaps
 
 **GREEN Phase - Write Minimal Skill:**
 - [ ] Name uses only letters, numbers, hyphens (no parentheses/special chars)
 - [ ] YAML frontmatter with required `name` and `description` fields (max 1024 chars; see [spec](https://agentskills.io/specification))
-- [ ] Description starts with "Use when..." and includes specific triggers/symptoms
+- [ ] Description starts with "Use when..." and includes specific triggering conditions, not workflow or recovery symptoms
 - [ ] Description written in third person
 - [ ] Keywords throughout for search (errors, symptoms, tools)
 - [ ] Clear overview with core principle
@@ -651,7 +647,7 @@ How a future agent finds your skill:
 
 **Creating skills IS TDD for process documentation.**
 
-Same Iron Law: No skill without failing test first.
+Same discipline: establish baseline evidence first, or stay GREEN for pure refactors already protected by existing coverage.
 Same cycle: RED (baseline) → GREEN (write skill) → REFACTOR (close loopholes).
 Same benefits: Better quality, fewer surprises, bulletproof results.
 

@@ -29,8 +29,8 @@ Spawn an implementer agent with a message like:
     ## Your Job
 
     Once you're clear on requirements:
-    1. Implement exactly what the task specifies
-    2. Write tests (following TDD if task says to)
+    1. Add or strengthen coverage following `test-driven-development` (for feature, bugfix, refactor, and behavior-change tasks unless the task explicitly opts out; pure refactors may stay `GREEN` under existing characterization coverage)
+    2. Implement exactly what the task specifies
     3. Verify implementation works
     4. Commit your work
     5. Self-review (see below)
@@ -92,7 +92,7 @@ Spawn an implementer agent with a message like:
 
     **Testing:**
     - Do tests actually verify behavior (not just mock behavior)?
-    - Did I follow TDD if required?
+    - Did I follow `test-driven-development` unless this task explicitly opted out?
     - Are tests comprehensive?
 
     If you find issues during self-review, fix them now before reporting.

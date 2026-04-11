@@ -981,7 +981,7 @@ status = "adapted"
 source_kind = "superpowers"
 source_ref = "superpowers/subagent-driven-development"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/subagent-driven-development"
-notes = "Adapted from the local Superpowers checkout to emphasize aggressive parallel implement/review lanes, multiple implementers and reviewers, reviewer scaling when finished work queues build, and Codex-first cross-references and prompt wording."
+notes = "Adapted from the local Superpowers checkout to emphasize aggressive parallel implement/review lanes, multiple implementers and reviewers, reviewer scaling when finished work queues build, and Codex-first cross-references and prompt wording; updated on 2026-04-10 to align implementer TDD expectations with the rebased canonical test-driven-development skill, including the green-only refactor exception under existing characterization coverage."
 
 [[skill]]
 id = "systematic-debugging"
@@ -997,11 +997,11 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage an
 id = "test-driven-development"
 type = "skill"
 repo_path = "home/skills/execution/test-driven-development"
-status = "imported"
-source_kind = "superpowers"
-source_ref = "superpowers/test-driven-development"
-source_path = "/Users/builtin.pb/.codex/superpowers/skills/test-driven-development"
-notes = "Imported from the local Superpowers checkout into repo-owned storage."
+status = "adapted"
+source_kind = "multi-source"
+source_ref = "superpowers/test-driven-development + mattpocock/skills@651eab033bdf8f7fd535c274f8cbe839075aba5e:tdd"
+source_path = "/Users/builtin.pb/.codex/superpowers/skills/test-driven-development ; https://github.com/mattpocock/skills/tree/651eab033bdf8f7fd535c274f8cbe839075aba5e/tdd"
+notes = "Originally imported from the local Superpowers checkout, then adapted on 2026-04-10 to keep the stable local skill id while rebasing the content around Matt Pocock's behavior-first TDD guidance, removing user-approval gatekeeping that conflicts with local collaboration philosophy, retaining local RED/GREEN verification and anti-rationalization rigor, and keeping only the heavy anti-pattern reference split out of the main skill."
 
 [[skill]]
 id = "using-git-worktrees"
@@ -1047,11 +1047,11 @@ notes = "Imported from the local Superpowers checkout into repo-owned storage an
 id = "writing-skills"
 type = "skill"
 repo_path = "home/skills/execution/writing-skills"
-status = "imported"
+status = "adapted"
 source_kind = "superpowers"
 source_ref = "superpowers/writing-skills"
 source_path = "/Users/builtin.pb/.codex/superpowers/skills/writing-skills"
-notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first skill-authoring wording plus explicit broad-trigger guidance for frontmatter descriptions."
+notes = "Imported from the local Superpowers checkout, then adapted on 2026-03-31 for Codex-first skill-authoring wording and broad-trigger frontmatter guidance; further adapted on 2026-04-10 to align skill-authoring and skill-testing examples, checklists, and persuasion guidance with the rebased canonical test-driven-development skill, including trigger-only descriptions and green-only refactor handling under existing coverage."
 
 [[skill]]
 id = "agent-coordination"

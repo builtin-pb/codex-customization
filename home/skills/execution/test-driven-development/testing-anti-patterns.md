@@ -8,14 +8,12 @@ Tests must verify real behavior, not mock behavior. Mocks are a means to isolate
 
 **Core principle:** Test what the code does, not what the mocks do.
 
-**Following strict TDD prevents these anti-patterns.**
-
-## The Iron Laws
+## Working Rules
 
 ```
-1. NEVER test mock behavior
-2. NEVER add test-only methods to production classes
-3. NEVER mock without understanding dependencies
+1. Do not test mock behavior instead of system behavior
+2. Do not add production APIs that exist only for tests
+3. Do not mock a dependency until you understand what behavior the test actually needs
 ```
 
 ## Anti-Pattern 1: Testing Mock Behavior
@@ -33,8 +31,6 @@ test('renders sidebar', () => {
 - You're verifying the mock works, not that the component works
 - Test passes when mock is present, fails when it's not
 - Tells you nothing about real behavior
-
-**your human partner's correction:** "Are we testing the behavior of a mock?"
 
 **The fix:**
 ```typescript
@@ -194,16 +190,16 @@ const mockResponse = {
 - **Tests pass but integration fails** - Mock incomplete, real API complete
 - **False confidence** - Test proves nothing about real behavior
 
-**The Iron Rule:** Mock the COMPLETE data structure as it exists in reality, not just fields your immediate test uses.
+**Better default:** use the real path when practical. If you do need a structured fake, base it on the real contract and include the fields the system under test or its exercised collaborators actually depend on.
 
 **The fix:**
 ```typescript
-// ✅ GOOD: Mirror real API completeness
+// ✅ GOOD: Build a realistic fake at the seam you actually exercise
 const mockResponse = {
   status: 'success',
   data: { userId: '123', name: 'Alice' },
   metadata: { requestId: 'req-789', timestamp: 1234567890 }
-  // All fields real API returns
+  // Include the fields this path actually exercises
 };
 ```
 
@@ -211,18 +207,16 @@ const mockResponse = {
 
 ```
 BEFORE creating mock responses:
-  Check: "What fields does the real API response contain?"
+  Ask:
+    1. "Can I avoid mocking this path entirely?"
+    2. "What contract does this test actually exercise?"
+    3. "Which fields or behaviors are required for that path?"
 
   Actions:
-    1. Examine actual API response from docs/examples
-    2. Include ALL fields system might consume downstream
-    3. Verify mock matches real response schema completely
-
-  Critical:
-    If you're creating a mock, you must understand the ENTIRE structure
-    Partial mocks fail silently when code depends on omitted fields
-
-  If uncertain: Include all documented fields
+    1. Prefer the real implementation if it is practical
+    2. Otherwise, build a fake from the real docs/examples/contracts
+    3. Include the fields and behaviors the exercised path depends on
+    4. If you keep discovering missing pieces, the seam is probably wrong
 ```
 
 ## Anti-Pattern 5: Integration Tests as Afterthought
@@ -237,15 +231,17 @@ BEFORE creating mock responses:
 **Why this is wrong:**
 - Testing is part of implementation, not optional follow-up
 - TDD would have caught this
-- Can't claim complete without tests
+- Claims of completeness are weaker without automated coverage
 
 **The fix:**
 ```
 TDD cycle:
 1. Write failing test
-2. Implement to pass
-3. Refactor
-4. THEN claim complete
+2. Verify it fails for the right reason
+3. Implement to pass
+4. Verify it passes cleanly
+5. Refactor
+6. THEN claim complete
 ```
 
 ## When Mocks Become Too Complex
@@ -256,19 +252,16 @@ TDD cycle:
 - Mocks missing methods real components have
 - Test breaks when mock changes
 
-**your human partner's question:** "Do we need to be using a mock here?"
-
 **Consider:** Integration tests with real components often simpler than complex mocks
 
-## TDD Prevents These Anti-Patterns
+## Why TDD Helps
 
-**Why TDD helps:**
 1. **Write test first** → Forces you to think about what you're actually testing
 2. **Watch it fail** → Confirms test tests real behavior, not mocks
 3. **Minimal implementation** → No test-only methods creep in
 4. **Real dependencies** → You see what the test actually needs before mocking
 
-**If you're testing mock behavior, you violated TDD** - you added mocks without watching test fail against real code first.
+If you are mostly testing mock setup, the test is probably pointed at the wrong seam.
 
 ## Quick Reference
 
@@ -277,7 +270,7 @@ TDD cycle:
 | Assert on mock elements | Test real component or unmock it |
 | Test-only methods in production | Move to test utilities |
 | Mock without understanding | Understand dependencies first, mock minimally |
-| Incomplete mocks | Mirror real API completely |
+| Incomplete mocks | Prefer real paths or realistic seam-level fakes |
 | Tests as afterthought | TDD - tests first |
 | Over-complex mocks | Consider integration tests |
 
