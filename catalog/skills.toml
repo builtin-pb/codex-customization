@@ -1061,7 +1061,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy; further adapted on 2026-04-12 to require explicit `Be parallel when appropriate` wording when spawning coordination-capable subagents that may split work further."
 
 [[skill]]
 id = "agent-coordination-multi-reviewer"

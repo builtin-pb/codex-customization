@@ -36,6 +36,7 @@ Use this collection when a task has meaningful independent streams and multi-age
 3. Give each write-heavy task explicit ownership.
 4. Ask subagents focused questions with bounded outputs.
 5. Synthesize results locally before choosing the next action.
+6. When spawning a coordination-capable subagent that may split work further, include `Be parallel when appropriate` explicitly in the prompt.
 
 ## Recommended Shapes
 
