@@ -1014,9 +1014,9 @@ source_path = "/Users/builtin.pb/.codex/superpowers/skills/using-git-worktrees"
 notes = "Imported from the local Superpowers checkout into repo-owned storage and adapted on 2026-03-31 to replace legacy Claude and Superpowers host references with Codex-first wording, tool mappings, and broader trigger-only frontmatter wording."
 
 [[skill]]
-id = "using-superpowers"
+id = "using-skills"
 type = "skill"
-repo_path = "home/skills/alignment/using-superpowers"
+repo_path = "home/skills/alignment/using-skills"
 status = "imported"
 source_kind = "superpowers"
 source_ref = "superpowers/using-superpowers"

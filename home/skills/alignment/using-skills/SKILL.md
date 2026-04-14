@@ -1,5 +1,5 @@
 ---
-name: using-superpowers
+name: using-skills
 description: Use when starting a session or when you need to determine how local skills should be discovered and applied in this environment
 ---
 
