@@ -3,10 +3,6 @@ name: using-skills
 description: Use when starting a session or when you need to determine how local skills should be discovered and applied in this environment
 ---
 
-<SUBAGENT-STOP>
-If you were dispatched as a subagent to execute a specific task, skip this skill.
-</SUBAGENT-STOP>
-
 <EXTREMELY-IMPORTANT>
 If you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
 
