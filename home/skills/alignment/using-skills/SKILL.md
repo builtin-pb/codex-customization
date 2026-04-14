@@ -27,7 +27,7 @@ If `AGENTS.md` says "don't use TDD" and a skill says "always use TDD," follow `A
 
 ## How to Access Skills
 
-**In Codex:** Open the skill's `SKILL.md`, then follow it directly.
+**In Codex:** Open the skill's `SKILL.md` first. Then treat the entire skill directory as in scope, not just `SKILL.md`. If there is even a 1% chance that a referenced file, template, checklist, example, script, or other skill file is relevant, open it too before proceeding, unless the opened skill explicitly requires staged or selective loading.
 
 **In other environments:** Use the closest native skill-loading mechanism for that host.
 
@@ -40,6 +40,22 @@ Some imported skills still use legacy host tool names. In Codex, interpret them 
 ## The Rule
 
 **Invoke relevant or requested skills BEFORE any response or action.** Even a 1% chance a skill might apply means that you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to use it.
+
+Do not stop after the first matching skill. Do not stop after the broadest skill. Open every skill that has even a 1% chance of being relevant, unless an already-opened skill explicitly forbids invoking additional skills at the current stage. In that case, record the blocked candidates and open them at the first stage the gating skill allows.
+
+Apply the same rule inside each opened skill. If there is even a 1% chance that a file mentioned by the skill is relevant, open it before proceeding. This includes files in `references/`, plus mentioned templates, checklists, examples, and scripts, unless the skill explicitly requires staged or selective reference loading. In that case, follow the narrower skill-local rule after opening the top-level skill.
+
+## Enforcement
+
+Before proceeding from skill discovery into planning, research, implementation, file edits, or a final answer, explicitly state:
+
+1. Which skills you opened.
+2. Which referenced files inside those skills you opened.
+3. Which candidate skills or referenced files you surfaced during the scan but did not open.
+
+If you did not open a surfaced skill or referenced file, give a one-sentence reason, including when the reason is that it fell below the 1% threshold or was blocked by a gating skill.
+
+Do not proceed until this accounting is complete.
 
 ```dot
 digraph skill_flow {
@@ -87,12 +103,14 @@ These thoughts mean STOP—you're rationalizing:
 | "This doesn't count as a task" | Action = task. Check for skills. |
 | "The skill is overkill" | Simple things become complex. Use it. |
 | "I'll just do this one thing first" | Check BEFORE doing anything. |
+| "I've already opened one broad skill" | Broad coverage is not enough. Open every plausible companion skill. |
+| "The top-level SKILL.md is probably enough" | If a referenced file has even a 1% chance of mattering, open it. |
 | "This feels productive" | Undisciplined action wastes time. Skills prevent this. |
 | "I know what that means" | Knowing the concept ≠ using the skill. Invoke it. |
 
 ## Skill Priority
 
-When multiple skills could apply, use this order:
+When multiple skills could apply, use this order after opening all skills required by the discovery rule:
 
 1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
 2. **Implementation skills second** (frontend-design, mcp-builder) - these guide execution
