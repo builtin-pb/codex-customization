@@ -22,9 +22,9 @@ verl is a flexible, efficient, and production-ready RL training library for larg
 - Vision-language model RL training
 
 **Consider alternatives when:**
-- You need Megatron-native training → use **slime** or **miles**
-- You want PyTorch-native abstractions with Monarch → use **torchforge**
-- You only need simple SFT/DPO → use **TRL** or **Axolotl**
+- You only need simple supervised fine-tuning or preference tuning without a full RL stack
+- You want a lighter-weight single-node setup than verl's Ray-based orchestration
+- You do not need large-scale rollout/training backend flexibility
 
 ## Key Features
 
@@ -388,4 +388,3 @@ actor_rollout_ref:
 - **GitHub**: https://github.com/volcengine/verl
 - **Recipes**: https://github.com/verl-project/verl-recipe (DAPO, GSPO, etc.)
 - **Community**: Slack at verl-project
-
