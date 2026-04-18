@@ -291,7 +291,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy; further adapted on 2026-04-12 to require explicit `Be parallel when appropriate` wording when spawning coordination-capable subagents that may split work further."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy; further adapted on 2026-04-12 to require explicit `Be parallel when appropriate` wording when spawning coordination-capable subagents that may split work further; updated on 2026-04-18 to frame coordination as a rolling stream of agents and to allow scaling the active window up to eight concurrent agents when work stays independent."
 
 [[skill]]
 id = "agent-coordination-multi-reviewer"
@@ -331,7 +331,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-task-coordination"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-task-coordination"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy; updated on 2026-04-18 to emphasize rolling stream management, ready-queue visibility, and refilling lanes as agents finish."
 
 [[skill]]
 id = "agent-coordination-team-composition"
@@ -341,7 +341,7 @@ status = "imported"
 source_kind = "wshobson-agents-extracted"
 source_ref = "wshobson-agents-extracted/agent-coordination-team-composition"
 source_path = "/Users/builtin.pb/.agents/skills/agent-coordination-team-composition"
-notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy."
+notes = "Imported from the local wshobson/agents extraction into repo-owned storage and adapted on 2026-03-31 to align the skill trigger with this repo's default-to-delegation policy; updated on 2026-04-18 to allow initial team sizing up to eight concurrent agents when work stays independent while keeping live refill and rebalance guidance in `agent-coordination-task-coordination`."
 
 [[skill]]
 id = "comprehensive-review"

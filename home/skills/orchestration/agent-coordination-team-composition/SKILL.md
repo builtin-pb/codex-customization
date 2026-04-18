@@ -7,7 +7,7 @@ description: Use when delegated or parallel work needs team sizing, role selecti
 
 ## Overview
 
-Build the smallest team that covers the required perspectives. Most tasks need two or three agents, not a swarm.
+Build the smallest initial team that covers the required perspectives. Many tasks start with two to four agents, but initial sizing up to eight is acceptable when streams stay independent and coordination stays cheap.
 
 ## Team Presets
 
@@ -19,9 +19,10 @@ Build the smallest team that covers the required perspectives. Most tasks need t
 ## Sizing Heuristics
 
 - Start with `2` agents for compare-and-contrast work
-- Use `3` when the task benefits from distinct dimensions
-- Use `4` only when the write scopes or research questions are clearly separate
-- Avoid larger teams unless integration cost is obviously low
+- Use `3-4` when the task benefits from distinct dimensions
+- Scale the initial team to `5-8` when write scopes or research questions are clearly separate and there is enough ready work to justify the larger start
+- After work starts, use `agent-coordination-task-coordination` for refill, shrink, and rebalance decisions
+- Avoid larger windows unless integration cost is obviously low
 
 ## Read-Heavy Versus Write-Heavy
 

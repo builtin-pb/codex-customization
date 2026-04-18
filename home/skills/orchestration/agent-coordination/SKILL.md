@@ -7,7 +7,7 @@ description: Use when a task can benefit from delegated or parallel agent work a
 
 ## Overview
 
-Use this collection when a task has meaningful independent streams and multi-agent coordination is likely to reduce end-to-end latency. The goal is to split work cleanly, keep the critical path moving, and synthesize results before acting on them.
+Use this collection when a task has meaningful independent streams and multi-agent coordination is likely to reduce end-to-end latency. Treat multi-agent execution as a rolling stream, not a one-time spawn burst: start enough lanes to keep ready work moving, then refill or collapse those lanes as agents finish and new work opens up. The goal is to split work cleanly, keep the critical path moving, and synthesize results before acting on them.
 
 ## When To Use
 
@@ -31,15 +31,17 @@ Use this collection when a task has meaningful independent streams and multi-age
 
 ## Core Rules
 
-1. Prefer the smallest team that can make progress in parallel.
+1. Prefer the smallest active team that can keep ready work moving in parallel.
 2. Keep blocking work local unless delegation still saves time overall.
 3. Give each write-heavy task explicit ownership.
 4. Ask subagents focused questions with bounded outputs.
-5. Synthesize results locally before choosing the next action.
-6. When spawning a coordination-capable subagent that may split work further, include `Be parallel when appropriate` explicitly in the prompt.
+5. Treat delegation as a stream: when an agent finishes, decide whether to integrate, refill that slot with the next ready slice, or let the lane go idle.
+6. Synthesize results locally before choosing the next action.
+7. When spawning a coordination-capable subagent that may split work further, include `Be parallel when appropriate` explicitly in the prompt.
 
 ## Recommended Shapes
 
 - `2 agents`: compare two hypotheses, review from two dimensions, or split one feature into two clean slices
-- `3 agents`: common default for review or debugging when you need broader coverage
-- `4+ agents`: only when ownership is disjoint and coordination cost is justified
+- `3-4 agents`: common starting range for review or debugging when you need broader coverage
+- `5-8 agents`: acceptable when ownership or questions are clearly disjoint and the controller can keep the lanes fed
+- `8+ agents`: only when integration cost stays low and you still have genuinely independent streams
